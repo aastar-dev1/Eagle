@@ -4,7 +4,7 @@
 
 export const environment: IEnvironment = {
   production: false,
-  sitePath: 'eagle-dev.idc.tarento.com',
+  sitePath: 'learning.aastar.org',
 }
 interface IEnvironment {
   production: boolean

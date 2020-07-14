@@ -2,6 +2,7 @@
 /node_modules
 /.sonarlint
 /*/*/eagle-dev.idc.tarento.com
+assets/*
 
 # IDE - VSCode
 .vscode/*

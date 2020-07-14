@@ -1,6 +1,6 @@
 {
   "/apis/*": {
-    "target": "https://eagle-dev.idc.tarento.com",
+    "target": "https://learning.aastar.org",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
