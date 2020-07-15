@@ -16,6 +16,7 @@
  */
 package com.infosys.searchv6;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import com.infosys.elastic.helper.ConnectionManager;
 import com.infosys.exception.BadRequestException;
@@ -192,7 +193,7 @@ class MultiLingualIntegratedSearchServicev6 {
                 paramsMap.put(SearchConstantsv6.TEMPLATE_FILTER_PREFIX + WordUtils.capitalize(SearchConstantsv6.FILTER_IDENTIFIER_FIELD_KEY), true);
                 paramsMap.put(SearchConstantsv6.TEMPLATE_FILTER_PREFIX + WordUtils.capitalize(SearchConstantsv6.FILTER_IDENTIFIER_FIELD_KEY) + SearchConstantsv6.TEMPLATE_FILTER_SUFFIX, identifiersWithImage);
             } else {
-                paramsMap.put("must", true);
+                paramsMap.put("must", false);
                 paramsMap.put("should", true);
                 paramsMap.put("searchTerm", query);
             }
@@ -460,6 +461,10 @@ class MultiLingualIntegratedSearchServicev6 {
         for (String searchIndexLocale : validatedSearchData.getLocale()) {
             indices.add(SearchConstantsv6.SEARCH_INDEX_NAME_PREFIX + SearchConstantsv6.SEARCH_INDEX_LOCALE_DELIMITER + searchIndexLocale);
         }
+        System.out.println("Search Template "+ SearchConstantsv6.ML_SEARCH_TEMPLATE);
+
+        System.out.println("Params map "+ new ObjectMapper().writeValueAsString(paramsMap));
+
 
         SearchRequest searchRequest = new SearchRequest().searchType(SearchType.QUERY_THEN_FETCH);
         searchRequest.indices(indices.toArray(new String[0]));
