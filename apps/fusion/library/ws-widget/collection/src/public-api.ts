@@ -69,7 +69,7 @@ export * from './lib/discussion-forum/dialog/dialog-social-delete-post/dialog-so
 export * from './lib/discussion-forum/dialog/dialog-social-delete-post/dialog-social-delete-post.module'
 // discussion forum
 export * from './lib/discussion-forum/discussion-forum.module'
-export * from './lib/discussion-forum/editor-quill/editor-quill.component'
+export * from './lib/discussion-forum/editor-quill/component/editor-quill/editor-quill.component'
 export * from './lib/discussion-forum/editor-quill/editor-quill.module'
 export * from './lib/discussion-forum/ws-discussion-forum.model'
 export * from './lib/discussion-forum/ws-discussion-forum.services'

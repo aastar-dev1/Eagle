@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common'
 import { DiscussionForumComponent } from './components/discussion-forum/discussion-forum.component'
 import { DiscussionPostComponent } from './components/discussion-post/discussion-post.component'
 import { DiscussionReplyComponent } from './components/discussion-reply/discussion-reply.component'
+import { ApiService } from 'project/ws/author/src/lib/modules/shared/services/api.service'
 import {
   MatInputModule,
   MatFormFieldModule,
@@ -15,6 +16,7 @@ import {
   MatCardModule,
   MatProgressSpinnerModule,
   MatCheckboxModule,
+  // MatSnackBarModule,
 } from '@angular/material'
 import { EditorQuillModule } from './editor-quill/editor-quill.module'
 import { UserImageModule } from '../_common/user-image/user-image.module'
@@ -42,10 +44,12 @@ import { DialogSocialDeletePostModule } from './dialog/dialog-social-delete-post
     BtnSocialLikeModule,
     EditorQuillModule,
     UserImageModule,
+    // MatSnackBarModule,
     DialogSocialActivityUserModule,
     DialogSocialDeletePostModule,
   ],
   exports: [DiscussionForumComponent],
   entryComponents: [DiscussionForumComponent],
+  providers: [ApiService],
 })
 export class DiscussionForumModule { }
