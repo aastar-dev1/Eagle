@@ -3,7 +3,7 @@ import { NsDiscussionForum } from '../../ws-discussion-forum.model'
 import { TFetchStatus, ConfigurationsService } from '@ws-widget/utils'
 import { MatDialog, MatSnackBar } from '@angular/material'
 import { WsDiscussionForumService } from '../../ws-discussion-forum.services'
-import { EditorQuillComponent } from '../../editor-quill/editor-quill.component'
+import { EditorQuillComponent } from './../../editor-quill/component/editor-quill/editor-quill.component'
 import { DialogSocialDeletePostComponent } from '../../dialog/dialog-social-delete-post/dialog-social-delete-post.component'
 
 @Component({
