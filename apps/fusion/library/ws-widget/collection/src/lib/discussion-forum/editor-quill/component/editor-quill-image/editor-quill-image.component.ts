@@ -70,15 +70,12 @@ export class EditorQuillImageComponent implements OnInit {
     toolbar.addHandler('image', this.imageHandler)
   }
 
-  imageHandler = (image: any) => {
-
+  imageHandler = () => {
     const input = <HTMLInputElement>document.getElementById('fileInputField')
-
     input.onchange = () => {
       let file: File
-      file = input.files[0]
-
-      if (file) {
+      if (input.files) {
+        file = input.files[0]
         const fileExtension = file.name.toLowerCase().split('.')
         if (IMAGE_SUPPORT_TYPES.indexOf(`.${fileExtension[fileExtension.length - 1]}`) > -1) {
           if (file.size > IMAGE_MAX_SIZE) {
