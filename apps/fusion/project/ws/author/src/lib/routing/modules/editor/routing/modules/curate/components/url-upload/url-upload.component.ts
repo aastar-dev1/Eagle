@@ -57,7 +57,7 @@ export class UrlUploadComponent implements OnInit {
   createForm() {
     this.urlUploadForm = this.formBuilder.group({
       artifactUrl: [''],
-      isIframeSupported: [{ value: 'No', disabled: true }, Validators.required],
+      isIframeSupported: [{ value: 'Yes', disabled: false }, Validators.required],
       mimeType: [],
       isInIntranet: ['', Validators.required],
       isExternal: [],
@@ -69,7 +69,7 @@ export class UrlUploadComponent implements OnInit {
     })
     this.urlUploadForm.controls.artifactUrl.valueChanges.subscribe(() => {
       if (this.canUpdate) {
-        this.check()
+        // this.check()
         this.iprAccepted = false
       }
     })
@@ -90,7 +90,7 @@ export class UrlUploadComponent implements OnInit {
       this.iprAccepted = true
     }
     if (meta.artifactUrl) {
-      this.check()
+      // this.check()
     } else {
       this.storeData()
     }
@@ -195,8 +195,10 @@ export class UrlUploadComponent implements OnInit {
     this.canUpdate = true
     this.storeData()
     const iframe = this.urlUploadForm.controls.isIframeSupported
+    // tslint:disable-next-line:no-console
+    console.log('disableIframe', disableIframe)
     if (disableIframe) {
-      iframe.disable()
+      // iframe.disable()
     } else {
       iframe.enable()
     }
