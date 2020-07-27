@@ -96,10 +96,6 @@ import { ProfileImageModule } from '../../../../../../../library/ws-widget/colle
 import { EditorService } from '../../../../../author/src/lib/routing/modules/editor/services/editor.service'
 import { ApiService, AccessControlService } from '../../../../../author/src/public-api'
 
-// Social share
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ShareButtonsModule } from 'ngx-sharebuttons/buttons'
-import { ShareIconsModule } from 'ngx-sharebuttons/icons'
 @NgModule({
   declarations: [
     AppTocAnalyticsComponent,
@@ -177,11 +173,6 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons'
     BtnContentShareModule,
     UserAutocompleteModule,
     ProfileImageModule,
-    FontAwesomeModule,
-    ShareButtonsModule.withConfig({
-      debug: true,
-    }),
-    ShareIconsModule,
   ],
   providers: [
     AppTocResolverService,
