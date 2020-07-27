@@ -50,7 +50,7 @@
       </p>
     </div>
 
-    <mat-form-field class="width-1-1">
+    <mat-form-field class="width-1-1 mt-5">
       <mat-chip-list #chipList>
         <mat-chip *ngFor="let selectedTag of selectedTags" [selectable]="true" [removable]="true"
           (removed)="removeTag(selectedTag)">
