@@ -95,6 +95,11 @@ import { KnowledgeArtifactDetailsComponent } from './components/knowledge-artifa
 import { ProfileImageModule } from '../../../../../../../library/ws-widget/collection/src/lib/_common/profile-image/profile-image.module'
 import { EditorService } from '../../../../../author/src/lib/routing/modules/editor/services/editor.service'
 import { ApiService, AccessControlService } from '../../../../../author/src/public-api'
+
+// Social share
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons'
+import { ShareIconsModule } from 'ngx-sharebuttons/icons'
 @NgModule({
   declarations: [
     AppTocAnalyticsComponent,
@@ -172,6 +177,11 @@ import { ApiService, AccessControlService } from '../../../../../author/src/publ
     BtnContentShareModule,
     UserAutocompleteModule,
     ProfileImageModule,
+    FontAwesomeModule,
+    ShareButtonsModule.withConfig({
+      debug: true,
+    }),
+    ShareIconsModule,
   ],
   providers: [
     AppTocResolverService,
