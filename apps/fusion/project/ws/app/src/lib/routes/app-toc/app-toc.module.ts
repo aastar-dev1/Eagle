@@ -95,6 +95,7 @@ import { KnowledgeArtifactDetailsComponent } from './components/knowledge-artifa
 import { ProfileImageModule } from '../../../../../../../library/ws-widget/collection/src/lib/_common/profile-image/profile-image.module'
 import { EditorService } from '../../../../../author/src/lib/routing/modules/editor/services/editor.service'
 import { ApiService, AccessControlService } from '../../../../../author/src/public-api'
+
 @NgModule({
   declarations: [
     AppTocAnalyticsComponent,
