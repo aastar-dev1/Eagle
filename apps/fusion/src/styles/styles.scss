@@ -2,6 +2,7 @@
 @import 'ws-mixins';
 @import './utility.scss';
 
+@import '../../node_modules/quill/dist/quill.snow.css';
 @include print {
   * {
     display: none !important;
@@ -500,5 +501,5 @@ h3.shepherd-title {
 }
 
 .post-content img {
-  width: 100%;
+  max-width: 100%;
 }
