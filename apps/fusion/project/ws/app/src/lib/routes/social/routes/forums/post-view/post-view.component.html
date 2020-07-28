@@ -27,7 +27,7 @@
     <!--   <div class="flex flex-between  margin-bottom-xl">
       <div class="mat-caption">{{ conversation?.mainPost?.dtPublished | date }}</div>
     </div> -->
-    <div class="post-content" [innerHTML]="conversation?.mainPost?.postContent?.body | pipeSafeSanitizer: 'html'"></div>
+    <div class="post-content ql-editor [innerHTML]="conversation?.mainPost?.postContent?.body | pipeSafeSanitizer: 'html'"></div>
     <mat-chip-list class="margin-top-m">
       <mat-chip *ngFor="let tag of conversation?.mainPost?.tags">{{ tag.name }}</mat-chip>
     </mat-chip-list>
@@ -83,7 +83,7 @@
               </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <ws-widget-editor-quill *ngIf="!resetEditor" class="editor" [hidden]="postingReply"
+          <ws-widget-editor-quill *ngIf="!resetEditor" class="editor ql-editor" [hidden]="postingReply"
             (textData)="onTextChange($event)" [minLength]="'10'"></ws-widget-editor-quill>
           <div [hidden]="!postingReply" [innerHTML]="commentText | pipeSafeSanitizer: 'html'"></div>
           <mat-spinner *ngIf="postingReply"></mat-spinner>
