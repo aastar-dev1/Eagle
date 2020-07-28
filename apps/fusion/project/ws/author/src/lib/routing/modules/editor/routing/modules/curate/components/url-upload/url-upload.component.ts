@@ -198,7 +198,7 @@ export class UrlUploadComponent implements OnInit {
     // tslint:disable-next-line:no-console
     console.log('disableIframe', disableIframe)
     if (disableIframe) {
-      // iframe.disable()
+      iframe.disable()
     } else {
       iframe.enable()
     }
