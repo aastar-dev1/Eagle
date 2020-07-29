@@ -254,6 +254,7 @@
     max-width: 72px;
     max-height: 72px;
     display: flex;
+    visibility: hidden;
     border-radius: 8px;
 
     .source-icon {
@@ -317,7 +318,7 @@
 
   .title-text {
     // font-size: 18px;
-    margin: $size-s 0;
+    margin: 0 0 5px;
     position: relative;
     overflow: hidden;
     height: $title-line-count * $title-line-height;
