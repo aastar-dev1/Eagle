@@ -1,5 +1,5 @@
 <ng-container *ngIf="!showActivities; else activities">
-  <div class="mat-toolbar px-4 sm:px-8 md:px-0 py-4 flex items-center">
+  <div class="mat-toolbar px-4 sm:px-8 md:px-3 py-4 flex items-center">
     <ws-widget-user-image class="user-image" [email]="userEmail"></ws-widget-user-image>
     <h3>
       <ng-container i18n>Hey,  </ng-container>
@@ -10,7 +10,7 @@
 </ng-container>
 
 <ng-template #activities>
-  <div class="px-4 sm:px-8 md:px-0 py-4 my-1">
+  <div class="px-4 sm:px-8 md:px-3 py-4 my-1">
     <mat-accordion>
       <mat-expansion-panel [expanded]="false" class="expansion-panel ws-mat-primary-lite-background-on-day">
         <mat-expansion-panel-header>
@@ -31,7 +31,7 @@
             </button>
           </div>
         </div> -->
-        <div>
+        <div class="flex flex-center">
           <!-- <ws-utils-horizontal-scroller *ngIf="activityCards?.length" [loadStatus]="'done'"> -->
             <ws-widget-activity-card *ngFor="let card of activityCards" [widgetData]="{
             id : card.id,

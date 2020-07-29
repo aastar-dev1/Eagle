@@ -283,11 +283,11 @@
   }
 
   .complexity {
-    padding-top: 7px;
+    padding-top: 2px;
     display: flex;
     font-size: 14px;
-    line-height: 27px;
-    padding-bottom: 10px;
+    line-height: 24px;
+    padding-bottom: 3px;
 
     .mode-tag {
       border-radius: 5px;
@@ -312,8 +312,8 @@
     margin: auto 0;
   }
 
-  $title-line-count: 2;
-  $title-line-height: 1.89em;
+  $title-line-count: 1.9;
+  $title-line-height: 1.1em;
 
   .title-text {
     // font-size: 18px;
@@ -324,8 +324,8 @@
     line-height: $title-line-height;
   }
 
-  $description-line-count: 3;
-  $description-line-height: 1.9em;
+  $description-line-count: 2;
+  $description-line-height: 1.5em;
 
   .description-text {
     // font-size: 15px;
@@ -402,7 +402,7 @@
   $title-line-height: 1.3em;
 
   .title-text {
-    margin: $size-s 0 0 0;
+    margin: 9px 0 4px;
     position: relative;
     overflow: hidden;
     height: $title-line-count * $title-line-height;
