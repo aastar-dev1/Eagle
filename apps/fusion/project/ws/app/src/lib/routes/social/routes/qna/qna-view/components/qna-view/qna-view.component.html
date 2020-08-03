@@ -48,7 +48,7 @@
             [activity]="qnaConversation.mainPost.activity" [postCreatorId]="qnaConversation?.mainPost?.postCreator?.postCreatorId">
           </ws-widget-btn-social-like>
         </div>
-        <div class="body-section width-expand">
+        <div class="body-section width-expand ql-editor">
           <div class="margin-bottom-s" [innerHtml]="qnaConversation.mainPost.postContent.body | pipeSafeSanitizer: 'html'"></div>
           <mat-chip-list>
             <mat-chip *ngFor="let tag of qnaConversation.mainPost.tags" i18n-matTooltip matTooltip="Associated Tag">
@@ -134,7 +134,7 @@
 
   <mat-card [hidden]="!qnaConversation" class="my-4">
     <h2 i18n>Your Answer</h2>
-    <ws-widget-editor-quill class="editor" [htmlText]="replyAddRequest?.postContent?.body" [minLength]="'20'" (textData)="onTextChange($event)"
+    <ws-widget-editor-quill class="editor ql-editor" [htmlText]="replyAddRequest?.postContent?.body" [minLength]="'20'" (textData)="onTextChange($event)"
       #editor></ws-widget-editor-quill>
     <button mat-raised-button [disabled]="!isValidForUserAnswer || isPostingReply" color="primary" i18n="Post comment of question"
       class="margin-top-s" (click)="postReply()">

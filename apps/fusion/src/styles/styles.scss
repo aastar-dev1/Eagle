@@ -2,6 +2,7 @@
 @import 'ws-mixins';
 @import './utility.scss';
 
+@import '../../node_modules/quill/dist/quill.snow.css';
 @include print {
   * {
     display: none !important;
@@ -497,4 +498,8 @@ h3.shepherd-title {
 .mat-flat-button {
   font-weight: bold;
   border: 1px solid;
+}
+
+.post-content img, .ql-editor img {
+  max-width: 100%;
 }
