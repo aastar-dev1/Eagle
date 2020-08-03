@@ -46,7 +46,7 @@
                     <div *ngIf="uploadSaveData" class="pr-4 flex items-center justify-center">
                         <mat-spinner [diameter]="30"></mat-spinner>
                     </div>
-                    <button mat-raised-button color="primary" type="submit" i18n
+                    <button mat-raised-button color="primary" type="submit"
                         [disabled]="uploadSaveData || !accessPathForm?.valid" (click)="onSubmit(accessPathForm)">
                         <ng-container i18n>Save</ng-container>
                     </button>

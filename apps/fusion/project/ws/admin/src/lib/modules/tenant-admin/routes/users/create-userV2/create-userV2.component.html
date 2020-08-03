@@ -32,7 +32,7 @@
           <input type="email" matInput placeholder="Email" formControlName="email">
         </mat-form-field>
         <div class="border"></div>
-    
+
         <div class="mt-4 flex justify-end">
           <!-- <div class="center flex items-center"> -->
           <!-- <div *ngIf="uploadSaveData" class="pr-4 flex items-center justify-center">
@@ -40,11 +40,11 @@
               </div> -->
           <button mat-raised-button
             color="primary"
-            type="submit" 
-            i18n 
+            type="submit"
+          
             [disabled]="uploadSaveData || !createUserForm?.valid"
             (click)="onSubmit(createUserForm)">
-    
+
             <ng-container i18n>Create User</ng-container>
           </button>
           <!-- <button type="reset" (click)="onReset()" class="pl-4 mat-button">Cancel</button> -->
@@ -54,7 +54,7 @@
   </mat-card>
 </div>
 
- 
+
   <input
     type="hidden"
     i18-value
