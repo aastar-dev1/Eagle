@@ -43,7 +43,7 @@ export class ViewerUtilService {
   getContent(contentId: string): Observable<NsContent.IContent> {
     return this.http.get<NsContent.IContent>(
       // tslint:disable-next-line:max-line-length
-      `/apis/authApi/action/content/hierarchy/${contentId}?rootOrg=${this.configservice.rootOrg || 'igot'}&org=${this.configservice.activeOrg || 'dopt'}`,
+      `/apis/authApi/action/content/hierarchy/${contentId}?rootOrg=${this.configservice.rootOrg || 'aastar'}&org=${this.configservice.activeOrg || 'dopt'}`,
     )
   }
 
