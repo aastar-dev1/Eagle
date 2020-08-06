@@ -96,7 +96,6 @@ $description-height-size: 1.2em;
 
 .learning-overview {
   box-sizing: border-box;
-  width: 50%;
   @include breakpoint-xs {
     width: 100%;
   }

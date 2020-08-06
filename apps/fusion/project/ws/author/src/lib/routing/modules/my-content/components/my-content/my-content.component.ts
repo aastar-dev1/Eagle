@@ -23,6 +23,7 @@ import { LoaderService } from '@ws/author/src/lib/services/loader.service'
 import { Subscription } from 'rxjs'
 import { MyContentService } from '../../services/my-content.service'
 import { map } from 'rxjs/operators'
+import { REVIEW_ROLE, PUBLISH_ROLE, CREATE_ROLE } from '@ws/author/src/lib/constants/content-role'
 
 @Component({
   selector: 'ws-auth-my-content',
@@ -56,6 +57,16 @@ export class MyContentComponent implements OnInit, OnDestroy {
   @ViewChild('searchInput', { static: false }) searchInputElem: ElementRef<any> = {} as ElementRef<
     any
   >
+
+  // sideNavBarOpened = true
+  panelOpenState = false
+  allowReview = false
+  allowAuthor = false
+  allowRedo = false
+  allowPublish = false
+  allowExpiry = false
+  allowRestore = false
+  isNewDesign = false
 
   public filterMenuItems: any = []
 
@@ -122,6 +133,13 @@ export class MyContentComponent implements OnInit, OnDestroy {
       this.setAction()
       this.fetchContent(false)
     })
+
+    this.allowAuthor = this.canShow('author')
+    this.allowRedo = this.accessService.authoringConfig.allowRedo
+    this.allowRestore = this.accessService.authoringConfig.allowRestore
+    this.allowExpiry = this.accessService.authoringConfig.allowExpiry
+    this.allowReview = this.canShow('review') && this.accessService.authoringConfig.allowReview
+    this.allowPublish = this.canShow('publish') && this.accessService.authoringConfig.allowPublish
   }
 
   fetchStatus() {
@@ -625,5 +643,17 @@ export class MyContentComponent implements OnInit, OnDestroy {
 
   setCurrentLanguage(lang: string) {
     this.searchLanguage = lang
+  }
+  canShow(role: string): boolean {
+    switch (role) {
+      case 'review':
+        return this.accessService.hasRole(REVIEW_ROLE)
+      case 'publish':
+        return this.accessService.hasRole(PUBLISH_ROLE)
+      case 'author':
+        return this.accessService.hasRole(CREATE_ROLE)
+      default:
+        return false
+    }
   }
 }

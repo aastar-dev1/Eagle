@@ -288,7 +288,7 @@
     display: flex;
     font-size: 14px;
     line-height: 24px;
-    padding-bottom: 3px;
+    padding-bottom: 0px;
 
     .mode-tag {
       border-radius: 5px;
@@ -313,19 +313,19 @@
     margin: auto 0;
   }
 
-  $title-line-count: 1.9;
+  $title-line-count: 2;
   $title-line-height: 1.1em;
 
   .title-text {
     // font-size: 18px;
-    margin: 0 0 5px;
+    margin: -2px 0 5px;
     position: relative;
     overflow: hidden;
     height: $title-line-count * $title-line-height;
     line-height: $title-line-height;
   }
 
-  $description-line-count: 2;
+  $description-line-count: 1;
   $description-line-height: 1.5em;
 
   .description-text {

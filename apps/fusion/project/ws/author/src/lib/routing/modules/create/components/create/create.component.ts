@@ -12,6 +12,7 @@ import { AuthInitService } from '@ws/author/src/lib/services/init.service'
 import { LoaderService } from '@ws/author/src/lib/services/loader.service'
 import { Subscription } from 'rxjs'
 import { CreateService } from './create.service'
+import { REVIEW_ROLE, PUBLISH_ROLE, CREATE_ROLE } from '@ws/author/src/lib/constants/content-role'
 
 @Component({
   selector: 'ws-auth-generic',
@@ -25,6 +26,14 @@ export class CreateComponent implements OnInit, OnDestroy {
   allLanguages: any
   language = ''
   error = false
+  panelOpenState = false
+  allowReview = false
+  allowAuthor = false
+  allowRedo = false
+  allowPublish = false
+  allowExpiry = false
+  allowRestore = false
+  isNewDesign = false
 
   constructor(
     private snackBar: MatSnackBar,
@@ -49,6 +58,27 @@ export class CreateComponent implements OnInit, OnDestroy {
     this.loaderService.changeLoadState(false)
     this.allLanguages = this.authInitService.ordinals.subTitles || []
     this.language = this.accessControlSvc.locale
+
+    this.allowAuthor = this.canShow('author')
+    this.allowRedo = this.accessControlSvc.authoringConfig.allowRedo
+    this.allowRestore = this.accessControlSvc.authoringConfig.allowRestore
+    this.allowExpiry = this.accessControlSvc.authoringConfig.allowExpiry
+    this.allowReview = this.canShow('review') && this.accessControlSvc.authoringConfig.allowReview
+    this.allowPublish = this.canShow('publish') && this.accessControlSvc.authoringConfig.allowPublish
+  
+  }
+
+  canShow(role: string): boolean {
+    switch (role) {
+      case 'review':
+        return this.accessControlSvc.hasRole(REVIEW_ROLE)
+      case 'publish':
+        return this.accessControlSvc.hasRole(PUBLISH_ROLE)
+      case 'author':
+        return this.accessControlSvc.hasRole(CREATE_ROLE)
+      default:
+        return false
+    }
   }
 
   ngOnDestroy() {

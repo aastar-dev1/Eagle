@@ -9,8 +9,8 @@
       favorite_border
     </mat-icon>
   </button>
-  <button mat-icon-button *ngSwitchCase="'LIKED'" (click)="unlike($event)" aria-label="UnLike" i18n-aria-label matTooltip="UnLike"
-    i18n-matTooltip="UnLike Button" [color]="color">
+  <button mat-icon-button *ngSwitchCase="'LIKED'" (click)="unlike($event)" aria-label="Remove" i18n-aria-label matTooltip="Remove"
+    i18n-matTooltip="Remove Button" [color]="color">
     <mat-icon *ngIf="!showCount">favorite</mat-icon>
     <mat-icon *ngIf="showCount" matBadge="{{ likesCount }}" matBadgeColor="accent" class="badge-notify" matBadgeSize="small">
     favorite
