@@ -150,3 +150,7 @@
 ws-auth-content-card-v2 {
   display: contents;
 }
+
+.mat-list-item.active {
+  background: rgba(0,0,0,.04)
+}

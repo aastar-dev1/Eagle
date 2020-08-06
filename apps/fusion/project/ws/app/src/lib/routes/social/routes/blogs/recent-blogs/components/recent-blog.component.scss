@@ -43,8 +43,31 @@
   }
 }
 
+.search-border {
+  border: solid 1px black;
+  margin-left: 5px;
+}
+.input-search {
+  width:95%;
+  margin-left: 3%;
+  font-size: 15px;
+}
+:host::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}
+
+:host::ng-deep .mat-form-field-infix {
+  padding: 0 !important;
+  border: 0 !important;
+}
 .blog-title {
   font-weight: 600;
   line-height: 1.35;
   overflow-x: hidden;
+}
+
+@media (max-width: 435px) {
+  :host::ng-deep .search.w-full {
+    width: 110px;
+  }
 }
