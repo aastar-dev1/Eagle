@@ -1,6 +1,14 @@
 <div class="profile-container">
-  <div class="flex flex-wrap">
+  <div class="flex flex-wrap mb-4">
     <mat-card class="about-me ">
+      <span class="font-bold mat-title margin-zero pl-4" i18n="profile">
+        Profile </span>
+      <span class="spacer"></span>
+
+      <button mat-button class="interest-edit" color="primary" [routerLink]="'/app/user-profile/details'">
+        <mat-icon>edit</mat-icon>
+        <span i18n class="px-2">Edit</span>
+      </button>
       <div class="user-avatar ws-mat-primary-lite-background-on-day">
         <ws-widget-user-image class="user-image" [email]="userEmail" [imageType]="'rounded'"></ws-widget-user-image>
         <div class="user-name">
@@ -8,6 +16,7 @@
           <h3 class="font-bold  margin-zero pl-4 sm:pl-0">{{ departmentName }}</h3>
         </div>
       </div>
+
 
       <div class="p-4" *ngIf="enabledTabs?.subFeatures?.interests">
         <div class="flex flex-middle mb-4">
@@ -18,7 +27,7 @@
 
           <button mat-button class="interest-edit" color="primary" [routerLink]="'/app/profile/interest'">
             <mat-icon> edit</mat-icon>
-            <span i18n class="px-2">Edit</span>
+            <span i18n class="px-2">Modify</span>
           </button>
 
           <!-- <a

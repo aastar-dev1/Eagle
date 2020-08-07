@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'
+import { Injectable,SkipSelf } from '@angular/core'
 import { Data } from '@angular/router'
 import { Subject, Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
@@ -35,7 +35,7 @@ export class AppTocService {
   private showSubtitleOnBanners = false
   private canShowDescription = false
 
-  constructor(private http: HttpClient, private configSvc: ConfigurationsService) { }
+  constructor(@SkipSelf() private http: HttpClient, private configSvc: ConfigurationsService) { }
 
   get subtitleOnBanners(): boolean {
     return this.showSubtitleOnBanners
