@@ -22,8 +22,7 @@ export class HomeComponent implements OnInit {
   actionNotificationsNextPage?: string
   infoNotificationsNextPage?: string
   private pageSize: number
-  hideSeen:Boolean = true;
-
+  hideSeen: Boolean = true
 
   constructor(
     private configSvc: ConfigurationsService,
@@ -112,32 +111,33 @@ export class HomeComponent implements OnInit {
       })
     })
   }
-  displayInfoNotifications(){
-    if(this.hideSeen){
-      return this.infoNotifications.filter(function(item){
-        return item.seen != true
-      })
-    } else
-    return this.infoNotifications;
-  }
-  displayActionNotifications() {
+
+  displayInfoNotifications() {
     if (this.hideSeen) {
-      return this.actionNotifications.filter(function (item) {
-        return item.seen != true
+      return this.infoNotifications.filter(item => {
+        return !item.seen
       })
-    } else
+    }
       return this.infoNotifications
   }
-  toggleSeen(){
-    this.hideSeen = !this.hideSeen;
+
+  displayActionNotifications() {
+    if (this.hideSeen) {
+      return this.actionNotifications.filter(item => {
+        return !item.seen
+      })
+    }
+      return this.actionNotifications
   }
-  toggleButtonText(){
-    if(this.hideSeen){
+
+  toggleSeen() {
+    this.hideSeen = !this.hideSeen
+  }
+
+  toggleButtonText() {
+    if (this.hideSeen) {
       return 'Show All'
     }
-    else
-    return 'Hide Read'
+      return 'Hide Read'
   }
 }
-
-

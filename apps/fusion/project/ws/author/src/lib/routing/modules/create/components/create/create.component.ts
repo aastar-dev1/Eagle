@@ -65,7 +65,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     this.allowExpiry = this.accessControlSvc.authoringConfig.allowExpiry
     this.allowReview = this.canShow('review') && this.accessControlSvc.authoringConfig.allowReview
     this.allowPublish = this.canShow('publish') && this.accessControlSvc.authoringConfig.allowPublish
-  
+
   }
 
   canShow(role: string): boolean {
