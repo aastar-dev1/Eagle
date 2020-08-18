@@ -1,4 +1,4 @@
-import { Injectable,SkipSelf } from '@angular/core'
+import { Injectable, SkipSelf } from '@angular/core'
 import { Data } from '@angular/router'
 import { Subject, Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
