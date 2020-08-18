@@ -11,6 +11,9 @@
 </mat-toolbar>
 
 <section class="my-4 pt-4 pb-8 pl-4 pr-4 container-balanced">
+  <button mat-raised-button class="text-right" (click)="toggleSeen()" i18n>
+    {{toggleButtonText()}}
+  </button>
   <button [disabled]="!showMarkAsRead" mat-raised-button class="text-right"
     *ngIf="actionNotifications.length || infoNotifications.length" (click)="readAllNotifications()" i18n>
     Mark all as read
@@ -20,7 +23,7 @@
     <h3 class="mat-h3" i18n>For Your Action</h3>
 
     <ul class="list-none p-0 mb-4 mat-toolbar">
-      <ng-container *ngFor="let notification of actionNotifications">
+      <ng-container *ngFor="let notification of displayActionNotifications()">
         <li matRipple class="p-4 cursor-pointer" (click)="onClickNotification(notification)">
           <div class="flex flex-between">
             <div class="flex flex-col flex-center w-1/10">
@@ -56,7 +59,7 @@
     <h3 class="mat-h3" i18n>For Your Information</h3>
 
     <ul class="list-none p-0 mat-toolbar">
-      <ng-container *ngFor="let notification of infoNotifications">
+      <ng-container *ngFor="let notification of displayInfoNotifications()">
         <li matRipple class="p-4 cursor-pointer" (click)="onClickNotification(notification)">
           <div class="flex flex-between">
             <div class="flex flex-col flex-center">
