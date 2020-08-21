@@ -264,3 +264,9 @@ ul li {
     flex-direction: column;
   }
 }
+
+@media (min-width: 961px) {
+  .width-300 {
+    width: 300
+  }
+}

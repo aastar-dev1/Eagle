@@ -34,7 +34,9 @@ export class CreateComponent implements OnInit, OnDestroy {
   allowExpiry = false
   allowRestore = false
   isNewDesign = false
-
+  content: ICreateEntity | undefined
+  courseObj = ''
+ 
   constructor(
     private snackBar: MatSnackBar,
     private svc: CreateService,
@@ -65,7 +67,11 @@ export class CreateComponent implements OnInit, OnDestroy {
     this.allowExpiry = this.accessControlSvc.authoringConfig.allowExpiry
     this.allowReview = this.canShow('review') && this.accessControlSvc.authoringConfig.allowReview
     this.allowPublish = this.canShow('publish') && this.accessControlSvc.authoringConfig.allowPublish
-  
+
+
+   // tslint:disable-next-line:max-line-length
+   this.courseObj =  '{ "id": "course", "isCollection": true, "name": "Course", "description": "Create a collection of Modules", "icon": "book", "contentType": "Course", "available": true, "enabled": true, "mimeType": "application/vnd.ekstep.content-collection", "hasRole": [ "content-creator", "editor", "admin" ] }'
+  this.content = JSON.parse(this.courseObj)
   }
 
   canShow(role: string): boolean {
@@ -86,13 +92,22 @@ export class CreateComponent implements OnInit, OnDestroy {
   }
 
   contentClicked(content: ICreateEntity) {
+    console.log('content==>', content)
+    if (content) {
+      // this.showCreateCourseForm = true
+      this.content = content
+    }
+  }
+
+  createCourseClicked() {
     this.loaderService.changeLoad.next(true)
+    if (this.content) {
     this.svc
       .create({
-        contentType: content.contentType,
-        mimeType: content.mimeType,
+        contentType: this.content.contentType,
+        mimeType: this.content.mimeType,
         locale: this.language,
-        ...(content.additionalMeta || {}),
+        ...(this.content.additionalMeta || {}),
       })
       .subscribe(
         (id: string) => {
@@ -124,6 +139,7 @@ export class CreateComponent implements OnInit, OnDestroy {
           })
         },
       )
+    }
   }
 
   setCurrentLanguage(lang: string) {

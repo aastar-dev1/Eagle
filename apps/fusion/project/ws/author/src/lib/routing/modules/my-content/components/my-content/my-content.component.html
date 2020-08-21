@@ -1,13 +1,47 @@
+<!-- <div *ngIf="allowAuthor"
+class="matExpansion flex flex-middle margin-top-m margin-left-l margin-right-l padding-remove-left create-button">
+<button mat-button class="font-weight-bold margin-remove-bottom mat-h3 ws-mat-primary-text ws-mat-primary-border"
+  [routerLink]="'/author/create'" id="ws-auth-root-home-btn-create" name="ws-auth-root-home-btn-create">
+  <ng-container i18n>Create Content</ng-container>
+  <mat-icon class="ws-mat-primary-text margin-left-m margin-bottom-xxs">create</mat-icon>
+</button>
+</div> -->
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>
-    <div *ngIf="allowAuthor"
-    class="matExpansion flex flex-middle margin-top-m margin-left-l margin-right-l padding-remove-left create-button">
-    <button mat-button class="font-weight-bold margin-remove-bottom mat-h3 ws-mat-primary-text ws-mat-primary-border"
-      [routerLink]="'/author/create'" id="ws-auth-root-home-btn-create" name="ws-auth-root-home-btn-create">
-      <ng-container i18n>Create Content</ng-container>
-      <mat-icon class="ws-mat-primary-text margin-left-m margin-bottom-xxs">create</mat-icon>
-    </button>
-  </div>
+    <ng-container *ngIf="isNewDesign">
+      <mat-accordion expanded *ngIf="allowAuthor">
+        <mat-expansion-panel [expanded]="true" class="no-shadow">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="font-weight-500" i18n>My Content</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+            <mat-list-item mat-button role="listitem" class="draftss">
+              <a routerLink="/author/my-content" [queryParams]="{ status: 'draft' }" [routerLinkActive]="status=='draft'" 
+              [class.active]="status=='draft'" class="draft" i18n>Draft</a>
+            </mat-list-item>
+            <mat-list-item mat-button role="listitem">
+              <a routerLink="/author/my-content" [queryParams]="{ status: 'inreview' }" i18n>Sent for review</a>
+            </mat-list-item>
+            <mat-list-item mat-button role="listitem">
+              <a routerLink="/author/my-content" [queryParams]="{ status: 'published' }" i18n>Published</a>
+            </mat-list-item>
+            <mat-list-item mat-button role="listitem">
+              <a routerLink="/author/my-content" [queryParams]="{ status: 'unpublished' }" i18n>Unpublished</a>
+            </mat-list-item>
+            <mat-list-item *ngIf="allowExpiry" mat-button role="listitem">
+              <a routerLink="/author/my-content" [queryParams]="{ status: 'expiry' }" i18n>Expiring</a>
+            </mat-list-item>
+            <mat-list-item *ngIf="allowRestore" mat-button role="listitem">
+              <a routerLink="/author/my-content" [queryParams]="{ status: 'deleted' }" i18n>Deleted</a>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ng-container>
+
+
     <ng-container *ngIf="isNewDesign">
     <mat-accordion expanded *ngIf="allowAuthor">
       <mat-expansion-panel [expanded]="true" class="no-shadow">
@@ -19,7 +53,7 @@
         <mat-list role="list">
           <mat-list-item mat-button role="listitem" class="draftss">
             <a routerLink="/author/my-content" [queryParams]="{ status: 'draft' }" [routerLinkActive]="status=='draft'" 
-            [class.active]="status=='draft'" class="draft" i18n>Draftpp</a>
+            [class.active]="status=='draft'" class="draft" i18n>Draft</a>
           </mat-list-item>
           <mat-list-item mat-button role="listitem">
             <a routerLink="/author/my-content" [queryParams]="{ status: 'inreview' }" i18n>Sent for review</a>
@@ -48,7 +82,11 @@
               <span class="font-weight-500" i18n>My Content</span>
             </mat-panel-title>
           </mat-expansion-panel-header>
+          <!-- Shown when logged in as admin-->
           <mat-list role="list">
+            <mat-list-item mat-button role="listitem" [routerLinkActive]="['active']">
+              <a routerLink="/author/my-content" [queryParams]="{ status: 'all' }" i18n>All</a>
+            </mat-list-item>
             <mat-list-item mat-button role="listitem" [routerLinkActive]="['active']">
               <a routerLink="/author/my-content" [queryParams]="{ status: 'draft' }" i18n>Draft</a>
             </mat-list-item>
@@ -132,7 +170,11 @@
       </mat-tree-node>
     </mat-tree>
   </mat-sidenav>
+
+  
   <mat-sidenav-content class="sidenav-content">
+    <div class="outer-flex">
+    <div class="content-box">
     <nav class="flex flex-middle flex-wrap p-4 ws-mat-primary-text">
       <div class="mat-subheading-2 margin-remove-bottom">
         <a i18n>
@@ -202,10 +244,11 @@
           <mat-icon>search</mat-icon>
         </div>
       </div>
+      <div> <mat-icon>border_all</mat-icon></div>
     </div>
     <div *ngIf="cardContent" class="flex flex-wrapped flex-dynamic margin-xs">
       <ng-template #oldDesign>
-        <div class="margin-l" *ngFor="let content of cardContent">
+        <div class="margin-l full-width-field" *ngFor="let content of cardContent">
           <ws-auth-root-content-card [data]="content" [forExpiry]="status === 'expiry'"
             [forDelete]="status === 'deleted'" [ordinals]="ordinals" (action)="action($event)">
           </ws-auth-root-content-card>
@@ -228,7 +271,29 @@
       <mat-icon class="large-icon">info</mat-icon>
       <span class="font-weight-bold margin-left-s mat-h3 margin-remove-bottom" i18n>Unable to fetch data</span>
     </div>
+  </div>
+  <div class="sidebar mt-10">
+    <div class="info-section mb-6">
+      <h3 class="mb-3">In case it helps</h3>
+      <div>Test test Test testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest test </div>
+      <a mat-button href="https://www.google.com/" target="_blank">Try it now</a>
+    </div>
+    <div class="info-section mb-6">
+      <h3 class="mb-3">In case it helps</h3>
+      <div>Test test Test testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest test </div>
+      <a mat-button href="https://www.google.com/" target="_blank">Try it now</a>
+    </div>
+    <div class="info-section mb-6">
+      <h3 class="mb-3">In case it helps</h3>
+      <div>Test test Test testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest testTest test </div>
+      <a mat-button href="https://www.google.com/" target="_blank">Try it now</a>
+    </div>
+
+  </div>
+  </div>
   </mat-sidenav-content>
+ 
+
 </mat-sidenav-container>
 <mat-menu #sortLang="matMenu">
   <ng-template matMenuContent>

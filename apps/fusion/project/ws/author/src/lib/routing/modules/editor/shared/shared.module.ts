@@ -17,7 +17,8 @@ import { QuillComponent } from './components/rich-text-editor/quill.component'
 import { DragDropDirective } from './directives/drag-drop.directive'
 import { UploadService } from './services/upload.service'
 import { BaseComponent } from './components/editor/base/base.component'
-import { EditMetaV2Component } from './components/editor/edit-meta-v2/edit-meta-v2.component'
+import { EditMetaV2Component } from './components/editor/edit-meta-v2/edit-meta-v2.component';
+import { AastarEditMetaComponent } from './components/aastar-edit-meta/aastar-edit-meta.component'
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { EditMetaV2Component } from './components/editor/edit-meta-v2/edit-meta-
     AuthEditorActionButtonsComponent,
     BaseComponent,
     EditMetaV2Component,
+    AastarEditMetaComponent,
   ],
   imports: [
     CommonModule,

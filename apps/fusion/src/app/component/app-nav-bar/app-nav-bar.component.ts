@@ -11,6 +11,7 @@ import { Router, NavigationStart, NavigationEnd, Event } from '@angular/router'
   styleUrls: ['./app-nav-bar.component.scss'],
 })
 export class AppNavBarComponent implements OnInit, OnChanges {
+  allowAuthor = true
   @Input() mode: 'top' | 'bottom' = 'top'
   // @Input()
   // @HostBinding('id')

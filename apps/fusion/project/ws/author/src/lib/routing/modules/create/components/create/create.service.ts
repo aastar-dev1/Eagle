@@ -16,12 +16,13 @@ export class CreateService {
     private accessService: AccessControlService,
   ) { }
 
-  create(meta: { mimeType: string; contentType: string; locale: string }): Observable<string> {
+  create(meta: { mimeType: string; contentType: string; locale: string,
+     courseName?: string, courseIntro?:  string }): Observable<string> {
     const requestBody: NSApiRequest.ICreateMetaRequest = {
       content: {
         ...meta,
-        name: 'Untitled Content',
-        description: '',
+        name: meta.courseName || 'untitled content',
+        description: meta.courseIntro || '',
         category: meta.contentType,
         createdBy: this.accessService.userId,
         authoringDisabled: false,
