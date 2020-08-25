@@ -99,9 +99,7 @@ export class WebModuleComponent implements OnInit, OnDestroy {
   private async transformWebmodule(_content: NsContent.IContent) {
     let manifestFile = ''
     if (this.webmoduleData && this.webmoduleData.artifactUrl) {
-      const artifactUrl = this.forPreview
-        ? this.viewSvc.getAuthoringUrl(this.webmoduleData.artifactUrl)
-        : this.webmoduleData.artifactUrl
+      const artifactUrl = this.viewSvc.getAuthoringUrl(this.webmoduleData.artifactUrl)
       this.webmoduleData.artifactUrl = artifactUrl
       manifestFile = await this.http
         .get<any>(artifactUrl || '')
