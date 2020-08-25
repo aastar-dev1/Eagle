@@ -62,7 +62,7 @@
       </mat-form-field>
     </mat-sidenav>
     <mat-sidenav-content>
-      <iframe title="Web Module Content" i18n-title [src]="iframeUrl"
+      <iframe title="Web Module Content" i18n-title [srcdoc]="iframeUrl"
         allow="fullscreen; accelerometer; autoplay; encrypted-media; gyroscope; " class="web-module-iframe"
         [ngClass]="{ iframeBlur: iframeLoadingInProgress }" *ngIf="iframeUrl" #iframeElem
         (load)="modifyIframeDom(iframeElem)"></iframe>
