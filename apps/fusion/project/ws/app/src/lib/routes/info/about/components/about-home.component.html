@@ -82,7 +82,20 @@
       </div>
     </div>
 
-    <section class="m-4" *ngIf="aboutPage?.features">
+<section class="m-4" *ngIf="aboutPage?.features">
+  <mat-accordion *ngIf="aboutPage?.features.length>0">
+    <mat-expansion-panel class="text-justify" *ngFor="let key of aboutPage?.features">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{key.title}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>{{key.description}}</div>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</section>
+    <!-- <section class="m-4" *ngIf="aboutPage?.features">
       <h1 class="mat-heading">
         {{ aboutPage?.features?.title }}
       </h1>
@@ -97,7 +110,7 @@
           <div [innerHTML]="(aboutPage?.features?.list)[key] | pipeSafeSanitizer: 'html'"></div>
         </mat-expansion-panel>
       </mat-accordion>
-    </section>
+    </section> -->
     <mat-divider></mat-divider>
   </section>
   <!-- <section class="container-margin" *ngIf="aboutPage?.section4">
