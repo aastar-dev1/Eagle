@@ -3,6 +3,22 @@
 
     <form [formGroup]="contentForm" class="width-2-3">
 
+      <div class="margin-top-xl margin-right-l">
+        <div class="grid"></div>
+        <div class="flex flex-end margin-top-l margin-bottom-l margin-right-l">
+          <button mat-raised-button type="button" class="text-white ws-mat-primary-background text-white margin-right-m"
+            (click)="data.emit('save')">
+            <span class="text-white" i18n>Save</span>
+          </button>
+          <button mat-raised-button type="button" class="text-white ws-mat-primary-background text-white"
+            (click)="data.emit('push'); isSubmitPressed = true">
+            <span class="text-white" i18n>
+              Done
+            </span>
+          </button>
+        </div>
+      </div>
+
       <div class="margin-top-xl new-mobile margin-right-l">
 
 
@@ -192,10 +208,11 @@
                   HTML supported Editor in case you'd like to provide more descriptive details
                 </span>
               </label>
-              <div class="margin-top-s margin-bottom-l" [ngClass]="{ 'mat-form-field-invalid': showError('body') }">
+              <div class="margin-top-s margin-bottom-l" *ngIf="contentForm && contentForm.controls" [ngClass]="{ 'mat-form-field-invalid': showError('body') }">
                 <ws-auth-plain-ckeditor [location]="location" [id]="contentMeta.identifier"
                   [content]="contentForm.controls.body.value || ''" (value)="updateContentService('body', $event)">
                 </ws-auth-plain-ckeditor>
+                <!-- <textarea (value)="updateContentService('body', $event)"></textarea> -->
               </div>
             </div>
           </div>
@@ -992,21 +1009,7 @@
 
 
 
-      <div class="margin-top-xl margin-right-l">
-        <div class="grid"></div>
-        <div class="flex flex-end margin-top-l margin-bottom-l margin-right-l">
-          <button mat-raised-button type="button" class="text-white ws-mat-primary-background text-white margin-right-m"
-            (click)="data.emit('save')">
-            <span class="text-white" i18n>Save</span>
-          </button>
-          <button mat-raised-button type="button" class="text-white ws-mat-primary-background text-white"
-            (click)="data.emit('push'); isSubmitPressed = true">
-            <span class="text-white" i18n>
-              Done
-            </span>
-          </button>
-        </div>
-      </div>
+
 
     </form>
   </div>

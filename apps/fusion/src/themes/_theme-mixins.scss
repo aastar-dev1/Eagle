@@ -303,7 +303,7 @@
     }
 
     &.selected {
-      background: rgba(mat-color($primary, default), 0.2);
+      background: rgba(mat-color($accent, default), 0.3);
     }
   }
 

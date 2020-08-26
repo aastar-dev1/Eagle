@@ -23,7 +23,7 @@ import { map } from 'rxjs/operators'
 })
 export class AuthTocComponent  implements OnInit, OnDestroy {
   @Input() createdFromCourse: any
-  @Output() action = new EventEmitter<{ type: string; identifier: string }>()
+  @Output() action = new EventEmitter<{ type: string; identifier: string; nodeClicked?: boolean }>()
   @Output() closeEvent = new EventEmitter<boolean>()
   @Output() node = new EventEmitter<any>()
   treeControl!: FlatTreeControl<IContentTreeNode>
@@ -143,8 +143,10 @@ export class AuthTocComponent  implements OnInit, OnDestroy {
 
   onNodeSelect(node: IContentTreeNode) {
     if (node.id !== this.selectedNode) {
+      this.action.emit({ type: 'editContent', identifier: node.identifier, nodeClicked: true })
       this.selectedNode = node.id
       this.editorStore.currentContent = node.identifier
+      console.log('currentContent', this.editorStore.currentContent)
       this.store.currentSelectedNode = node.id
       this.editorStore.changeActiveCont.next(node.identifier)
     }
@@ -375,6 +377,7 @@ export class AuthTocComponent  implements OnInit, OnDestroy {
   }
 
   takeAction(action: string, node: IContentTreeNode, type?: string) {
+    console.log('action==>', action)
     switch (action) {
       case 'editMeta':
       case 'editContent':

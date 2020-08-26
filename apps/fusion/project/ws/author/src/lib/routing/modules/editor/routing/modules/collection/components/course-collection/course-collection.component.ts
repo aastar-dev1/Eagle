@@ -64,6 +64,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
   leftArrow = true
   showAddchapter = false
   createTopicForm: FormGroup | undefined
+  reloadTOC = false
 
   constructor(
     private contentService: EditorContentService,
@@ -85,42 +86,14 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
 
 
   ngOnInit() {
-    this.contentService.changeActiveCont.subscribe(data => {
-      this.currentContent = data
-      if (this.contentService.getUpdatedMeta(data).contentType !== 'Resource') {
-        this.viewMode = 'meta'
-      }
-    })
+    this.routerValuesCall()
     this.createTopicForm = this.fb.group({
       topicName: new FormControl('', [Validators.required]),
       topicDescription: new FormControl('', [Validators.required]),
       // iprDeclaration: new FormControl('', [Validators.required]),
     })
 
-    if (this.activateRoute.parent && this.activateRoute.parent.parent) {
-      this.routerSubscription = this.activateRoute.parent.parent.data.subscribe(data => {
-        const contentDataMap = new Map<string, NSContent.IContentMeta>()
-        data.contents.map((v: { content: NSContent.IContentMeta; data: any }) => {
-          this.storeService.parentNode.push(v.content.identifier)
-          this.resolverService.buildTreeAndMap(
-            v.content,
-            contentDataMap,
-            this.storeService.flatNodeMap,
-            this.storeService.uniqueIdMap,
-            this.storeService.lexIdMap,
-          )
-        })
-        contentDataMap.forEach(content => this.contentService.setOriginalMeta(content))
-        const currentNode = (this.storeService.lexIdMap.get(this.currentContent) as number[])[0]
-        this.currentParentId = this.currentContent
-        this.storeService.treeStructureChange.next(
-          this.storeService.flatNodeMap.get(currentNode) as IContentNode,
-        )
-        this.storeService.currentParentNode = currentNode
-        this.storeService.currentSelectedNode = currentNode
-        this.storeService.selectedNodeChange.next(currentNode)
-      })
-    }
+   
     this.stepper = this.initService.collectionConfig.stepper
     this.showLanguageBar = this.initService.collectionConfig.languageBar
     const actionButton: IActionButton[] = []
@@ -147,6 +120,45 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
       this.mediumScreen = isLtMedium
       this.sideBarOpened = !isLtMedium
     })
+  }
+
+  routerValuesCall() {
+    this.contentService.changeActiveCont.subscribe(data => {
+      this.currentContent = data
+      if (this.contentService.getUpdatedMeta(data).contentType !== 'Resource') {
+        this.viewMode = 'meta'
+      }
+
+    })
+    this.reloadTOC = true
+    setTimeout(() => {
+      this.reloadTOC = false
+    },         1000)
+
+    if (this.activateRoute.parent && this.activateRoute.parent.parent) {
+      this.routerSubscription = this.activateRoute.parent.parent.data.subscribe(data => {
+        const contentDataMap = new Map<string, NSContent.IContentMeta>()
+        data.contents.map((v: { content: NSContent.IContentMeta; data: any }) => {
+          this.storeService.parentNode.push(v.content.identifier)
+          this.resolverService.buildTreeAndMap(
+            v.content,
+            contentDataMap,
+            this.storeService.flatNodeMap,
+            this.storeService.uniqueIdMap,
+            this.storeService.lexIdMap,
+          )
+        })
+        contentDataMap.forEach(content => this.contentService.setOriginalMeta(content))
+        const currentNode = (this.storeService.lexIdMap.get(this.currentContent) as number[])[0]
+        this.currentParentId = this.currentContent
+        this.storeService.treeStructureChange.next(
+          this.storeService.flatNodeMap.get(currentNode) as IContentNode,
+        )
+        this.storeService.currentParentNode = currentNode
+        this.storeService.currentSelectedNode = currentNode
+        this.storeService.selectedNodeChange.next(currentNode)
+      })
+    }
   }
 
   ngOnDestroy() {
@@ -196,6 +208,10 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
       duration: NOTIFICATION_TIME * 1000,
     
     })
+    if (isDone) {
+      this.save()
+      // this.triggerSave()
+    }
     this.showAddchapter = false
     this.loaderService.changeLoad.next(false)
   // }
@@ -226,6 +242,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
             },
             duration: NOTIFICATION_TIME * 1000,
           })
+          // window.location.reload()
         },
         (error: any) => {
           if (error.status === 409) {
@@ -520,6 +537,9 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
       nodesModified,
       hierarchy: this.storeService.changedHierarchy,
     }
+
+    console.log('requestBody===>', requestBody)
+   
     return this.editorService.updateContentV2(requestBody).pipe(
       tap(() => {
         this.storeService.changedHierarchy = {}
@@ -527,6 +547,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
           this.contentService.resetOriginalMeta(this.contentService.upDatedContent[id], id)
         })
         this.contentService.upDatedContent = {}
+        // window.location.reload()
       }),
     )
   }
@@ -558,7 +579,8 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
     }
   }
 
-  subAction(event: { type: string; identifier: string }) {
+  subAction(event: { type: string; identifier: string, nodeClicked?: boolean }) {
+    const nodeClicked = event.nodeClicked
     this.contentService.changeActiveCont.next(event.identifier)
     switch (event.type) {
       case 'editMeta':
@@ -566,15 +588,22 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
         break
       case 'editContent':
         const content = this.contentService.getUpdatedMeta(event.identifier)
+        console.log('content.isExternal==>', content.isExternal)
         if (['application/pdf', 'application/x-mpegURL'].includes(content.mimeType)) {
           this.viewMode = 'upload'
         } else if (content.mimeType === 'application/html' && content.isExternal) {
-          this.viewMode = 'upload'
+          this.viewMode = 'curate'
         } else if (content.mimeType === 'application/html') {
           this.viewMode = 'curate'
         } else if (content.mimeType === 'application/quiz') {
           this.viewMode = 'assessment'
         }
+        this.save()
+        // if (nodeClicked) {
+        //   window.location.reload()
+        // }
+        // this.routerValuesCall()
+       
         break
       case 'preview':
         this.preview(event.identifier)
@@ -589,6 +618,15 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
       case 'next':
         this.viewMode = 'meta'
         break
+
+      case 'scroll':
+       
+        const el = document.getElementById('edit-meta')
+        if (el) {
+          el.scrollIntoView()
+        }
+       
+          break
 
       case 'save':
         this.save()
@@ -743,5 +781,9 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
           v => v.id === this.accessControlSvc.userId,
         ))
     )
+  }
+
+  getCurrentNode(data: any){
+    console.log('data', data)
   }
 }

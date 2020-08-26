@@ -16,15 +16,22 @@
     (action)="subAction($event)"
     (closeEvent)="sidenav.toggle(); leftArrow = !leftArrow"
   ></ws-auth-table-of-contents> -->
-
-        <ws-author-auth-toc (action)="subAction($event)" (node)="getCurrentNode($event)"
-          [createdFromCourse]="couseCreated">
+  reloadTOC===>{{reloadTOC}}
+        <ws-author-auth-toc (action)="subAction($event)" (closeEvent)="sidenav.toggle(); leftArrow = !leftArrow" (node)="getCurrentNode($event)"
+          [createdFromCourse]="couseCreated" *ngIf="!reloadTOC">
         </ws-author-auth-toc>
+
+        <!-- <div class="sticky">
+          <ws-auth-table-of-contents
+            (action)="subAction($event)"
+            (closeEvent)="sidenav.toggle(); leftArrow = !leftArrow"
+          ></ws-auth-table-of-contents>
+        </div> -->
         <div class="margin-left-l">
           <a class="flex flex-middle margin-left-l" (click)="showAddchapter = true"><span class="material-icons">
               add
             </span>
-            <p class="margin-left-xs margin-remove-bottom cursor-pointer">Add Chapter</p>
+            <p class="margin-left-xs margin-remove-bottom cursor-pointer">Add Topic</p>
           </a>
 
         </div>
@@ -53,42 +60,53 @@
           </mat-form-field>
         </div>
         </div>
-
+        <!-- createTopicForm ==>{{createTopicForm.valid}} -->
         <div class="example-button-container">
-          <button mat-fab color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <button mat-fab color="primary" [disabled]="!createTopicForm.valid" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>add</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="setContentType('collection')">
-              <mat-icon>notifications_off</mat-icon>
+              <mat-icon>book</mat-icon>
               <span>Topic</span>
             </button>
             <button mat-menu-item (click)="setContentType('assessment')">
-              <mat-icon>voicemail</mat-icon>
+              <mat-icon>check_circle</mat-icon>
               <span>Add Assessment</span>
             </button>          
             <button mat-menu-item (click)="setContentType('web')">
-              <mat-icon>notifications_off</mat-icon>
+              <mat-icon>link</mat-icon>
               <span>Attach a link</span>
             </button>
             <button mat-menu-item (click)="setContentType('upload')">
-              <mat-icon>notifications_off</mat-icon>
+              <mat-icon>cloud_upload</mat-icon>
               <span>Upload content</span>
             </button>
+            <button mat-menu-item (click)="setContentType('web')">
+              <mat-icon>insert_drive_file</mat-icon>
+              <span>Web Page</span>
+            </button>
+            
           </mat-menu>
         </div>
 
       </form>
-      <!-- *ngIf="!showAddchapter" -->
-      <ws-auth-edit-meta [parentContent]="currentParentId" [class.hidden]="viewMode !== 'meta'"
-        [isSubmitPressed]="isSubmitPressed" (data)="action($event)" *ngIf="!showAddchapter"></ws-auth-edit-meta>
 
-      <ws-auth-url-upload [isCollectionEditor]="true" *ngIf="viewMode === 'curate'" [isSubmitPressed]="isSubmitPressed"
+      <!-- <ng-container ></ng-container> -->
+      <ws-auth-edit-meta [parentContent]="currentParentId"
+      [isSubmitPressed]="isSubmitPressed" (data)="action($event)" *ngIf="!showAddchapter && viewMode === 'meta'"></ws-auth-edit-meta>
+
+      <!--  [class.hidden]="viewMode !== 'meta'" -->
+      
+      <ws-auth-edit-meta [parentContent]="currentParentId"
+        [isSubmitPressed]="isSubmitPressed" (data)="action($event)" *ngIf="!showAddchapter && viewMode !== 'meta'"></ws-auth-edit-meta>
+        <!-- viewMode==>{{viewMode}} -->
+      <ws-auth-url-upload [isCollectionEditor]="true" *ngIf="!showAddchapter && viewMode === 'curate'" [isSubmitPressed]="isSubmitPressed"
         (data)="action($event)"></ws-auth-url-upload>
-      <ws-auth-file-upload [isCollectionEditor]="true" *ngIf="viewMode === 'upload'" [isSubmitPressed]="isSubmitPressed"
+      <ws-auth-file-upload [isCollectionEditor]="true" *ngIf="!showAddchapter && viewMode === 'upload'" [isSubmitPressed]="isSubmitPressed"
         (data)="action($event)">
       </ws-auth-file-upload>
-      <ws-auth-quiz [isCollectionEditor]="true" *ngIf="viewMode === 'assessment'" [isSubmitPressed]="isSubmitPressed"
+      <ws-auth-quiz [isCollectionEditor]="true" *ngIf="!showAddchapter && viewMode === 'assessment'" [isSubmitPressed]="isSubmitPressed"
       (data)="action($event)"></ws-auth-quiz>
 
 
@@ -98,23 +116,6 @@
 
     </mat-sidenav-content>
 
-    <!-- <mat-sidenav class="padding-s width-300"  mode="side" position="end" #snav>
-      <h2 class="margin-left-l">Course Settings</h2>
-      alll my content<br/>
-      alll my content<br/>alll my content<br/>
-      alll my content<br/>
-  
-      alll my content<br/>
-  
-      alll my content<br/>
-  
-      alll my content<br/>
-      alll my content<br/>
-      alll my content<br/>
-      alll my content<br/>
-  
-      alll my content<br/>
-    </mat-sidenav> -->
   </mat-sidenav-container>
 </ng-container>
 
