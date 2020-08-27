@@ -79,7 +79,6 @@ export class AuthTocComponent  implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('createdFromCourse', this.createdFromCourse)
     this.parentNodeId = this.store.currentParentNode
     this.treeControl = new FlatTreeControl<IContentTreeNode>(
       node => node.level,
@@ -146,7 +145,6 @@ export class AuthTocComponent  implements OnInit, OnDestroy {
       this.action.emit({ type: 'editContent', identifier: node.identifier, nodeClicked: true })
       this.selectedNode = node.id
       this.editorStore.currentContent = node.identifier
-      console.log('currentContent', this.editorStore.currentContent)
       this.store.currentSelectedNode = node.id
       this.editorStore.changeActiveCont.next(node.identifier)
     }
@@ -377,7 +375,6 @@ export class AuthTocComponent  implements OnInit, OnDestroy {
   }
 
   takeAction(action: string, node: IContentTreeNode, type?: string) {
-    console.log('action==>', action)
     switch (action) {
       case 'editMeta':
       case 'editContent':

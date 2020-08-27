@@ -13,6 +13,7 @@ import { AuthInitService } from '@ws/author/src/lib/services/init.service'
 import { AccessControlService } from '@ws/author/src/lib/modules/shared/services/access-control.service'
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'ws-author-create-course',
   templateUrl: './create-course.component.html',
   styleUrls: ['./create-course.component.scss']
@@ -106,7 +107,6 @@ export class CreateCourseComponent implements OnInit {
   }
 
   onSubmit(form: any) {
-    console.log('form==>', form)
     this.courseData = form.value
     this.contentClicked(this.content)
   }

@@ -97,7 +97,6 @@ export class CreateComponent implements OnInit, OnDestroy {
   }
 
   contentClicked(content: ICreateEntity) {
-    console.log('content==>', content)
     if (content) {
       // this.showCreateCourseForm = true
       this.content = content
