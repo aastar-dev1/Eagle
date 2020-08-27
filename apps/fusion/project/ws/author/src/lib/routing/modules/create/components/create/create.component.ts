@@ -36,6 +36,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   isNewDesign = false
   content: ICreateEntity | undefined
   courseObj = ''
+  courseEntity!: ICreateEntity
  
   constructor(
     private snackBar: MatSnackBar,
@@ -53,7 +54,11 @@ export class CreateComponent implements OnInit, OnDestroy {
         if (v.id === 'resource') {
           this.resourceEntity = v
         } else {
-          this.entity.push(v)
+          if (v.id === 'course') {
+            this.courseEntity = v
+          } else {
+            this.entity.push(v)
+          }
         }
       }
     })
@@ -70,8 +75,8 @@ export class CreateComponent implements OnInit, OnDestroy {
 
 
    // tslint:disable-next-line:max-line-length
-   this.courseObj =  '{ "id": "course", "isCollection": true, "name": "Course", "description": "Create a collection of Modules", "icon": "book", "contentType": "Course", "available": true, "enabled": true, "mimeType": "application/vnd.ekstep.content-collection", "hasRole": [ "content-creator", "editor", "admin" ] }'
-  this.content = JSON.parse(this.courseObj)
+  //  this.courseObj =  '{ "id": "course", "isCollection": true, "name": "Course", "description": "Create a collection of Modules", "icon": "book", "contentType": "Course", "available": true, "enabled": true, "mimeType": "application/vnd.ekstep.content-collection", "hasRole": [ "content-creator", "editor", "admin" ] }'
+  // this.content = JSON.parse(this.courseObj)
   }
 
   canShow(role: string): boolean {

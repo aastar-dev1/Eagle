@@ -62,13 +62,14 @@ export class CreateCourseComponent implements OnInit {
 
   contentClicked(content: ICreateEntity) {
     this.loaderService.changeLoad.next(true)
+    if (this.courseData && this.courseData.courseName) {
     this.svc
       .create({
         contentType: content.contentType,
         mimeType: content.mimeType,
         locale: this.language,
-        courseName: this.courseData.courseName,
-        courseIntro: this.courseData.courseIntroduction,
+        name: this.courseData.courseName,
+        description: this.courseData.courseIntroduction,
         ...(content.additionalMeta || {}),
       })
       .subscribe(
@@ -101,6 +102,7 @@ export class CreateCourseComponent implements OnInit {
           })
         },
       )
+  }
   }
 
   onSubmit(form: any) {

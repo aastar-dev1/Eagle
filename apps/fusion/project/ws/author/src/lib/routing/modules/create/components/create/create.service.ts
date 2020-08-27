@@ -17,12 +17,12 @@ export class CreateService {
   ) { }
 
   create(meta: { mimeType: string; contentType: string; locale: string,
-     courseName?: string, courseIntro?:  string }): Observable<string> {
+     name?: string, description?:  string }): Observable<string> {
     const requestBody: NSApiRequest.ICreateMetaRequest = {
       content: {
         ...meta,
-        name: meta.courseName || 'untitled content',
-        description: meta.courseIntro || '',
+        name: meta.name || 'untitled content',
+        description: meta.description || '',
         category: meta.contentType,
         createdBy: this.accessService.userId,
         authoringDisabled: false,

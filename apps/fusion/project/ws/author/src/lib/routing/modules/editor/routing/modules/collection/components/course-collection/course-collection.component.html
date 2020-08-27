@@ -16,9 +16,9 @@
     (action)="subAction($event)"
     (closeEvent)="sidenav.toggle(); leftArrow = !leftArrow"
   ></ws-auth-table-of-contents> -->
-  reloadTOC===>{{reloadTOC}}
+
         <ws-author-auth-toc (action)="subAction($event)" (closeEvent)="sidenav.toggle(); leftArrow = !leftArrow" (node)="getCurrentNode($event)"
-          [createdFromCourse]="couseCreated" *ngIf="!reloadTOC">
+          [createdFromCourse]="couseCreated" >
         </ws-author-auth-toc>
 
         <!-- <div class="sticky">
@@ -66,10 +66,10 @@
             <mat-icon>add</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="setContentType('collection')">
+            <!-- <button mat-menu-item (click)="setContentType('collection')">
               <mat-icon>book</mat-icon>
               <span>Topic</span>
-            </button>
+            </button> -->
             <button mat-menu-item (click)="setContentType('assessment')">
               <mat-icon>check_circle</mat-icon>
               <span>Add Assessment</span>

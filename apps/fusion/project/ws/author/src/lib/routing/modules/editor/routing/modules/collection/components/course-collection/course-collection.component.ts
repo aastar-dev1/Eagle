@@ -130,10 +130,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
       }
 
     })
-    this.reloadTOC = true
-    setTimeout(() => {
-      this.reloadTOC = false
-    },         1000)
+
 
     if (this.activateRoute.parent && this.activateRoute.parent.parent) {
       this.routerSubscription = this.activateRoute.parent.parent.data.subscribe(data => {
@@ -242,7 +239,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
             },
             duration: NOTIFICATION_TIME * 1000,
           })
-          // window.location.reload()
+          window.location.reload()
         },
         (error: any) => {
           if (error.status === 409) {
@@ -580,7 +577,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
   }
 
   subAction(event: { type: string; identifier: string, nodeClicked?: boolean }) {
-    const nodeClicked = event.nodeClicked
+    // const nodeClicked = event.nodeClicked
     this.contentService.changeActiveCont.next(event.identifier)
     switch (event.type) {
       case 'editMeta':
@@ -597,13 +594,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
           this.viewMode = 'curate'
         } else if (content.mimeType === 'application/quiz') {
           this.viewMode = 'assessment'
-        }
-        this.save()
-        // if (nodeClicked) {
-        //   window.location.reload()
-        // }
-        // this.routerValuesCall()
-       
+        }       
         break
       case 'preview':
         this.preview(event.identifier)

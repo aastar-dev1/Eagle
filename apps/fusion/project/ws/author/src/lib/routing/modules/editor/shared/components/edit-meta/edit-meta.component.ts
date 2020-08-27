@@ -112,7 +112,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   timer: any
 
   filteredOptions$: Observable<string[]> = of([])
-  // saveParent: any
+  saveParent: any
 
   constructor(
     private formBuilder: FormBuilder,
