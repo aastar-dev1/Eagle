@@ -65,7 +65,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
   showAddchapter = false
   createTopicForm: FormGroup | undefined
   reloadTOC = false
-  selectedNode: number | null = null
 
   constructor(
     private contentService: EditorContentService,
@@ -211,14 +210,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
       // this.triggerSave()
     }
     this.showAddchapter = false
-
-
-    this.storeService.selectedNodeChange.subscribe(data => {
-      if (data) {
-        this.selectedNode = data
-      }
-    })
-
     this.loaderService.changeLoad.next(false)
   // }
 }
@@ -544,6 +535,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
       hierarchy: this.storeService.changedHierarchy,
     }
 
+    // console.log('requestBody===>', requestBody)
    
     return this.editorService.updateContentV2(requestBody).pipe(
       tap(() => {
@@ -593,6 +585,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
         break
       case 'editContent':
         const content = this.contentService.getUpdatedMeta(event.identifier)
+        // console.log('content.isExternal==>', content.isExternal)
         if (['application/pdf', 'application/x-mpegURL'].includes(content.mimeType)) {
           this.viewMode = 'upload'
         } else if (content.mimeType === 'application/html' && content.isExternal) {
@@ -601,7 +594,14 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
           this.viewMode = 'curate'
         } else if (content.mimeType === 'application/quiz') {
           this.viewMode = 'assessment'
-        }       
+        }
+        // this.save()
+        // localStorage.setItem('afterClick', nodeClicked)
+        // if (nodeClicked) {
+        //   window.location.reload()
+        // }
+        // this.routerValuesCall()
+       
         break
       case 'preview':
         this.preview(event.identifier)
@@ -781,8 +781,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
     )
   }
 
-
-  getCurrentNode(){
-    // console.log('data', data)
-  }
+  // getCurrentNode(data: any){
+  //   console.log('data', data)
+  // }
 }
