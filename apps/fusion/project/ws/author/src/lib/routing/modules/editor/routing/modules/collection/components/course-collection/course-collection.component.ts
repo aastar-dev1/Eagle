@@ -65,6 +65,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
   showAddchapter = false
   createTopicForm: FormGroup | undefined
   reloadTOC = false
+  public sideNavBarOpened = false
 
   constructor(
     private contentService: EditorContentService,
@@ -90,7 +91,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
     this.createTopicForm = this.fb.group({
       topicName: new FormControl('', [Validators.required]),
       topicDescription: new FormControl('', [Validators.required]),
-      // iprDeclaration: new FormControl('', [Validators.required]),
     })
 
    

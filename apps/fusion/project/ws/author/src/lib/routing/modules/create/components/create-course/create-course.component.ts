@@ -11,6 +11,7 @@ import { NOTIFICATION_TIME } from '@ws/author/src/lib/constants/constant'
 import { Notify } from '@ws/author/src/lib/constants/notificationMessage'
 import { AuthInitService } from '@ws/author/src/lib/services/init.service'
 import { AccessControlService } from '@ws/author/src/lib/modules/shared/services/access-control.service'
+import { IprDialogComponent } from '@ws/author/src/lib/modules/shared/components/ipr-dialog/ipr-dialog.component'
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -25,6 +26,7 @@ export class CreateCourseComponent implements OnInit {
   entity: ICreateEntity[] = []
   resourceEntity!: ICreateEntity
   courseData: any
+  iprAccepted = false
 
   constructor(private fb: FormBuilder, private snackBar: MatSnackBar, private svc: CreateService,
               private router: Router,
@@ -36,7 +38,6 @@ export class CreateCourseComponent implements OnInit {
     this.createCourseForm = this.fb.group({
       courseName: new FormControl('', [Validators.required]),
       courseIntroduction: new FormControl('', [Validators.required]),
-      iprDeclaration: new FormControl('', [Validators.required]),
     })
 
     this.authInitService.creationEntity.forEach(v => {
@@ -104,6 +105,20 @@ export class CreateCourseComponent implements OnInit {
         },
       )
   }
+  }
+
+  showIpr() {
+    const dialogRef = this.dialog.open(IprDialogComponent, {
+      width: '70%',
+      data: { iprAccept: this.iprAccepted },
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      this.iprAccepted = result
+    })
+  }
+
+  iprChecked() {
+    this.iprAccepted = !this.iprAccepted
   }
 
   onSubmit(form: any) {
