@@ -1,8 +1,9 @@
 <mat-drawer-container autosize="true" id="auth-toc" class="example-container">
   <mat-drawer mode="side" [(opened)]="sideBarOpened">
 <div class="sticky">
+  <!-- (closeEvent)="sidenav.toggle(); leftArrow = !leftArrow" check on this -->
 
-	 <ws-author-auth-toc (action)="subAction($event)" (closeEvent)="sidenav.toggle(); leftArrow = !leftArrow"
+	 <ws-author-auth-toc (action)="subAction($event)" 
           [createdFromCourse]="couseCreated" >
         </ws-author-auth-toc>
     
@@ -27,7 +28,7 @@
           <h1>Build your course by adding Topics</h1>
           <p>Add your content, quizzes, discussions and publish</p>
           <p class="required margin-remove-bottom">
-            Hi, Lets start with a chapter name
+            Hi, Lets start with a Topic name
           </p>
           <div class="margin-top-xs width-3-5">
           <mat-form-field appearance="outline" class="margin-top-xs width-1-4">
