@@ -112,17 +112,25 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.showSettingButtons = this.accessControl.rootOrg === 'client1'
     if (this.activateRoute.parent && this.activateRoute.parent.parent) {
       this.activateRoute.parent.parent.data.subscribe(v => {
-        if (v.contents && v.contents.length) {
-          this.allContents.push(v.contents[0].content)
-          this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier] = v.contents[0].data
-            ? v.contents[0].data.questions
-            : []
-          this.canEditJson = this.quizResolverSvc.canEdit(v.contents[0].content)
-          this.resourceType = v.contents[0].content.categoryType || 'Quiz'
-          this.quizDuration = v.contents[0].content.duration || 300
-          this.questionsArr =
-            this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier] || []
-          this.contentLoaded = true
+        const courseChildren =  v.contents[0].content.children
+        // Children
+        if (courseChildren) {
+          courseChildren.forEach((element: NSContent.IContentMeta) => {
+            console.log('element==>', element)
+            if (element.categoryType === 'Assessment') {
+              this.allContents.push(element)
+              // this.quizStoreSvc.collectiveQuiz[element.identifier] = v.contents[0].data
+              //   ? v.contents[0].data.questions
+              //   : []
+              // this.canEditJson = this.quizResolverSvc.canEdit(v.contents[0].content)
+              // this.resourceType = v.contents[0].content.categoryType || 'Quiz'
+              // this.quizDuration = v.contents[0].content.duration || 300
+              // this.questionsArr =
+              //   this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier] || []
+              this.contentLoaded = true
+            }
+          })
+      
         }
         if (!this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier]) {
           this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier] = []

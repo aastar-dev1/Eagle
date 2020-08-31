@@ -173,7 +173,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
   this.couseCreated = param
   const asSibling = false
   // if (this.child) {
-    const node = { 
+    const node = {
       id: this.storeService.currentParentNode,
       identifier: this.storeService.parentNode[0],
       editable: true,
@@ -239,7 +239,8 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
             },
             duration: NOTIFICATION_TIME * 1000,
           })
-          window.location.reload()
+          // To reload on save
+           window.location.reload()
         },
         (error: any) => {
           if (error.status === 409) {
@@ -535,7 +536,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
       hierarchy: this.storeService.changedHierarchy,
     }
 
-    // console.log('requestBody===>', requestBody)
+    console.log('requestBody===>', requestBody)
    
     return this.editorService.updateContentV2(requestBody).pipe(
       tap(() => {

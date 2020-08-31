@@ -128,16 +128,16 @@
     <ng-container i18n>Save</ng-container>
   </button> -->
 
-  <div class="flex justify-end px-1 pt-6 pb-6">
+  <!-- <div class="flex justify-end px-1 pt-6 pb-6">
   <button class=" ws-mat-primary-background mat-elevation-z6 margin-left-s"
   mat-button  (click)="action('save')"
   i18n-aria-label aria-label="save">
   <span class="text-white small-operators" i18n>Save</span>
 </button>
-</div>
+</div> -->
 
   <div class="buttons margin-top-xl">
-    <!-- <div class="button-grid margin-right-xxs cursor-pointer" (click)="toggleSettingButtons()">
+    <div class="button-grid margin-right-xxs cursor-pointer" (click)="toggleSettingButtons()">
       <button mat-icon-button class="padding-remove ws-mat-primary-background mat-elevation-z6">
         <mat-icon class="text-white" *ngIf="showSettingButtons" i18n-matTooltip matTooltip="Close">close</mat-icon>
         <mat-icon class="text-white" *ngIf="!showSettingButtons">more_vert</mat-icon>
@@ -145,8 +145,8 @@
       <p class="mat-h5 margin-remove button-text padding-remove-top" *ngIf="showSettingButtons" i18n-matTooltip matTooltip="Close">
         Close
       </p>
-    </div> -->
-    <!-- <ng-container *ngIf="showSettingButtons">
+    </div>
+    <ng-container *ngIf="showSettingButtons">
       <div class="button-grid cursor-pointer" (click)="action('preview')">
         <button mat-icon-button class="mat-elevation-z5 small-button padding-remove margin-top-l" i18n-matTooltip matTooltip="Preview">
           <mat-icon class="text-white small-icon ws-mat-primary-text">remove_red_eye</mat-icon>
@@ -160,7 +160,7 @@
           <mat-icon class="text-white small-icon ws-mat-primary-text">save</mat-icon>
         </button>
         <p class="mat-h5 margin-remove button-text" i18n-matTooltip matTooltip="save" i18n>
-          Save ss
+          Save 
         </p>
       </div>
       <div class="button-grid cursor-pointer" (click)="action('push'); submitPressed = true">
@@ -175,7 +175,7 @@
           Review
         </p>
         <p class="mat-h5 margin-remove button-text" *ngIf="getAction() === 'publish'" i18n-matTooltip matTooltip="publish" i18n>
-          Publish ss
+          Publish
         </p>
 
       </div>
@@ -186,16 +186,16 @@
         <p class="mat-h5 margin-remove button-text" i18n-matTooltip matTooltip="Delete" i18n>
           Delete
         </p>
-      </div> -->
-      <!--<div class="button-grid cursor-pointer" (click)="fullScreenToggle()">
+      </div>
+      <div class="button-grid cursor-pointer" (click)="fullScreenToggle()">
                 <button mat-icon-button class=" mat-elevation-z5 small-button padding-remove  margin-top-m" i18n-matTooltip matTooltip="Fullscreen">
                     <mat-icon class="text-white small-icon ws-mat-primary-text">fullscreen</mat-icon>
                 </button>
                 <p class="mat-h5 margin-remove button-text" i18n-matTooltip matTooltip="fullscreen" i18n>
                     Fullscreen
                 </p>
-            </div>-->
-    <!-- </ng-container> -->
+            </div>
+    </ng-container>
   </div>
 </div>
 
