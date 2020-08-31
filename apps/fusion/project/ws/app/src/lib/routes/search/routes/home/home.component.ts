@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
         queryParams: {
           q: query || this.searchQuery.q,
           lang: this.searchQuery.l,
+          f:JSON.stringify({"contentType" : ["Course"]})
         },
       })
     })
