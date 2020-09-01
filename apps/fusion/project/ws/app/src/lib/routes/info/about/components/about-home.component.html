@@ -6,8 +6,8 @@
 </mat-toolbar>
 
 <section class="about-content leading-relaxed" *ngIf="aboutPage">
-  <div class="about-info ws-primary-tinted-50" *ngIf="aboutPage?.banner" [style.backgroundImage]="headerBanner">
-    <div class="about-info-bg header-synopsis">
+  <div class="about-info" *ngIf="aboutPage?.banner" [style.backgroundImage]="headerBanner">
+    <div class="about-info-bg header-synopsis" align="center">
       <div class="header-title">
         <h1 class="mat-display-2 margin-bottom-l">
           {{ aboutPage?.banner?.title }}
