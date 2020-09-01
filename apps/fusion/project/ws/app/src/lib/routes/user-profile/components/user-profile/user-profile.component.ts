@@ -794,7 +794,18 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
     // Construct the request structure for open saber
     const profileRequest = this.constructReq(form)
+    //manipulate request to remove gender, category & marital status
 
+    if(profileRequest.personalDetails.gender===""){
+      delete profileRequest.personalDetails.gender
+    }
+    if(profileRequest.personalDetails.category===""){
+      delete profileRequest.personalDetails.category
+    }
+    if(profileRequest.personalDetails.maritalStatus===""){
+      delete profileRequest.personalDetails.maritalStatus
+    }
+  
     this.userProfileSvc.updateProfileDetails(profileRequest).subscribe(
       () => {
         form.reset()
@@ -808,6 +819,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         this.uploadSaveData = false
       })
   }
+
 
   private openSnackbar(primaryMsg: string, duration: number = 5000) {
     this.snackBar.open(primaryMsg, undefined, {
