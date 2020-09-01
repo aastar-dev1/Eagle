@@ -6,7 +6,7 @@
 </mat-toolbar>
 
 <section class="about-content leading-relaxed" *ngIf="aboutPage">
-  <div class="about-info  ws-primary-tinted-50" *ngIf="aboutPage?.banner" [style.backgroundImage]="headerBanner">
+  <div class="about-info ws-primary-tinted-50" *ngIf="aboutPage?.banner" [style.backgroundImage]="headerBanner">
     <div class="about-info-bg header-synopsis">
       <div class="header-title">
         <h1 class="mat-display-2 margin-bottom-l">
@@ -24,7 +24,7 @@
               width="100%"></iframe>
           </div>
         </div>
-        <a *ngIf="aboutPage?.banner?.moreInfo" mat-raised-button type="button" [href]="aboutPage?.banner?.moreInfo"
+        <a mat-raised-button *ngIf="aboutPage?.banner?.moreInfo" type="button" [href]="aboutPage?.banner?.moreInfo"
           target="_blank" color="primary" i18n="about first section action button">Read More
         </a>
       </div>
@@ -32,16 +32,13 @@
   </div>
 
   <section class="overview-container text-justify" *ngIf="aboutPage?.innerHtmlWithTitle">
-    <h1 class="mat-heading ">
-      {{aboutPage?.innerHtmlWithTitle?.title}}
+    <h1 class="mat-heading">
+      {{ aboutPage?.innerHtmlWithTitle?.title }}
     </h1>
-    <div [innerHTML]="
-                  (aboutPage?.innerHtmlWithTitle?.para) | pipeSafeSanitizer: 'html'
-                "></div>
-
+    <div [innerHTML]="aboutPage?.innerHtmlWithTitle?.para | pipeSafeSanitizer: 'html'"></div>
   </section>
   <section class="container-margin text-justify" *ngIf="aboutPage?.section1">
-    <h1 class="mat-heading ">
+    <h1 class="mat-heading">
       {{ aboutPage?.section1?.title }}
     </h1>
     <div class="flex flex-between flex-wrap pb-4">
@@ -50,14 +47,14 @@
           {{ content }}
         </p>
       </div>
-      <div class="learning-overview">
+      <div class="learning-overview" *ngIf="aboutPage?.section1?.rightParas?.length>0">
         <p *ngFor="let content of aboutPage?.section1?.rightParas">
           {{ content }}
         </p>
       </div>
     </div>
     <div class="text-center ws-mat-primary-background mat-toolbar mat-primary p-4" *ngIf="aboutPage?.section2">
-      <h1 class="mat-heading ">
+      <h1 class="mat-heading">
         {{ aboutPage?.section2?.description }}
       </h1>
     </div>
@@ -85,29 +82,43 @@
       </div>
     </div>
 
-    <section class="m-4" *ngIf="aboutPage?.features">
+<section class="m-4" *ngIf="aboutPage?.features">
+  <div *ngIf="aboutPage?.features.length>0">
+    <div class="text-justify" *ngFor="let key of aboutPage?.features">
+      <div>
+        <h4>
+          {{key.title}}
+        </h4>
+      </div>
+      <div>{{key.description}}</div>
+   <br />
+
+    </div>
+
+
+  </div>
+</section>
+    <!-- <section class="m-4" *ngIf="aboutPage?.features">
       <h1 class="mat-heading">
         {{ aboutPage?.features?.title }}
       </h1>
       <p class="text-justify">
         {{ aboutPage?.features?.description }}
       </p>
-
-        <div class="text-justify" *ngFor="let key of objectKeys(aboutPage?.features?.list)">
-          <div>
-            <div>{{ key }}</div>
-          </div>
-          <div [innerHTML]="
-              (aboutPage?.features?.list)[key] | pipeSafeSanitizer: 'html'
-            "></div>
-        </div>
-
-    </section>
+      <mat-accordion *ngIf="aboutPage?.features?.list.length>0">
+        <mat-expansion-panel class="text-justify" *ngFor="let key of objectKeys(aboutPage?.features?.list)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ key }}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div [innerHTML]="(aboutPage?.features?.list)[key] | pipeSafeSanitizer: 'html'"></div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </section> -->
     <mat-divider></mat-divider>
   </section>
   <!-- <section class="container-margin" *ngIf="aboutPage?.section4">
     <div class="about-info-footer ws-primary-tinted-50" [style.backgroundImage]="footerBanner">
-      <h1 class="mat-heading ">
+      <h1 class="mat-heading">
         {{ aboutPage?.section4.title }}
       </h1>
 
@@ -130,9 +141,11 @@
       </ws-utils-horizontal-scroller>
     </div>
     <section>
-      <div *ngIf="aboutPage?.section5"
-        class="about-section-full text-justify ws-mat-primary-background mat-toolbar mat-primary">
-        <h1 class="mat-heading ">
+      <div
+        *ngIf="aboutPage?.section5"
+        class="about-section-full text-justify ws-mat-primary-background mat-toolbar mat-primary"
+      >
+        <h1 class="mat-heading">
           {{ aboutPage?.section5?.title }}
         </h1>
 
@@ -145,5 +158,4 @@
       </div>
     </section>
   </section> -->
-
 </section>

@@ -82,19 +82,22 @@
       </div>
     </div>
 
-<section class="m-4" *ngIf="aboutPage?.features">
-  <mat-accordion *ngIf="aboutPage?.features.length>0">
-    <mat-expansion-panel class="text-justify" *ngFor="let key of aboutPage?.features">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{key.title}}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div>{{key.description}}</div>
-    </mat-expansion-panel>
+    <section class="m-4" *ngIf="aboutPage?.features">
+      <div *ngIf="aboutPage?.features.length>0">
+        <div class="text-justify" *ngFor="let key of aboutPage?.features">
+          <div>
+            <h4>
+              {{key.title}}
+            </h4>
+          </div>
+          <div>{{key.description}}</div>
+       <br />
 
-  </mat-accordion>
-</section>
+        </div>
+
+
+      </div>
+    </section>
     <!-- <section class="m-4" *ngIf="aboutPage?.features">
       <h1 class="mat-heading">
         {{ aboutPage?.features?.title }}

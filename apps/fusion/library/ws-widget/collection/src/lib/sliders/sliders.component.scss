@@ -11,6 +11,15 @@ $banner-min-height: 200px;
   margin: auto;
 }
 
+.text-block {
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+  color: black;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .banner-overlay {
   position: absolute;
   z-index: 1;

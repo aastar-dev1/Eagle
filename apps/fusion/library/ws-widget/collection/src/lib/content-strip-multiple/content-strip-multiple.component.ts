@@ -143,6 +143,9 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
     if (strip.request && strip.request.api && Object.keys(strip.request.api).length) {
       this.contentStripSvc.getContentStripResponseApi(strip.request.api).subscribe(
         results => {
+          results.contents = results.contents.filter(item => {
+            return item.contentType === 'Course'
+          })
           this.processStrip(
             strip,
             this.transformContentsToWidgets(results.contents, strip),
