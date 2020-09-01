@@ -1,6 +1,6 @@
-@import "ws-vars";
-@import "ws-common";
-@import "ws-mixins";
+@import 'ws-vars';
+@import 'ws-common';
+@import 'ws-mixins';
 
 .about-content {
   @extend %height-mat-toolbar-sibling;
@@ -14,49 +14,48 @@
       margin-right: 0px;
     }
   }
+  width: 70%;
+  text-align: center;
 }
 
-.overview-container{
+.overview-container {
   margin: 24px;
-@include breakpoint-xs {
-  margin: 16px;
-}
-
+  @include breakpoint-xs {
+    margin: 16px;
+  }
 }
 
 .overview-intro {
-    width: 280px;
-    border: 1px solid;
-    margin-bottom: 8px;
-    box-sizing: border-box;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-    position: relative;
+  width: 280px;
+  border: 1px solid;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
 
-    .overview-intro-overlay {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-      color: white;
-      width: 48px;
-      height: 48px;
-      font-size: 48px;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 50%;
-      padding: $size-xs;
+  .overview-intro-overlay {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: white;
+    width: 48px;
+    height: 48px;
+    font-size: 48px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: $size-xs;
 
-      &:active {
-        background-color: rgba(0, 0, 0, 0.7);
-      }
+    &:active {
+      background-color: rgba(0, 0, 0, 0.7);
     }
-
-
   }
+}
 
 // .overview-intro {
 //   border: 1px solid;
@@ -98,9 +97,7 @@ $description-height-size: 1.2em;
 }
 
 .learning-overview {
-  width: 48%;
   box-sizing: border-box;
-
   @include breakpoint-xs {
     width: 100%;
   }
@@ -118,7 +115,6 @@ $description-height-size: 1.2em;
   box-sizing: border-box;
   @include breakpoint-xs {
     width: 100%;
-
   }
 }
 
@@ -126,14 +122,13 @@ $description-height-size: 1.2em;
   @extend %about-info;
   height: 228px;
 
-  @include breakpoint-s{
+  @include breakpoint-s {
     height: 300px;
   }
 
   @include breakpoint-xs {
     height: 340px;
   }
-
 }
 
 %about-info {

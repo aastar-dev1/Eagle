@@ -6,8 +6,8 @@
 </mat-toolbar>
 
 <section class="about-content leading-relaxed" *ngIf="aboutPage">
-  <div class="about-info ws-primary-tinted-50" *ngIf="aboutPage?.banner" [style.backgroundImage]="headerBanner">
-    <div class="about-info-bg header-synopsis">
+  <div class="about-info" *ngIf="aboutPage?.banner" [style.backgroundImage]="headerBanner">
+    <div class="about-info-bg header-synopsis" align="center">
       <div class="header-title">
         <h1 class="mat-display-2 margin-bottom-l">
           {{ aboutPage?.banner?.title }}
@@ -82,22 +82,22 @@
       </div>
     </div>
 
-<section class="m-4" *ngIf="aboutPage?.features">
-  <div *ngIf="aboutPage?.features.length>0">
-    <div class="text-justify" *ngFor="let key of aboutPage?.features">
-      <div>
-        <h4>
-          {{key.title}}
-        </h4>
+    <section class="m-4" *ngIf="aboutPage?.features">
+      <div *ngIf="aboutPage?.features.length>0">
+        <div class="text-justify" *ngFor="let key of aboutPage?.features">
+          <div>
+            <h4>
+              {{key.title}}
+            </h4>
+          </div>
+          <div>{{key.description}}</div>
+       <br />
+
+        </div>
+
+
       </div>
-      <div>{{key.description}}</div>
-   <br />
-
-    </div>
-
-
-  </div>
-</section>
+    </section>
     <!-- <section class="m-4" *ngIf="aboutPage?.features">
       <h1 class="mat-heading">
         {{ aboutPage?.features?.title }}
