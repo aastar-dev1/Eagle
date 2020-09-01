@@ -10,11 +10,17 @@ $banner-min-height: 200px;
   position: relative;
   margin: auto;
 }
-
+.slider-header-text{
+  text-align: center;
+}
+.slider-header-subtext{
+  text-align:center;
+  width:60%;
+}
 .text-block {
   position: absolute;
-  bottom: 50px;
-  left: 20px;
+  bottom: 40px;
+  width: 100%;
   color: black;
   padding-left: 20px;
   padding-right: 20px;
