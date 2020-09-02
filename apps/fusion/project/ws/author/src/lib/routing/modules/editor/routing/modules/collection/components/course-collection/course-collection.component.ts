@@ -26,6 +26,7 @@ import { VIEWER_ROUTE_FROM_MIME } from '@ws-widget/collection'
 import { NotificationService } from '@ws/author/src/lib/services/notification.service'
 import { AccessControlService } from '@ws/author/src/lib/modules/shared/services/access-control.service'
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
+import { HeaderServiceService } from './../../../../../../../../../../../../../src/app/services/header-service.service'
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -66,6 +67,8 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
   createTopicForm: FormGroup | undefined
   reloadTOC = false
   public sideNavBarOpened = false
+  callSaveFn!: boolean
+  courseName: any
 
   constructor(
     private contentService: EditorContentService,
@@ -81,11 +84,23 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
     private notificationSvc: NotificationService,
     private accessControlSvc: AccessControlService,
     private breakpointObserver: BreakpointObserver,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    private headerService: HeaderServiceService
+  ) {
+    this.callSaveFn = this.headerService.isSavePressed
+    // tslint:disable-next-line:no-console
+    console.log('this.callSaveFn', this.callSaveFn)
 
+    this.headerService.headerSaveData.subscribe(data => {
+     if (data) {
+       this.save()
+     }
+    
+      console.log(data)
+  })
+  }
 
-
+  
   ngOnInit() {
     this.routerValuesCall()
     this.createTopicForm = this.fb.group({
@@ -93,7 +108,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
       topicDescription: new FormControl('', [Validators.required]),
     })
 
-   
+
     this.stepper = this.initService.collectionConfig.stepper
     this.showLanguageBar = this.initService.collectionConfig.languageBar
     const actionButton: IActionButton[] = []
@@ -131,10 +146,22 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
 
     })
 
+    // this.activateRoute.url.subscribe(data => {
+    //   console.log(data)
+    // }) 
+    if (this.activateRoute.parent && this.activateRoute.parent.url) {
+      // console.log('url', this.activateRoute.parent.url)
+
+    }
 
     if (this.activateRoute.parent && this.activateRoute.parent.parent) {
       this.routerSubscription = this.activateRoute.parent.parent.data.subscribe(data => {
+
+        
+
+        this.courseName = data.contents[0].content.name
         const contentDataMap = new Map<string, NSContent.IContentMeta>()
+
         data.contents.map((v: { content: NSContent.IContentMeta; data: any }) => {
           this.storeService.parentNode.push(v.content.identifier)
           this.resolverService.buildTreeAndMap(
@@ -147,13 +174,30 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
         })
         contentDataMap.forEach(content => this.contentService.setOriginalMeta(content))
         const currentNode = (this.storeService.lexIdMap.get(this.currentContent) as number[])[0]
+
         this.currentParentId = this.currentContent
         this.storeService.treeStructureChange.next(
           this.storeService.flatNodeMap.get(currentNode) as IContentNode,
         )
         this.storeService.currentParentNode = currentNode
         this.storeService.currentSelectedNode = currentNode
-        this.storeService.selectedNodeChange.next(currentNode)
+        let newCreatedNode = 0
+        const newCreatedLexid = this.editorService.newCreatedLexid
+        if (newCreatedLexid) {
+          newCreatedNode = (this.storeService.lexIdMap.get(newCreatedLexid) as number[])[0]
+         this.storeService.selectedNodeChange.next(newCreatedNode)
+        }
+
+       
+      })
+
+      this.activateRoute.parent.url.subscribe(data => {
+        const urlParam = data[0].path
+        console.log('urlParam', urlParam)
+        if (urlParam === 'collection') {
+          this.headerService.showCreatorHeader(this.courseName)
+        }
+
       })
     }
   }
@@ -169,10 +213,13 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
   async setContentType(param: string) {
   if (this.createTopicForm && this.createTopicForm.value) {
 
-
   this.couseCreated = param
   const asSibling = false
   // if (this.child) {
+
+    // console.log('this.storeService.currentParentNode', this.storeService.currentParentNode)
+    // this.child.createNewChildOrSibling(param, node, false)
+
     const node = {
       id: this.storeService.currentParentNode,
       identifier: this.storeService.parentNode[0],
@@ -182,15 +229,38 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
       expandable: true,
       level: 1,
     }
-    // console.log('this.storeService.currentParentNode', this.storeService.currentParentNode)
-    // this.child.createNewChildOrSibling(param, node, false) 
 
-
+    // const topicDone = await this.storeService.createChildOrSibling(
+    //   'collection',
+    //   topicNode,
+    //   asSibling ? topicNode.id : undefined,
+    //   'below',
+    //   this.createTopicForm.value
+    // )
     const parentNode = node
     this.loaderService.changeLoad.next(true)
-    
+
     // this.preserveExpandedNodes()
     // this.expandedNodes.add(parentNode.id)
+
+    // if (topicDone) {
+      // console.log('topicDone', topicDone)
+
+      // const newCreatedLexid = this.editorService.newCreatedLexid
+      // const newCreatedNode = (this.storeService.lexIdMap.get(newCreatedLexid) as number[])[0]
+      // console.log('newCreatedNode', newCreatedNode)
+
+      // const node = {
+      //   id: newCreatedNode,
+      //   identifier: newCreatedLexid,
+      //   editable: true,
+      //   category: 'Resource',
+      //   childLoaded: true,
+      //   expandable: true,
+      //   level: 1,
+      // }
+      // const parentNode = node
+
     const isDone = await this.storeService.createChildOrSibling(
       this.couseCreated,
       parentNode,
@@ -203,15 +273,22 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
         type: isDone ? Notify.SUCCESS : Notify.FAIL,
       },
       duration: NOTIFICATION_TIME * 1000,
-    
+
     })
+
     if (isDone) {
-      this.save()
+        const newCreatedLexid = this.editorService.newCreatedLexid
+      const newCreatedNode = (this.storeService.lexIdMap.get(newCreatedLexid) as number[])[0]
+      console.log('newCreatedNode', newCreatedNode)
+      this.storeService.currentSelectedNode = newCreatedNode
+      this.storeService.selectedNodeChange.next(newCreatedNode)
+      // this.save()
       // this.triggerSave()
     }
     this.showAddchapter = false
     this.loaderService.changeLoad.next(false)
   // }
+// }
 }
 }
 
@@ -239,8 +316,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
             },
             duration: NOTIFICATION_TIME * 1000,
           })
-          // To reload on save
-           window.location.reload()
+          // window.location.reload()
         },
         (error: any) => {
           if (error.status === 409) {
@@ -537,7 +613,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
     }
 
     console.log('requestBody===>', requestBody)
-   
+
     return this.editorService.updateContentV2(requestBody).pipe(
       tap(() => {
         this.storeService.changedHierarchy = {}
@@ -602,7 +678,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
         //   window.location.reload()
         // }
         // this.routerValuesCall()
-       
+
         break
       case 'preview':
         this.preview(event.identifier)
@@ -619,12 +695,12 @@ export class CourseCollectionComponent implements OnInit, OnDestroy  {
         break
 
       case 'scroll':
-       
+
         const el = document.getElementById('edit-meta')
         if (el) {
           el.scrollIntoView()
         }
-       
+
           break
 
       case 'save':

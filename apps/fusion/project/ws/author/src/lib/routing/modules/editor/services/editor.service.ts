@@ -27,6 +27,7 @@ import { ISearchContent, ISearchResult } from '../../../../interface/search'
 @Injectable()
 export class EditorService {
   accessPath: string[] = []
+  newCreatedLexid!: string
   constructor(
     private apiService: ApiService,
     private accessService: AccessControlService,
@@ -73,6 +74,7 @@ export class EditorService {
   }
 
   readContent(id: string): Observable<NSContent.IContentMeta> {
+    this.newCreatedLexid = id
     return this.apiService.get<NSContent.IContentMeta>(
       `${CONTENT_READ}${id}${this.accessService.orgRootOrgAsQuery}`,
     )

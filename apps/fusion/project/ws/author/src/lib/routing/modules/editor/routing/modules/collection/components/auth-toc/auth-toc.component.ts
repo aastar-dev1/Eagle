@@ -101,7 +101,7 @@ export class AuthTocComponent  implements OnInit, OnDestroy {
     this.store.treeStructureChange.subscribe(data => {
       this.dataSource.data = [data as IContentNode]
       if (this.parentNodeId === this.store.currentParentNode) {
-        this.expandNodesById()
+        this.expandNodesById([this.parentNodeId])
         if (this.selectedNode && !this.store.flatNodeMap.get(this.selectedNode)) {
           this.parentHierarchy.forEach(v => {
             if (this.store.flatNodeMap.get(v)) {
