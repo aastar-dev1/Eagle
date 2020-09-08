@@ -1,5 +1,6 @@
 <mat-drawer-container autosize="true" id="auth-toc" class="example-container">
   <mat-drawer mode="side" [(opened)]="sideBarOpened">
+
 <div class="sticky">
   <!-- (closeEvent)="sidenav.toggle(); leftArrow = !leftArrow" check on this -->
 
@@ -20,6 +21,10 @@
 		
   </mat-drawer>
   <mat-drawer-content>
+
+    <ws-auth-editor-action-buttons (action)="action($event)" [buttonConfig]="actionButton">
+    </ws-auth-editor-action-buttons>
+
     <mat-sidenav-container class="nav-container">
  
 
