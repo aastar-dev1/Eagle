@@ -14,9 +14,9 @@ export class HeaderServiceService {
       this.headerSaveData.subscribe(value => {
           this.isSavePressed = value
       })
-      this.showCourseHeader.subscribe(value => {
-        // console.log('value==>', value)
-      })
+      // this.showCourseHeader.subscribe(value => {
+      //   // console.log('value==>', value)
+      // })
   }
 
   saveCourseContent() {
