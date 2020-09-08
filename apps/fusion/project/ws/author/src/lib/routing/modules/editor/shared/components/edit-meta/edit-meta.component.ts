@@ -580,16 +580,15 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
   }
- emitSaveData(flag: boolean) {
-   if (flag) {
-    this.saveParent = 1
-    if (this.saveParent === 1) {
-      this.data.emit('save')
+  emitSaveData(flag: boolean) {
+    if (flag) {
+      this.saveParent = 1
+      if (this.saveParent === 1) {
+        this.data.emit('save')
+      }
+      this.saveParent = 2
     }
-    this.saveParent = 2
-   } 
- }
-
+  }
 
   updateContentService(meta: string, value: any, event = false) {
     this.contentForm.controls[meta].setValue(value, { events: event })

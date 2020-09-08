@@ -26,7 +26,6 @@ export class QuizComponent implements OnInit {
   nextResourceUrl: string | null = null
   collectionType: any
   viewerDataServiceSubscription: any
-  
 
   constructor(private activatedRoute: ActivatedRoute, private viewerDataSvc: ViewerDataService) {}
 

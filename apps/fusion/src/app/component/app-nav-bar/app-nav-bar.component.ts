@@ -101,7 +101,6 @@ export class AppNavBarComponent implements OnInit, OnChanges {
     })
   }
 
-
   ngOnChanges(changes: SimpleChanges) {
     for (const property in changes) {
       if (property === 'mode') {

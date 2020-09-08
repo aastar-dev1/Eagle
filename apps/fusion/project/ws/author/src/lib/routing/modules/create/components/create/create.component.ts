@@ -37,7 +37,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   content: ICreateEntity | undefined
   courseObj = ''
   courseEntity!: ICreateEntity
- 
+
   constructor(
     private snackBar: MatSnackBar,
     private svc: CreateService,

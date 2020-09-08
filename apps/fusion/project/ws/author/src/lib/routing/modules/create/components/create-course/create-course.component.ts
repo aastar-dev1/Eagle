@@ -17,7 +17,7 @@ import { IprDialogComponent } from '@ws/author/src/lib/modules/shared/components
   // tslint:disable-next-line:component-selector
   selector: 'ws-author-create-course',
   templateUrl: './create-course.component.html',
-  styleUrls: ['./create-course.component.scss']
+  styleUrls: ['./create-course.component.scss'],
 })
 export class CreateCourseComponent implements OnInit {
   @Input() content: any
@@ -46,7 +46,6 @@ export class CreateCourseComponent implements OnInit {
           this.resourceEntity = v
         } else {
           this.entity.push(v)
-          console.log('entity', this.entity)
           if (this.entity[1]) {
             this.content = this.entity[1].id
           }
@@ -62,8 +61,7 @@ export class CreateCourseComponent implements OnInit {
     // if (navigation && navigation.extras && navigation.extras.state) {
     //   this.content = navigation.extras.state
     // }
- 
-    
+
   }
 
   contentClicked() {

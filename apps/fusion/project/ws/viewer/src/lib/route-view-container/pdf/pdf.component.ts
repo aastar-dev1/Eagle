@@ -1,4 +1,4 @@
-import { ViewerDataService } from './../../viewer-data.service';
+import { ViewerDataService } from './../../viewer-data.service'
 import { Component, Input, OnInit } from '@angular/core'
 import { NsContent, NsDiscussionForum } from '@ws-widget/collection'
 import { NsWidgetResolver } from '@ws-widget/resolver'

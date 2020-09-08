@@ -5,7 +5,6 @@ import { NsCohorts } from '../../models/app-toc.model'
 import { AppTocService } from '../../services/app-toc.service'
 import { Router, ActivatedRoute } from '@angular/router'
 
-
 @Component({
   selector: 'ws-app-toc-cohorts',
   templateUrl: './app-toc-cohorts.component.html',

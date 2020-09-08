@@ -46,7 +46,7 @@ import {
 import { WidgetResolverModule } from '@ws-widget/resolver'
 import { ViewerComponent } from './viewer.component'
 import { ViewerTocComponent } from './components/viewer-toc/viewer-toc.component'
-import { ViewerTopBarModule } from './components/viewer-top-bar/viewer-top-bar.module';
+import { ViewerTopBarModule } from './components/viewer-top-bar/viewer-top-bar.module'
 import { FilterResourcePipe } from './pipes/filter-resource.pipe'
 
 @NgModule({

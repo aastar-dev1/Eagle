@@ -55,7 +55,7 @@ export class ViewerTopBarComponent implements OnInit, OnDestroy {
     // if (this.configSvc.rootOrg === EInstance.INSTANCE) {
     // this.logo = false
     // }
-    
+
       const collectionId = this.activatedRoute.snapshot.queryParams.collectionId
       const collectionType = this.activatedRoute.snapshot.queryParams.collectionType
       if (collectionId && collectionType) {
@@ -72,8 +72,6 @@ export class ViewerTopBarComponent implements OnInit, OnDestroy {
             this.collection = data
           })
         }
-
-
 
     if (this.configSvc.instanceConfig) {
       this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(

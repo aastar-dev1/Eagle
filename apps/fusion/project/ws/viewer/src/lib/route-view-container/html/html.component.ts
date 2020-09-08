@@ -31,7 +31,7 @@ export class HtmlComponent implements OnInit, OnChanges {
   nextResourceUrl: string | null = null
   collectionType: any
   viewerDataServiceSubscription: any
-  
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private domSanitizer: DomSanitizer,

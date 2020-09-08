@@ -116,7 +116,6 @@ export class QuizComponent implements OnInit, OnDestroy {
         // Children
         if (courseChildren) {
           courseChildren.forEach((element: NSContent.IContentMeta) => {
-            console.log('element==>', element)
             if (element.categoryType === 'Assessment') {
               this.allContents.push(element)
               this.quizStoreSvc.collectiveQuiz[element.identifier] = v.contents[0].data
@@ -130,7 +129,7 @@ export class QuizComponent implements OnInit, OnDestroy {
               this.contentLoaded = true
             }
           })
-      
+
         }
         if (!this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier]) {
           this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier] = []

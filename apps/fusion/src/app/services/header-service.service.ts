@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable } from '@angular/core'
+import { Subject } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class HeaderServiceService {
           this.isSavePressed = value
       })
       this.showCourseHeader.subscribe(value => {
-        console.log('value==>', value)
+        // console.log('value==>', value)
       })
   }
 
@@ -28,6 +28,5 @@ export class HeaderServiceService {
   showCreatorHeader(name: string) {
     const courseName = name || 'Course Name'
     this.showCourseHeader.next(courseName)
-    console.log('value==>', this.showCourseHeader)
   }
 }

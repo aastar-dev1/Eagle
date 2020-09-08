@@ -1,4 +1,4 @@
-import { CreateCourseComponent } from './routing/modules/create/components/create-course/create-course.component';
+import { CreateCourseComponent } from './routing/modules/create/components/create-course/create-course.component'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { GeneralGuard } from '../../../../../src/app/guards/general.guard'

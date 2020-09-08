@@ -19,7 +19,7 @@ import { map } from 'rxjs/operators'
   // tslint:disable-next-line:component-selector
   selector: 'ws-author-auth-toc',
   templateUrl: './auth-toc.component.html',
-  styleUrls: ['./auth-toc.component.scss']
+  styleUrls: ['./auth-toc.component.scss'],
 })
 export class AuthTocComponent  implements OnInit, OnDestroy {
   @Input() createdFromCourse: any
@@ -409,7 +409,7 @@ export class AuthTocComponent  implements OnInit, OnDestroy {
   addChapter() {
     // tslint:disable-next-line:max-line-length
     // this.allowedChild = [{"children":[],"id":"upload","name":"Upload Content","icon":"cloud_upload"},{"children":[],"id":"assessment","name":"Assessment","icon":"check_circle"},{"children":[],"id":"web","name":"Attach a Link","icon":"link"}]
-   
+
     // this.action.emit({ type: 'showAddChapter', identifier: '' })
   }
 }
