@@ -67,6 +67,7 @@ export class AuthEditorOptionsComponent implements OnInit {
   formChildren(contentTypeConfig: any, currentDepth: number): ICustomCreateEntity[] {
     const topLevel = Array.from(this.creationContent.values())
     const child: ICustomCreateEntity[] = []
+    // console.log('topLevel==>', topLevel)
     topLevel.forEach(v => {
       if (
         !v.parent &&
@@ -94,9 +95,11 @@ export class AuthEditorOptionsComponent implements OnInit {
       name: content.name,
       icon: content.icon,
     }
-    if (content.children) {
+    if (content.id === 'resource' && content.children) {
+      console.log('children==>', content.children)
       content.children.forEach(v => {
         const entity = this.authInitService.creationEntity.get(v)
+        console.log('entity==>', entity)
         if (
           entity &&
           allowedType.includes(entity.id) &&

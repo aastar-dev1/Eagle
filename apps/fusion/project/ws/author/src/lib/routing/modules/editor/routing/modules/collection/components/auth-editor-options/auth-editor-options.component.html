@@ -9,6 +9,11 @@
     <!-- <ng-container i18n>Create New Child</ng-container> -->
     <ws-auth-collection-matmenu [type]="'createChild'" [childType]="allowedChild"
       (action)="click($event.action, $event.type)" #child></ws-auth-collection-matmenu>
+      <button (click)="click('delete')" [disabled]="!node.parentId && node.editable"
+      [class.op500]="!node.parentId && node.editable" mat-menu-item>
+      <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Delete content">
+        </mat-icon>
+    </button>
   </button>
   <button *ngIf="node.category === 'Resource'" [class.op500]="!canEdit" [matMenuTriggerFor]="edit" mat-menu-item
     [disabled]="!canEdit || (metaEditDisabled && contentEditDisabled)">
@@ -19,23 +24,18 @@
  
 
 <!-- <mat-menu #menu="matMenu"> -->
-  <!-- <button *ngIf="node.category === 'Resource'" [class.op500]="!canEdit" [matMenuTriggerFor]="edit" mat-menu-item
-    [disabled]="!canEdit || (metaEditDisabled && contentEditDisabled)">
-    <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Edit content">edit
-    </mat-icon>
-    <ng-container i18n>Edit</ng-container>
-  </button>
+  <!-- 
   <button *ngIf="node.category === 'Resource'" mat-menu-item (click)="click('preview')">
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Preview">
       remove_red_eye</mat-icon>
     <ng-container i18n>Preview</ng-container>
-  </button>
-  <button (click)="click('delete')" [disabled]="!node.parentId && node.editable"
+  </button>-->
+  <!-- <button (click)="click('delete')" [disabled]="!node.parentId && node.editable"
     [class.op500]="!node.parentId && node.editable" mat-menu-item>
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Delete content">
       delete</mat-icon>
     <ng-container i18n>Delete</ng-container>
-  </button> -->
+  </button>  -->
   <!-- <button [matMenuTriggerFor]="sibling.childMenu" [disabled]="!node.parentId || !allowedSibling.length"
     [class.op500]="!node.parentId || !allowedSibling.length" mat-menu-item>
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Create New Sibling">

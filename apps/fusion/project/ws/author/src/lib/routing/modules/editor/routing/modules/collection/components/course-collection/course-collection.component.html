@@ -12,9 +12,10 @@
           <a class="flex flex-middle margin-left-l" (click)="showAddchapter = true"><span class="material-icons">
               add
             </span>
-            <p class="margin-left-xs margin-remove-bottom cursor-pointer">Add Topic</p>
+            <p class="margin-left-xs margin-remove-bottom cursor-pointer">Add Content</p>
           </a>
 
+         
         </div>
 
 		</div>
@@ -48,9 +49,17 @@
         </div>
         </div>
         <div class="example-button-container">
-          <button mat-fab color="primary" [disabled]="!createTopicForm.valid" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>add</mat-icon>
+
+          <button mat-raised-button (click)="showAddchapter=false" class="
+          text-white ws-mat-primary-background  mat-button-base margin-right-xl">Cancel</button>
+
+          <button mat-raised-button  [disabled]="!createTopicForm.valid" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+          class="text-white ws-mat-primary-background  mat-button-base">
+            <mat-icon>add</mat-icon> Add Topic/Resource
           </button>
+
+         
+
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="setContentType('collection')">
               <mat-icon>book</mat-icon>
@@ -68,10 +77,10 @@
               <mat-icon>cloud_upload</mat-icon>
               <span>Upload content</span>
             </button>
-            <!-- <button mat-menu-item (click)="setContentType('web')">
+            <button mat-menu-item (click)="setContentType('webModule')">
               <mat-icon>insert_drive_file</mat-icon>
               <span>Web Page</span>
-            </button> -->
+            </button>
             
           </mat-menu>
         </div>

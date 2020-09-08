@@ -4,6 +4,7 @@ import { IBtnAppsConfig, CustomTourService } from '@ws-widget/collection'
 import { NsWidgetResolver } from '@ws-widget/resolver'
 import { ConfigurationsService, NsInstanceConfig, NsPage } from '@ws-widget/utils'
 import { Router, NavigationStart, NavigationEnd, Event } from '@angular/router'
+import { HeaderServiceService } from './../../services/header-service.service'
 
 @Component({
   selector: 'ws-app-nav-bar',
@@ -34,11 +35,13 @@ export class AppNavBarComponent implements OnInit, OnChanges {
   isTourGuideClosed = false
   showAppNavBar = false
   popupTour: any
+  courseNameHeader: any
+
   constructor(
     private domSanitizer: DomSanitizer,
     private configSvc: ConfigurationsService,
     private tourService: CustomTourService,
-    private router: Router,
+    private router: Router,  private headerService: HeaderServiceService
   ) {
     this.btnAppsConfig = { ...this.basicBtnAppsConfig }
     if (this.configSvc.restrictedFeatures) {
@@ -50,6 +53,11 @@ export class AppNavBarComponent implements OnInit, OnChanges {
       } else if (event instanceof NavigationEnd) {
         this.cancelTour()
       }
+    })
+
+    // Header view
+    this.headerService.showCourseHeader.subscribe(data => {
+      this.courseNameHeader = data
     })
   }
 
@@ -92,6 +100,7 @@ export class AppNavBarComponent implements OnInit, OnChanges {
       }
     })
   }
+
 
   ngOnChanges(changes: SimpleChanges) {
     for (const property in changes) {

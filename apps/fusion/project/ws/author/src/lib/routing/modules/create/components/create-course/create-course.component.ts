@@ -46,6 +46,10 @@ export class CreateCourseComponent implements OnInit {
           this.resourceEntity = v
         } else {
           this.entity.push(v)
+          console.log('entity', this.entity)
+          if (this.entity[1]) {
+            this.content = this.entity[1].id
+          }
         }
       }
     })
@@ -54,25 +58,25 @@ export class CreateCourseComponent implements OnInit {
     // this.allLanguages = this.authInitService.ordinals.subTitles || []
     this.language = this.accessControlSvc.locale
 
-    const navigation = this.router.getCurrentNavigation()
-    if (navigation && navigation.extras && navigation.extras.state) {
-      this.content = navigation.extras.state
-    }
+    // const navigation = this.router.getCurrentNavigation()
+    // if (navigation && navigation.extras && navigation.extras.state) {
+    //   this.content = navigation.extras.state
+    // }
  
     
   }
 
-  contentClicked(content: ICreateEntity) {
+  contentClicked() {
     this.loaderService.changeLoad.next(true)
     if (this.courseData && this.courseData.courseName) {
     this.svc
       .create({
-        contentType: content.contentType,
-        mimeType: content.mimeType,
+        contentType: this.content.contentType,
+        mimeType: this.content.mimeType,
         locale: this.language,
         name: this.courseData.courseName,
         description: this.courseData.courseIntroduction,
-        ...(content.additionalMeta || {}),
+        ...(this.content.additionalMeta || {}),
       })
       .subscribe(
         (id: string) => {
@@ -123,7 +127,7 @@ export class CreateCourseComponent implements OnInit {
 
   onSubmit(form: any) {
     this.courseData = form.value
-    this.contentClicked(this.content)
+    this.contentClicked()
   }
 
   navigateTo(params: string) {
