@@ -23,7 +23,7 @@
   </mat-drawer>
   <mat-drawer-content>
 
-    <ws-auth-editor-action-buttons (action)="action($event)" [buttonConfig]="actionButton">
+    <ws-auth-editor-action-buttons *ngIf="!showAddchapter" (action)="action($event)" [buttonConfig]="actionButton">
     </ws-auth-editor-action-buttons>
 
     <mat-sidenav-container class="nav-container">
