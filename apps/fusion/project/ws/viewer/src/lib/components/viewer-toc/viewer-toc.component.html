@@ -63,14 +63,14 @@
     </mat-card-content> -->
   <!-- </mat-card> -->
 
-  <mat-form-field class="width-1-1" >
+  <!-- <mat-form-field class="width-1-1" > -->
    
     <!-- <mat-form-field>
       <input matInput placeholder="Search" (input)="filterChanged($event.target.value)">
    </mat-form-field> -->
     <!-- <input name="search" matInput placeholder="Search" (input)="filterChanged($event.target.value)" /> -->
 
-  </mat-form-field>
+  <!-- </mat-form-field> -->
 
 
   <mat-divider *ngIf="collection" class="margin-bottom-xs"></mat-divider>
@@ -216,7 +216,7 @@
         >
           <div class="mat-body-2 text-truncate flex">
             <span>
-              ll{{ content.title | pipeLimitTo: 20 }}
+              {{ content.title | pipeLimitTo: 20 }}
             </span>
             <mat-icon
               *ngIf="
