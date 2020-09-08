@@ -51,6 +51,7 @@ interface ICollectionCard {
 export class ViewerTocComponent implements OnInit, OnDestroy {
   @Output() hidenav = new EventEmitter<boolean>()
   @Input() forPreview = false
+  searchCourseQuery = ''
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -69,7 +70,7 @@ export class ViewerTocComponent implements OnInit, OnDestroy {
   resourceId: string | null = null
   collection: IViewerTocCard | null = null
   queue: IViewerTocCard[] = []
-  tocMode: 'FLAT' | 'TREE' = 'FLAT'
+  tocMode: 'FLAT' | 'TREE' = 'TREE'
   nestedTreeControl: NestedTreeControl<IViewerTocCard>
   nestedDataSource: MatTreeNestedDataSource<IViewerTocCard>
   defaultThumbnail: SafeUrl | null = null
@@ -133,6 +134,11 @@ export class ViewerTocComponent implements OnInit, OnDestroy {
       }
     })
   }
+
+  // updateSearchModel(value) {
+  //   this.searchModel = value
+  //   // this.searchModelChange.emit(this.searchModel)
+  // }
 
   private getContentProgressHash() {
     this.contentProgressSvc.getProgressHash().subscribe(progressHash => {

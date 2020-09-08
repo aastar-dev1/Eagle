@@ -1,3 +1,4 @@
+import { ViewerDataService } from './../../viewer-data.service';
 import { Component, Input, OnInit } from '@angular/core'
 import { NsContent, NsDiscussionForum } from '@ws-widget/collection'
 import { NsWidgetResolver } from '@ws-widget/resolver'
@@ -29,13 +30,26 @@ export class PdfComponent implements OnInit {
   > | null = null
   isTypeOfCollection = false
   isRestricted = false
-  constructor(private activatedRoute: ActivatedRoute, private configSvc: ConfigurationsService) { }
+  prevResourceUrl: string | null = null
+  nextResourceUrl: string | null = null
+  viewerDataServiceSubscription: any
+  collectionType: any
+
+  constructor(private activatedRoute: ActivatedRoute, private configSvc: ConfigurationsService,
+              private viewerDataSvc: ViewerDataService) { }
 
   ngOnInit() {
     if (this.configSvc.restrictedFeatures) {
       this.isRestricted =
         !this.configSvc.restrictedFeatures.has('disscussionForum')
     }
+
     this.isTypeOfCollection = this.activatedRoute.snapshot.queryParams.collectionType ? true : false
+    this.collectionType = this.activatedRoute.snapshot.queryParams.collectionType
+
+    this.viewerDataServiceSubscription = this.viewerDataSvc.tocChangeSubject.subscribe(data => {
+      this.prevResourceUrl = data.prevResource
+      this.nextResourceUrl = data.nextResource
+    })
   }
 }

@@ -1,10 +1,11 @@
+// import { IContent } from './../../../../../../../../web-services/src/models/content.model';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
 import { ActivatedRoute } from '@angular/router'
 import { ConfigurationsService, NsPage, ValueService } from '@ws-widget/utils'
 import { Subscription } from 'rxjs'
 import { ViewerDataService } from '../../viewer-data.service'
-
+import { WidgetContentService } from '@ws-widget/collection/src/lib/_services/widget-content.service'
 @Component({
   selector: 'viewer-viewer-top-bar',
   templateUrl: './viewer-top-bar.component.html',
@@ -29,13 +30,16 @@ export class ViewerTopBarComponent implements OnInit, OnDestroy {
   logo = true
   isPreview = false
   forChannel = false
+  collection: any
+  collectionCard: any
   constructor(
     private activatedRoute: ActivatedRoute,
     private domSanitizer: DomSanitizer,
     // private logger: LoggerService,
     private configSvc: ConfigurationsService,
     private viewerDataSvc: ViewerDataService,
-    private valueSvc: ValueService
+    private valueSvc: ValueService,
+    private contentSvc: WidgetContentService
   ) {
     this.valueSvc.isXSmall$.subscribe(isXSmall => {
       this.logo = !isXSmall
@@ -51,6 +55,26 @@ export class ViewerTopBarComponent implements OnInit, OnDestroy {
     // if (this.configSvc.rootOrg === EInstance.INSTANCE) {
     // this.logo = false
     // }
+    
+      const collectionId = this.activatedRoute.snapshot.queryParams.collectionId
+      const collectionType = this.activatedRoute.snapshot.queryParams.collectionType
+      if (collectionId && collectionType) {
+        // if (
+        //   collectionType.toLowerCase() ===
+        //   NsContent.EMiscPlayerSupportedCollectionTypes.PLAYLIST.toLowerCase()
+        // )
+        //  {
+          // this.collection = this.getPlaylistContent(collectionId, collectionType)
+
+           this.contentSvc
+          .fetchContent(collectionId, 'all',  []).subscribe(data => {
+            // console.log('data==>', data)
+            this.collection = data
+          })
+        }
+
+
+
     if (this.configSvc.instanceConfig) {
       this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(
         this.configSvc.instanceConfig.logos.app,

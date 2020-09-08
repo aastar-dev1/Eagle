@@ -3,7 +3,8 @@ import { NsContent, NsAutoComplete } from '@ws-widget/collection'
 import { ConfigurationsService } from '@ws-widget/utils'
 import { NsCohorts } from '../../models/app-toc.model'
 import { AppTocService } from '../../services/app-toc.service'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
+
 
 @Component({
   selector: 'ws-app-toc-cohorts',
@@ -17,14 +18,20 @@ export class AppTocCohortsComponent implements OnInit {
   } = {}
   cohortTypesEnum = NsCohorts.ECohortTypes
   @Input() forPreview = false
+  identifier: any
 
   constructor(
     private tocSvc: AppTocService,
     private configSvc: ConfigurationsService,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.identifier = params['id']
+    })
+  }
 
   public get enableFeature(): boolean {
     if (this.configSvc.restrictedFeatures) {
@@ -48,7 +55,7 @@ export class AppTocCohortsComponent implements OnInit {
 
   fetchCohorts(cohortType: NsCohorts.ECohortTypes) {
     if (!this.cohortResults[cohortType] && !this.forPreview) {
-      this.tocSvc.fetchContentCohorts(cohortType, this.content.identifier).subscribe(
+      this.tocSvc.fetchContentCohorts(cohortType, this.identifier).subscribe(
         data => {
           this.cohortResults[cohortType] = {
             contents: data || [],

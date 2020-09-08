@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { FormsModule } from '@angular/forms'
 
 import {
   MatCardModule,
@@ -14,6 +15,7 @@ import {
   MatProgressSpinnerModule,
   MatSnackBarModule,
   MatTabsModule,
+  MatInputModule,
 } from '@angular/material'
 
 import { ViewerRoutingModule } from './viewer-routing.module'
@@ -44,10 +46,11 @@ import {
 import { WidgetResolverModule } from '@ws-widget/resolver'
 import { ViewerComponent } from './viewer.component'
 import { ViewerTocComponent } from './components/viewer-toc/viewer-toc.component'
-import { ViewerTopBarModule } from './components/viewer-top-bar/viewer-top-bar.module'
+import { ViewerTopBarModule } from './components/viewer-top-bar/viewer-top-bar.module';
+import { FilterResourcePipe } from './pipes/filter-resource.pipe'
 
 @NgModule({
-  declarations: [ViewerComponent, ViewerTocComponent],
+  declarations: [ViewerComponent, ViewerTocComponent, FilterResourcePipe],
   imports: [
     CommonModule,
     MatCardModule,
@@ -59,6 +62,7 @@ import { ViewerTopBarModule } from './components/viewer-top-bar/viewer-top-bar.m
     MatSlideToggleModule,
     MatListModule,
     MatTreeModule,
+    MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
     ViewerRoutingModule,
@@ -82,6 +86,7 @@ import { ViewerTopBarModule } from './components/viewer-top-bar/viewer-top-bar.m
     MatTabsModule,
     PlayerBriefModule,
     ViewerTopBarModule,
+    FormsModule,
   ],
 })
 export class ViewerModule { }

@@ -30,14 +30,16 @@
         routerLinkActive="ws-mat-primary-text link-active" i18n>Contents</a>
       <a *ngIf="enableAnalytics" [disabled]="forPreview" mat-tab-link [routerLink]="'./analytics'"
         routerLinkActive="ws-mat-primary-text link-active" i18n>Analytics</a>
+      <a mat-tab-link [routerLink]="'./discussion'" routerLinkActive="ws-mat-primary-text link-active" i18n>Discussions</a>
+      <a mat-tab-link [routerLink]="'./details'"  [queryParams]="{id: content.identifier}" routerLinkActive="ws-mat-primary-text link-active" i18n>Details</a>
     </nav>
     <router-outlet></router-outlet>
     <ng-container>
-      <mat-divider class="margin-top-m margin-bottom-m"></mat-divider>
-      <div class="toc-discussion-container" fragment="discussion-forum">
-        <ws-app-toc-discussion [content]="content" class="discussion"></ws-app-toc-discussion>
-        <ws-app-toc-cohorts [content]="content" class="cohorts"></ws-app-toc-cohorts>
-      </div>
+      <!-- <mat-divider class="margin-top-m margin-bottom-m"></mat-divider> -->
+      <!-- <div class="toc-discussion-container" fragment="discussion-forum"> -->
+        <!-- <ws-app-toc-discussion [content]="content" class="discussion"></ws-app-toc-discussion> -->
+        <!-- <ws-app-toc-cohorts [content]="content" class="cohorts"></ws-app-toc-cohorts> -->
+      <!-- </div> -->
     </ng-container>
   </div>
 </ng-container>

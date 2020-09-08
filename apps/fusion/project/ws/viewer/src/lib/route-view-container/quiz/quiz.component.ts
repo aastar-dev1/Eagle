@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core'
 import { NsContent } from '@ws-widget/collection'
 import { NSQuiz } from '../../plugins/quiz/quiz.model'
 import { ActivatedRoute } from '@angular/router'
+import { ViewerDataService } from '../../viewer-data.service'
 
 @Component({
   selector: 'viewer-quiz-container',
@@ -21,12 +22,24 @@ export class QuizComponent implements OnInit {
   @Input() isPreviewMode = false
   isTypeOfCollection = false
   collectionId: string | null = null
-  constructor(private activatedRoute: ActivatedRoute) {}
+  prevResourceUrl: string | null = null
+  nextResourceUrl: string | null = null
+  collectionType: any
+  viewerDataServiceSubscription: any
+  
+
+  constructor(private activatedRoute: ActivatedRoute, private viewerDataSvc: ViewerDataService) {}
 
   ngOnInit() {
     this.isTypeOfCollection = this.activatedRoute.snapshot.queryParams.collectionType ? true : false
     if (this.isTypeOfCollection) {
       this.collectionId = this.activatedRoute.snapshot.queryParams.collectionId
     }
+    this.collectionType = this.activatedRoute.snapshot.queryParams.collectionType
+
+    this.viewerDataServiceSubscription = this.viewerDataSvc.tocChangeSubject.subscribe(data => {
+      this.prevResourceUrl = data.prevResource
+      this.nextResourceUrl = data.nextResource
+    })
   }
 }

@@ -3,6 +3,7 @@ import { NsContent, IWidgetsPlayerMediaData, NsDiscussionForum } from '@ws-widge
 import { NsWidgetResolver } from '@ws-widget/resolver'
 import { ActivatedRoute } from '@angular/router'
 import { ConfigurationsService } from '../../../../../../../library/ws-widget/utils/src/public-api'
+import { ViewerDataService } from '../../viewer-data.service'
 
 @Component({
   selector: 'viewer-video-container',
@@ -24,7 +25,13 @@ export class VideoComponent implements OnInit {
   @Input() isPreviewMode = false
   isTypeOfCollection = false
   isRestricted = false
-  constructor(private activatedRoute: ActivatedRoute, private configSvc: ConfigurationsService) { }
+  prevResourceUrl: string | null = null
+  nextResourceUrl: string | null = null
+  collectionType: any
+  viewerDataServiceSubscription: any
+
+  constructor(private activatedRoute: ActivatedRoute, private configSvc: ConfigurationsService,
+              private viewerDataSvc: ViewerDataService) { }
 
   ngOnInit() {
     if (this.configSvc.restrictedFeatures) {
@@ -32,5 +39,11 @@ export class VideoComponent implements OnInit {
         !this.configSvc.restrictedFeatures.has('disscussionForum')
     }
     this.isTypeOfCollection = this.activatedRoute.snapshot.queryParams.collectionType ? true : false
+    this.collectionType = this.activatedRoute.snapshot.queryParams.collectionType
+
+    this.viewerDataServiceSubscription = this.viewerDataSvc.tocChangeSubject.subscribe(data => {
+      this.prevResourceUrl = data.prevResource
+      this.nextResourceUrl = data.nextResource
+    })
   }
 }

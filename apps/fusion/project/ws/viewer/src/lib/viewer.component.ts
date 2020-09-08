@@ -60,6 +60,7 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
     e.activatedRoute.data.subscribe((data: { content: { data: NsContent.IContent } }) => {
       if (data.content && data.content.data) {
         this.content = data.content.data
+        // console.log('content', this.content)
       }
     })
   }
@@ -72,7 +73,7 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.isTypeOfCollection = this.activatedRoute.snapshot.queryParams.collectionType ? true : false
     this.screenSizeSubscription = this.isLtMedium$.subscribe(isSmall => {
       // this.sideNavBarOpened = !isSmall
-      this.sideNavBarOpened = isSmall ? false : false
+      this.sideNavBarOpened = isSmall ? false : true
       this.mode = isSmall ? 'over' : 'side'
     })
     this.resourceChangeSubscription = this.dataSvc.changedSubject.subscribe(_ => {
@@ -136,12 +137,12 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   toggleSideBar() {
-    this.sideNavBarOpened = !this.sideNavBarOpened
+    this.sideNavBarOpened = true
   }
 
   minimizeBar() {
     if (this.utilitySvc.isMobile) {
-      this.sideNavBarOpened = false
+      this.sideNavBarOpened = true
     }
   }
 }
