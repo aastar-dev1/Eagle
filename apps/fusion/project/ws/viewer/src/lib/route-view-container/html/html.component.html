@@ -75,31 +75,12 @@
 </div>
 
 
-
-<div role="main" class="toc-body" *ngIf="!errorCode; else tocError">
-  <nav mat-tab-nav-bar class="toc-links mat-app-background">
-    <!-- <a mat-tab-link [routerLink]="'./overview'" routerLinkActive="ws-mat-primary-text link-active" i18n>Overview</a>
-    <a mat-tab-link *ngIf="content?.resourceType === 'Certification'" [routerLink]="'./certification'"
-      routerLinkActive="ws-mat-primary-text link-active">
-      <ng-container *ngIf="content?.isExternal === true" i18n>Certification</ng-container>
-      <ng-container *ngIf="content?.isExternal === false" i18n>Take Certification</ng-container>
-    </a> -->
-
-    <!-- <a *ngIf="content?.children?.length" mat-tab-link [routerLink]="'./contents'"
-      routerLinkActive="ws-mat-primary-text link-active" i18n>Contents</a>
-    <a *ngIf="enableAnalytics" [disabled]="forPreview" mat-tab-link [routerLink]="'./analytics'"
-      routerLinkActive="ws-mat-primary-text link-active" i18n>Analytics</a> -->
-    <a mat-tab-link [routerLink]="'./discussion'" routerLinkActive="ws-mat-primary-text link-active" i18n>Discussions</a>
-    <!-- <a mat-tab-link [routerLink]="'./details'"  [queryParams]="{id: content.identifier}" routerLinkActive="ws-mat-primary-text link-active" i18n>Details</a> -->
-  </nav>
-  <router-outlet></router-outlet>
-
-  <!-- <div class="padding-m" *ngIf="discussionForumWidget && isRestricted">
+  <div class="padding-m" *ngIf="discussionForumWidget && isRestricted">
     <div class="video-discussion-forum-in">
       <h2 class="mat-toolbar discussion-head">Discussion Forum</h2>
       <ng-container [wsResolverWidget]="discussionForumWidget"></ng-container>
     </div>
-  </div> -->
+  </div>
 </div>
 <div class="full-height-width-iframe" *ngIf="!isNotEmbed">
   <viewer-plugin-html [htmlContent]="htmlData"></viewer-plugin-html>
