@@ -1,5 +1,5 @@
 import { DeleteDialogComponent } from '@ws/author/src/lib/modules/shared/components/delete-dialog/delete-dialog.component'
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core'
+import { Component, OnInit, ChangeDetectorRef, OnDestroy, Input, Output, EventEmitter } from '@angular/core'
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar'
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
 import { map, mergeMap, tap, catchError } from 'rxjs/operators'
@@ -81,6 +81,10 @@ export class QuizComponent implements OnInit, OnDestroy {
     .pipe(map((res: BreakpointState) => res.matches))
   mode$ = this.mediumSizeBreakpoint$.pipe(map(isMedium => (isMedium ? 'over' : 'side')))
   // @ViewChild(MatSidenavContainer) sidenavContainer: MatSidenavContainer;
+
+  @Input() isCollectionEditor = false
+  @Input() isSubmitPressed = false
+  @Output() data = new EventEmitter<string>()
 
   constructor(
     private router: Router,

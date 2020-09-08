@@ -12,7 +12,10 @@ import { AuthCollectionMatmenuComponent } from './components/auth-collection-mat
 import { AuthEditorOptionsComponent } from './components/auth-editor-options/auth-editor-options.component'
 import { AuthTableOfContentsComponent } from './components/auth-table-of-contents/auth-table-of-contents.component'
 import { AuthTableTreeLabelComponent } from './components/auth-table-tree-label/auth-table-tree-label.component'
-import { CollectionComponent } from './components/collection/collection.component'
+import { CollectionComponent } from './components/collection/collection.component';
+import { CourseCollectionComponent } from './components/course-collection/course-collection.component';
+import { AuthTocComponent } from './components/auth-toc/auth-toc.component'
+import { QuizModule } from './../quiz/quiz.module'
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { CollectionComponent } from './components/collection/collection.componen
     AuthEditorOptionsComponent,
     AuthTableTreeLabelComponent,
     AuthCollectionMatmenuComponent,
+    CourseCollectionComponent,
+    AuthTocComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +37,7 @@ import { CollectionComponent } from './components/collection/collection.componen
     AuthViewerModule,
     UploadModule,
     CurateModule,
+    QuizModule,
   ],
 })
 export class CollectionModule {}

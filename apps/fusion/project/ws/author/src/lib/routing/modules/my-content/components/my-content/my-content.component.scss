@@ -154,3 +154,33 @@ ws-auth-content-card-v2 {
 .mat-list-item.active {
   background: rgba(0,0,0,.04)
 }
+
+// .mat-list-base, .full-width-field {
+//   width: 100%;
+// }
+// ws-auth-root-content-card {
+//   width: 100%;
+// }
+
+.outer-flex {
+  display: flex;
+  align-items: flex-start;
+}
+
+.content-box {
+  width: 76%;
+}
+.sidebar {
+  width: 23%;
+  position: absolute;
+  top: -37px;
+  bottom: 0;
+  right: 0;
+  padding-right: 1em;
+  background: #fff;
+  padding-left: 2em;
+  padding-top: 3em;
+}
+.mb-3 {
+  margin-bottom: 0.45rem !important;
+}

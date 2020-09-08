@@ -43,7 +43,9 @@ export class AuthEditorOptionsComponent implements OnInit {
       this.canEdit &&
       contentTypeConfig.allowCreation
     ) {
-      this.allowedChild = this.formChildren(contentTypeConfig, this.node.level + 1)
+    //  let withChildren = this.formChildren(contentTypeConfig, this.node.level + 1)
+    //  this.allowedChild = withChildren[0].children
+    this.allowedChild = this.formChildren(contentTypeConfig, this.node.level + 1)
     }
     if (this.node.parentId) {
       const parentType = this.storeService.flatNodeMap.get(this.node.parentId) as IContentNode

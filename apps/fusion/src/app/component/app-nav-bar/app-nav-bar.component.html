@@ -35,12 +35,28 @@
         i18n-matTooltip matTooltip="Help">
         <mat-icon>help_outline</mat-icon>
       </button> -->
+      <!-- <div  class="matExpansion flex flex-middle margin-top-m margin-left-l margin-right-l padding-remove-left create-button">
+      <button mat-button class="font-weight-bold margin-remove-bottom mat-h3 ws-mat-primary-text ws-mat-primary-border"
+        [routerLink]="'/author/create'" id="ws-auth-root-home-btn-create" name="ws-auth-root-home-btn-create">
+        <ng-container i18n>Create Content</ng-container>
+      </button>
+      </div> -->
+      <!-- <button mat-button [matMenuTriggerFor]="afterMenu">After</button> -->
+      <button *ngIf="allowAuthor" mat-button i18n  [routerLink]="'/author/create'">
+        <mat-icon>add</mat-icon>Create Content </button>
+        <!-- <mat-menu #afterMenu="matMenu" xPosition="after">
+          <button mat-menu-item  [routerLink]="'/author/create'"><mat-icon>create</mat-icon>From Scratch</button>
+          <button mat-menu-item><mat-icon>wysiwyg</mat-icon>Via Excel / CSV Upload</button>
+          <button mat-menu-item><mat-icon>wysiwyg</mat-icon>From Sample Gallery</button>
+        </mat-menu> -->
+
         <ng-container [ngTemplateOutlet]="navbarSide" [ngTemplateOutletContext]="{ item: item }"
           *ngFor="let item of primaryNavbarConfig?.mediumScreen?.right">
         </ng-container>
         <!-- <div class="mat-icon-button pipe-icon">
         |
       </div> -->
+
         <!-- <ng-container [wsResolverWidget]="btnAppsConfig"></ng-container> -->
       </ng-container>
     </ng-container>

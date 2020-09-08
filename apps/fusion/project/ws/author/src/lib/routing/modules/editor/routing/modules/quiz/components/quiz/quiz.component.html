@@ -1,5 +1,5 @@
 <div class="margin-top-xl margin-l-l margin-r-l" [hidden]="previewMode">
-  <div class="flex margin-left-xl flex-middle margin-bottom-xl flex-wrap">
+  <!-- <div class="flex margin-left-xl flex-middle margin-bottom-xl flex-wrap">
     <div class="flex flex-middle">
       <p class="ws-mat-primary-text font-weight-bold title margin-right-xs" i18n>CONTENT CREATION</p>
       <mat-icon class=" ws-mat-primary-text margin-bottom-xxs">create</mat-icon>
@@ -44,7 +44,7 @@
         </p>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class=" margin-left-xl margin-top-s margin-bottom-xs">
     <div class="flex flex-middle">
@@ -120,8 +120,24 @@
       </ws-auth-edit-meta>
     </div>
   </div>
+
+<!-- 
+  <button (click)="action('save')"  mat-menu-item>
+    <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Save content">
+      Save</mat-icon>
+    <ng-container i18n>Save</ng-container>
+  </button> -->
+
+  <div class="flex justify-end px-1 pt-6 pb-6">
+  <button class=" ws-mat-primary-background mat-elevation-z6 margin-left-s"
+  mat-button  (click)="action('save')"
+  i18n-aria-label aria-label="save">
+  <span class="text-white small-operators" i18n>Save</span>
+</button>
+</div>
+
   <div class="buttons margin-top-xl">
-    <div class="button-grid margin-right-xxs cursor-pointer" (click)="toggleSettingButtons()">
+    <!-- <div class="button-grid margin-right-xxs cursor-pointer" (click)="toggleSettingButtons()">
       <button mat-icon-button class="padding-remove ws-mat-primary-background mat-elevation-z6">
         <mat-icon class="text-white" *ngIf="showSettingButtons" i18n-matTooltip matTooltip="Close">close</mat-icon>
         <mat-icon class="text-white" *ngIf="!showSettingButtons">more_vert</mat-icon>
@@ -129,8 +145,8 @@
       <p class="mat-h5 margin-remove button-text padding-remove-top" *ngIf="showSettingButtons" i18n-matTooltip matTooltip="Close">
         Close
       </p>
-    </div>
-    <ng-container *ngIf="showSettingButtons">
+    </div> -->
+    <!-- <ng-container *ngIf="showSettingButtons">
       <div class="button-grid cursor-pointer" (click)="action('preview')">
         <button mat-icon-button class="mat-elevation-z5 small-button padding-remove margin-top-l" i18n-matTooltip matTooltip="Preview">
           <mat-icon class="text-white small-icon ws-mat-primary-text">remove_red_eye</mat-icon>
@@ -144,7 +160,7 @@
           <mat-icon class="text-white small-icon ws-mat-primary-text">save</mat-icon>
         </button>
         <p class="mat-h5 margin-remove button-text" i18n-matTooltip matTooltip="save" i18n>
-          Save
+          Save ss
         </p>
       </div>
       <div class="button-grid cursor-pointer" (click)="action('push'); submitPressed = true">
@@ -159,7 +175,7 @@
           Review
         </p>
         <p class="mat-h5 margin-remove button-text" *ngIf="getAction() === 'publish'" i18n-matTooltip matTooltip="publish" i18n>
-          Publish
+          Publish ss
         </p>
 
       </div>
@@ -170,7 +186,7 @@
         <p class="mat-h5 margin-remove button-text" i18n-matTooltip matTooltip="Delete" i18n>
           Delete
         </p>
-      </div>
+      </div> -->
       <!--<div class="button-grid cursor-pointer" (click)="fullScreenToggle()">
                 <button mat-icon-button class=" mat-elevation-z5 small-button padding-remove  margin-top-m" i18n-matTooltip matTooltip="Fullscreen">
                     <mat-icon class="text-white small-icon ws-mat-primary-text">fullscreen</mat-icon>
@@ -179,7 +195,7 @@
                     Fullscreen
                 </p>
             </div>-->
-    </ng-container>
+    <!-- </ng-container> -->
   </div>
 </div>
 

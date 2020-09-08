@@ -57,6 +57,9 @@
   box-sizing: content-box;
   // font-size: 9px;
   line-height: 1.33333em;
+  p {
+    margin-top: 10px
+  }
 }
 
 @media screen and (min-width: 768px) {
