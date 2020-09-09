@@ -11,7 +11,7 @@ import { ConfigurationsService } from '../../../../../../../../../library/ws-wid
 })
 export class AppTocDiscussionComponent implements OnChanges, OnInit {
   @Input() content!: NsContent.IContent
-  showDiscussionForum = false
+  showDiscussionForum = true
   isRestricted = true
   @Input() forPreview = false
   discussionForumWidget: NsWidgetResolver.IRenderConfigWithTypedData<
