@@ -1,10 +1,14 @@
 <mat-toolbar [color]="primaryNavbarBackground?.color" [ngStyle]="primaryNavbarBackground?.styles"
   class="mat-elevation-z3 custom">
   <div class="fix-ww">
-    <ng-container *ngIf="mode === 'top'">
+    <ng-container *ngIf="mode === 'top' && !courseNameHeader">
+      <div class="logo-container flex items-center">
       <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" class="logo-dim">
         <img [src]="appIcon" alt="Application Logo" class="app-logo" />
       </a>
+      <div class="site-description">
+        <p>A Nilekani Philanthropies <br/>Initiative</p></div>
+    </div>
       <!-- <span class="spacer"></span> -->
       <ng-container *ngIf="primaryNavbarConfig?.mediumScreen">
         <ng-container [ngTemplateOutlet]="navbarSide" [ngTemplateOutletContext]="{ item: item }"
@@ -31,15 +35,49 @@
         i18n-matTooltip matTooltip="Help">
         <mat-icon>help_outline</mat-icon>
       </button> -->
+      <!-- <div  class="matExpansion flex flex-middle margin-top-m margin-left-l margin-right-l padding-remove-left create-button">
+      <button mat-button class="font-weight-bold margin-remove-bottom mat-h3 ws-mat-primary-text ws-mat-primary-border"
+        [routerLink]="'/author/create'" id="ws-auth-root-home-btn-create" name="ws-auth-root-home-btn-create">
+        <ng-container i18n>Create Content</ng-container>
+      </button>
+      </div> -->
+      <!-- <button mat-button [matMenuTriggerFor]="afterMenu">After</button> -->
+      <button mat-raised-button *ngIf="allowAuthor" i18n class="header-btn text-white ws-mat-primary-background mat-button-base" [routerLink]="'/author/create'">
+        Create Content </button>
+        <!-- <mat-menu #afterMenu="matMenu" xPosition="after">
+          <button mat-menu-item  [routerLink]="'/author/create'"><mat-icon>create</mat-icon>From Scratch</button>
+          <button mat-menu-item><mat-icon>wysiwyg</mat-icon>Via Excel / CSV Upload</button>
+          <button mat-menu-item><mat-icon>wysiwyg</mat-icon>From Sample Gallery</button>
+        </mat-menu> -->
+
+       
+
         <ng-container [ngTemplateOutlet]="navbarSide" [ngTemplateOutletContext]="{ item: item }"
           *ngFor="let item of primaryNavbarConfig?.mediumScreen?.right">
         </ng-container>
         <!-- <div class="mat-icon-button pipe-icon">
         |
       </div> -->
+
         <!-- <ng-container [wsResolverWidget]="btnAppsConfig"></ng-container> -->
       </ng-container>
     </ng-container>
+
+    <ng-container *ngIf="mode === 'top' && courseNameHeader">
+      <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" class="logo-dim">
+        <img [src]="appIcon" alt="Application Logo" class="app-logo" />
+      </a>
+      <h3 class="mt-name">{{courseNameHeader}}</h3>
+
+      <span class="spacer"></span>
+      <button  mat-raised-button i18n class="header-btn text-white ws-mat-primary-background mat-button-base" (click)="headerService.saveCourseContent()">
+        Save</button>
+
+        <ng-container [ngTemplateOutlet]="navbarSide" [ngTemplateOutletContext]="{ item: item }"
+        *ngFor="let item of primaryNavbarConfig?.mediumScreen?.right">
+      </ng-container>
+    </ng-container>
+    
     <div class="flex justify-between items-center w-full" *ngIf="mode === 'bottom'">
       <ng-container *ngIf="primaryNavbarConfig?.smallScreen">
         <ng-container [ngTemplateOutlet]="navbarSide" [ngTemplateOutletContext]="{ item: item }"

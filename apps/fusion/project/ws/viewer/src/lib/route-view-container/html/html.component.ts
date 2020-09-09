@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router'
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser'
 import { PipeLimitToPipe } from '@ws-widget/utils/src/lib/pipes/pipe-limit-to/pipe-limit-to.pipe'
 import { ValueService, ConfigurationsService } from '@ws-widget/utils'
+import { ViewerDataService } from '../../viewer-data.service'
 @Component({
   selector: 'viewer-html-container',
   templateUrl: './html.component.html',
@@ -26,6 +27,11 @@ export class HtmlComponent implements OnInit, OnChanges {
   isLtMedium = false
   isScormContent = false
   isRestricted = false
+  prevResourceUrl: string | null = null
+  nextResourceUrl: string | null = null
+  collectionType: any
+  viewerDataServiceSubscription: any
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private domSanitizer: DomSanitizer,
@@ -33,6 +39,7 @@ export class HtmlComponent implements OnInit, OnChanges {
     private pipeLimitTo: PipeLimitToPipe,
     private valueSvc: ValueService,
     private configSvc: ConfigurationsService,
+    private viewerDataSvc: ViewerDataService
 
   ) {
 
@@ -45,6 +52,12 @@ export class HtmlComponent implements OnInit, OnChanges {
   ngOnInit() {
     // this.setcookies().then(() => {
     this.isTypeOfCollection = this.activatedRoute.snapshot.queryParams.collectionType ? true : false
+    this.collectionType = this.activatedRoute.snapshot.queryParams.collectionType
+
+    this.viewerDataServiceSubscription = this.viewerDataSvc.tocChangeSubject.subscribe(data => {
+      this.prevResourceUrl = data.prevResource
+      this.nextResourceUrl = data.nextResource
+    })
     if (this.configSvc.restrictedFeatures) {
       this.isRestricted =
         !this.configSvc.restrictedFeatures.has('disscussionForum')

@@ -178,12 +178,13 @@ export class CollectionStoreService {
     dropNode: IContentTreeNode,
     adjacentId?: number,
     dropLocation: 'above' | 'below' = 'below',
+    topicObj?: any
   ): Promise<boolean> {
     try {
       const meta = this.authInitService.creationEntity.get(type) as ICreateEntity
       const requestBody = {
-        name: 'Untitled Content',
-        description: '',
+        name: topicObj ? topicObj.topicName : 'Untitled Content',
+        description: topicObj ? topicObj.topicDescription : '',
         mimeType: meta.mimeType,
         contentType: meta.contentType,
         resourceType: meta.resourceType,

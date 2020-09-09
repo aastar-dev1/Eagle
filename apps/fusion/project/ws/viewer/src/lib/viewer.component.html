@@ -6,7 +6,7 @@
     (toggle)="toggleSideBar()">
   </viewer-viewer-top-bar>
   <mat-sidenav-container autosize class="viewer-sidenav-container">
-    <mat-sidenav [ngClass]="isTypeOfCollection?'viewer-sidenav':'viewer-sidenav-standalone'" position="end"
+    <mat-sidenav [ngClass]="isTypeOfCollection?'viewer-sidenav':'viewer-sidenav-standalone'" position="start"
       [opened]="sideNavBarOpened" [mode]="mode">
       <mat-tab-group>
         <mat-tab *ngIf="isTypeOfCollection" i18n-label label="Contents">

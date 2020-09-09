@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isFetching; else Loading">
-  <mat-card *ngIf="collection && collectionCard">
-    <mat-card-content>
+  <!-- <mat-card *ngIf="collection && collectionCard"> -->
+    <!-- <mat-card-content>
       <span class="width-expand flex flex-middle">
         <a
           class="viewer-toc-header-thumbnail align-self-start margin-auto"
@@ -19,7 +19,7 @@
           <div class="width-1-1 flex flex-between">
             <div class="mat-body-2 text-truncate flex">
               <a [routerLink]="collectionCard?.redirectUrl" queryParamsHandling="preserve">
-                {{ collectionCard?.title | pipeLimitTo: 20 }}
+               {{ collectionCard?.title | pipeLimitTo: 20 }}
               </a>
               <mat-icon
                 *ngIf="
@@ -60,8 +60,18 @@
           </div>
         </span>
       </span>
-    </mat-card-content>
-  </mat-card>
+    </mat-card-content> -->
+  <!-- </mat-card> -->
+
+  <!-- <mat-form-field class="width-1-1" > -->
+   
+    <!-- <mat-form-field>
+      <input matInput placeholder="Search" (input)="filterChanged($event.target.value)">
+   </mat-form-field> -->
+    <!-- <input name="search" matInput placeholder="Search" (input)="filterChanged($event.target.value)" /> -->
+
+  <!-- </mat-form-field> -->
+
 
   <mat-divider *ngIf="collection" class="margin-bottom-xs"></mat-divider>
   <div *ngIf="collection" class="flex flex-middle">
@@ -149,6 +159,12 @@
                 >check_circle</mat-icon
               >
             </span>
+            <!-- <span class="mat-body-1">
+              <span>{{ node.type | pipeLimitTo: 300 }}</span> </span
+            ><span class="mat-body-1 margin-left-xxs" *ngIf="node?.complexity"
+              ><span>| {{ node?.complexity | pipeLimitTo: 300 }}</span>
+            </span> -->
+
             <div class="content-duration flex flex-center">
               <h3 class="mat-caption margin-remove width-max-content">
                 {{ node.duration | pipeDurationTransform: 'hms' }}
@@ -263,7 +279,7 @@
           *ngIf="content?.type !== enumContentTypes.ASSESSMENT"
           class="margin-remove text-truncate flex"
         >
-          {{ content?.title | pipeLimitTo: 30 }}
+         {{ content?.title }}
           <mat-icon
             *ngIf="
               contentProgressHash &&
@@ -277,6 +293,11 @@
             check_circle_outline</mat-icon
           >
         </h3>
+        <span class="mat-body-1">
+          <span>{{ content.type | pipeLimitTo: 300 }}</span> </span
+        ><span class="mat-body-1 margin-left-xxs" *ngIf="content?.complexity"
+          ><span>| {{ content?.complexity | pipeLimitTo: 300 }}</span>
+        </span>
         <h1
           *ngIf="content?.type === enumContentTypes.ASSESSMENT"
           class="margin-remove text-truncate flex"

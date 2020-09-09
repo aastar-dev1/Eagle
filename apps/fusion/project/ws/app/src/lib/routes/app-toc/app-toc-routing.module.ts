@@ -12,6 +12,7 @@ import { ContentCertificationResolver } from './routes/app-toc-certification/res
 import { AppTocContentsComponent } from './routes/app-toc-contents/app-toc-contents.component'
 import { AppTocHomeComponent } from './routes/app-toc-home/app-toc-home.component'
 import { AppTocOverviewComponent as AppTocOverviewRootComponent } from './routes/app-toc-overview/app-toc-overview.component'
+import { AppTocCohortsComponent } from './components/app-toc-cohorts/app-toc-cohorts.component'
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
       {
         path: 'discussion',
         component: AppTocDiscussionComponent,
+      },
+      {
+        path: 'details',
+        component: AppTocCohortsComponent,
       },
       {
         path: 'certification',

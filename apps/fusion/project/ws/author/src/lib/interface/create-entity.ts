@@ -15,4 +15,6 @@ export interface ICreateEntity {
   url?: string
   isCollection?: boolean
   additionalMeta?: { [key: string]: any }
+  courseName?: string
+  courseIntro?:  string
 }

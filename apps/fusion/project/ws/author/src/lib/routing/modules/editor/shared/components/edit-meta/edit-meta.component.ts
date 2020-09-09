@@ -97,6 +97,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   showMoreGlance = false
   complexityLevelList: string[] = []
   isEditEnabled = false
+  public sideNavBarOpened = false
 
   @ViewChild('creatorContactsView', { static: false }) creatorContactsView!: ElementRef
   @ViewChild('trackContactsView', { static: false }) trackContactsView!: ElementRef
@@ -112,6 +113,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   timer: any
 
   filteredOptions$: Observable<string[]> = of([])
+  saveParent: any
 
   constructor(
     private formBuilder: FormBuilder,
@@ -570,7 +572,21 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     } catch (ex) {
       this.snackBar.open('Please Save Parent first and refresh page.')
+      if (ex) {
+        // this.saveParent = true
+        // this.emitSaveData(true)
+      }
+      // this.contentService.parentContent
+    }
 
+  }
+  emitSaveData(flag: boolean) {
+    if (flag) {
+      this.saveParent = 1
+      if (this.saveParent === 1) {
+        this.data.emit('save')
+      }
+      this.saveParent = 2
     }
   }
 

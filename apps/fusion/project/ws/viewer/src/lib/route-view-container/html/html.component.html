@@ -62,6 +62,18 @@
       </div>
     </div>
   </div>
+  
+<div class="flex justify-around">
+  <a mat-icon-button class="width-auto" [routerLink]="prevResourceUrl"  queryParamsHandling="preserve" accesskey="<" [disabled]="!prevResourceUrl">
+    <mat-icon>skip_previous</mat-icon><span>PREV</span>
+  </a>
+  
+  <a mat-icon-button class="width-auto mr-10" [routerLink]="nextResourceUrl" queryParamsHandling="preserve" accesskey=">" [disabled]="!nextResourceUrl">
+    <span >NEXT</span>
+    <mat-icon>skip_next</mat-icon>
+  </a>
+</div>
+
   <div class="padding-m" *ngIf="discussionForumWidget && isRestricted">
     <div class="video-discussion-forum-in">
       <h2 class="mat-toolbar discussion-head">Discussion Forum</h2>

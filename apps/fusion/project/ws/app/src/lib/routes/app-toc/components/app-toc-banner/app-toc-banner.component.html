@@ -95,23 +95,6 @@
               [routerLink]="firstResourceLink?.url" class="margin-right-m" mat-flat-button>
               <ng-container *ngIf="!forPreview || isInIFrame; else authView" i18n>Take Assessment</ng-container>
             </a>
-            <!-- <a
-                  [color]="'primary'"
-                  *ngIf="isPracticeVisible"
-                  [hidden]="!content?.children?.length"
-                  class="margin-right-m"
-                  mat-flat-button
-                  i18n
-                  >Practice</a
-                >
-                <a
-                  [color]="'primary'"
-                  *ngIf="isAssessVisible"
-                  [hidden]="!content?.children?.length"
-                  mat-flat-button
-                  i18n
-                  >Assess</a
-                > -->
           </ng-container>
           <ng-container *ngIf="actionBtnStatus == 'reject' && content?.registrationUrl">
             <a [href]="content?.registrationUrl" target="_blank" [color]="'primary'" class="margin-right-m" i18n

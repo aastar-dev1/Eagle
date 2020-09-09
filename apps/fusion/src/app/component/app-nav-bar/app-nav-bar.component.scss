@@ -28,23 +28,67 @@
 }
 
 .logo-dim {
-  min-width: 70px;
-  max-width: 110px;
-  margin-right: 30px;
-  margin-top: 4px;
+  max-width: 150px;
+  display: block;
+  width: 100%;
+  padding-top: 3px;
 }
-
+.header-btn {
+  margin: 14px 5px 14px;
+}
 .app-logo {
-  max-width: 100px;
-  max-height: 30px;
-  min-width: 30px;
-  padding: 8px 0 0 8px;
+  height: auto;
+  max-width: 100%;
+  width: 120px;
+  max-height: 60px;
 
   @include breakpoint-xs {
     max-width: 80px;
   }
 }
+.site-description {
+  font-size: 14px;
+  // display: inline-block;
+  // margin: 0;
+  // letter-spacing: .04em;
+  // font-weight: 400;
+  // max-width: 120px;
+  padding-left: 8px;
+  // padding-right: 35px;
+  margin-left: 8px;
+  border-left: 1px solid #473f3b;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  // font-size: 9px;
+  line-height: 1.33333em;
+  p {
+    margin-top: 10px
+  }
+}
 
+.mt-name {
+  margin-top: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .site-description {
+//       max-width: 185px;
+//       padding-left: 20px;
+//       margin-left: 30px;
+//       padding-right: 0;
+      font-size: 14px;
+      line-height: 1.14286em;
+  }
+}
+
+
+@media screen and (min-width: 980px) {
+   .logo-dim, .site-description {
+      // -webkit-flex-shrink:0;
+      // -ms-flex-negative: 0;
+      // flex-shrink: 0;
+  }
+}
 .title {
   font-size: 12px !important;
   line-height: 26px !important;
