@@ -503,3 +503,14 @@ h3.shepherd-title {
 .post-content img, .ql-editor img {
   max-width: 100%;
 }
+.author {
+  padding: $size-s 0;
+  display: flex;
+
+  .author-image {
+    margin-right: $size-s;
+    $size: 44px;
+    height: $size;
+    width: $size;
+  }
+}

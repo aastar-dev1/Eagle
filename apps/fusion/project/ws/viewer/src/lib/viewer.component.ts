@@ -1,11 +1,12 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { NsContent } from '@ws-widget/collection'
+import { NsContent, WidgetContentService, NsDiscussionForum } from '@ws-widget/collection'
 import { NsWidgetResolver } from '@ws-widget/resolver'
-import { UtilityService, ValueService } from '@ws-widget/utils'
+import { UtilityService, ValueService, ConfigurationsService } from '@ws-widget/utils'
 import { Subscription } from 'rxjs'
 import { RootService } from '../../../../../src/app/component/root/root.service'
 import { TStatus, ViewerDataService } from './viewer-data.service'
+import { ViewerUtilService } from './viewer-util.service'
 
 export enum ErrorType {
   accessForbidden = 'accessForbidden',
@@ -44,6 +45,14 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
   private screenSizeSubscription: Subscription | null = null
   private resourceChangeSubscription: Subscription | null = null
+  tocConfig: any
+  contentTypes = NsContent.EContentTypes
+  discussionForumWidget: NsWidgetResolver.IRenderConfigWithTypedData<
+  NsDiscussionForum.IDiscussionForumInput
+> | null = null
+  private viewerDataSubscription: Subscription | null = null
+  htmlData: NsContent.IContent | null = null
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -52,6 +61,9 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
     private rootSvc: RootService,
     private utilitySvc: UtilityService,
     private changeDetector: ChangeDetectorRef,
+    public configSvc: ConfigurationsService,
+    private widgetContentSvc: WidgetContentService,
+    private viewerSvc: ViewerUtilService,
   ) {
     this.rootSvc.showNavbarDisplay$.next(false)
   }
@@ -60,12 +72,18 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
     e.activatedRoute.data.subscribe((data: { content: { data: NsContent.IContent } }) => {
       if (data.content && data.content.data) {
         this.content = data.content.data
-        // console.log('content', this.content)
+
+        this.formDiscussionForumWidget(this.content)
+        // if (this.discussionForumWidget) {
+        //   this.discussionForumWidget.widgetData.isDisabled = true
+        // }
+
       }
     })
   }
 
   ngOnInit() {
+    this.getTocConfig()
     this.isNotEmbed = !(
       window.location.href.includes('/embed/') ||
       this.activatedRoute.snapshot.queryParams.embed === 'true'
@@ -113,6 +131,29 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
       }
       // //console.log(this.error)
     })
+
+ 
+
+    // this.getDiscussionConfig()
+  }
+
+  getDiscussionConfig() {
+    this.viewerDataSubscription = this.viewerSvc
+    .getContent(this.activatedRoute.snapshot.paramMap.get('resourceId') || '')
+    .subscribe(data => {
+      this.htmlData = data
+      this.formDiscussionForumWidget(this.htmlData)
+      if (this.discussionForumWidget) {
+        this.discussionForumWidget.widgetData.isDisabled = true
+      }
+      })
+  }
+
+  getTocConfig() {
+    const url = `${this.configSvc.sitePath}/feature/toc.json`
+    this.widgetContentSvc.fetchConfig(url).subscribe(data => {
+      this.tocConfig = data
+    })
   }
 
   ngAfterViewChecked() {
@@ -126,6 +167,21 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
+  formDiscussionForumWidget(content: NsContent.IContent) {
+    this.discussionForumWidget = {
+      widgetData: {
+        description: content.description,
+        id: content.identifier,
+        name: NsDiscussionForum.EDiscussionType.LEARNING,
+        title: content.name,
+        initialPostCount: 2,
+        isDisabled: this.forPreview,
+      },
+      widgetSubType: 'discussionForum',
+      widgetType: 'discussionForum',
+    }
+  }
+
   ngOnDestroy() {
     this.rootSvc.showNavbarDisplay$.next(true)
     if (this.screenSizeSubscription) {
@@ -133,6 +189,9 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
     if (this.resourceChangeSubscription) {
       this.resourceChangeSubscription.unsubscribe()
+    }
+    if (this.viewerDataSubscription) {
+      this.viewerDataSubscription.unsubscribe()
     }
   }
 

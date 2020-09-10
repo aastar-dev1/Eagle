@@ -31,14 +31,33 @@
   }
 }
 
-.author {
-  padding: $size-s 0;
-  display: flex;
 
-  .author-image {
-    margin-right: $size-s;
-    $size: 44px;
-    height: $size;
-    width: $size;
+.stack-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  .div-1 {
+    width: 33%;
+    flex: 1;
+    min-width: 1px;
+  }
+  .div-2 {
+    width: 33%;
+    margin-left: 48px;
+    @include breakpoint-s {
+      margin-left: $size-l;
+      min-width: 250px;
+    }
+    @include breakpoint-xs {
+      margin-left: 0;
+      margin-bottom: $size-l;
+      width: 100%;
+    }
+  }
+  .div-3 {
+    width: 33%;
+    flex: 1;
+    order: 2;
+    min-width: 1px;
   }
 }
