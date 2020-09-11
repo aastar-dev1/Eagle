@@ -14,6 +14,56 @@
         <mat-icon i18n-matTooltip matTooltip="Completed" class="ws-mat-accent-text">check_circle</mat-icon>
       </span>
     </div>
+    <div [ngSwitch]="routePath" class="header-meta" [ngClass]="{ 'header-meta-banner': bannerUrl }">
+      <!-- Overview Section -->
+      <div class="banner-overview-container" [hidden]="!content?.subTitle && showSubtitleOnBanner"
+        *ngSwitchCase="'overview'">
+        <h2 class="overview-description" *ngIf="showSubtitleOnBanner" i18n-title title="Subtitle">
+          {{ content?.subTitle | pipeLimitTo: 250 }}
+        </h2>
+        <h3 class="overview-description" *ngIf="!showSubtitleOnBanner" i18n-title title="Description">
+          {{ content?.description | pipeLimitTo: 450 }}
+        </h3>
+      </div>
+    <!-- Table Structure -->
+    <div>
+      <div class="toc-banner-item" *ngIf="tocConfig?.atAGlance?.duration?.enabled && content?.duration">Duration :
+        {{ content?.duration | pipeDurationTransform: 'hms' }} </div>
+      <div class="toc-banner-item"
+        *ngIf="tocConfig?.atAGlance?.expiryDate?.enabled && content?.expiryDate && content?.expiryDate?.startsWith('20')">
+        {{tocConfig?.atAGlance?.expiryDate?.displayName}} : {{ content?.expiryDate | date }}</div>
+      <div class="info-item" *ngIf="tocConfig?.atAGlance?.lastUpdatedOn?.enabled && content?.lastUpdatedOn">
+        {{tocConfig?.atAGlance?.lastUpdatedOn?.displayName}} : {{ content?.lastUpdatedOn | date }}
+      </div>
+      <div *ngIf="content?.creatorContacts">
+        <div *ngFor="let author of content?.creatorContacts">
+          Authors : {{author.name}}
+        </div>
+      </div>
+      <div *ngIf="content?.creatorDetails">
+        <div *ngFor="let curator of content?.creatorDetails">
+          Curators : {{curator.name}}
+        </div>
+      </div>
+
+
+      <!-- {{fetchCohorts(cohortTypesEnum.ACTIVE_USERS)}} -->
+      <div *ngIf="cohortResults[cohortTypesEnum.ACTIVE_USERS]">
+        {{cohortResults[cohortTypesEnum.ACTIVE_USERS].count}} Active Learners
+      </div>
+    </div>
+
+    <!-- <div class="info-item" *ngIf="tocConfig?.atAGlance?.displayContentType?.enabled && content?.displayContentType">
+      <h3 class="item-heading ws-mat-primary-text">{{tocConfig?.atAGlance?.displayContentType?.displayName}}</h3>
+
+      <div *ngIf="content?.contentType === contentTypes.RESOURCE"
+        class="ws-mat-accent-text width-expand mat-body-strong">
+        {{ content?.resourceType }}
+      </div>
+    </div> -->
+
+
+
     <div *ngIf="content?.averageRating" class="flex items-center my-1 mb-3">
       <mat-icon color="accent" class="mr-2" *ngFor="let rating of [1, 2, 3, 4, 5]">
         {{ getRatingIcon(rating) }}</mat-icon>
@@ -32,39 +82,13 @@
     </div>
     <div [ngSwitch]="routePath" class="header-meta" [ngClass]="{ 'header-meta-banner': bannerUrl }">
       <!-- Overview Section -->
-      <div class="banner-overview-container" [hidden]="!content?.subTitle && showSubtitleOnBanner"
-        *ngSwitchCase="'overview'">
-        <h2 class="overview-description" *ngIf="showSubtitleOnBanner" i18n-title title="Subtitle">
-          {{ content?.subTitle | pipeLimitTo: 250 }}
-        </h2>
-        <h3 class="overview-description" *ngIf="!showSubtitleOnBanner" i18n-title title="Description">
-          {{ content?.description | pipeLimitTo: 450 }}
-        </h3>
-        <div *ngIf="sanitizedIntroductoryVideoIcon" class="overview-intro ws-mat-primary-lite-background"
-          [style.backgroundImage]="sanitizedIntroductoryVideoIcon" role="button" (click)="playIntroVideo()"
-          i18n-matTooltip matTooltip="Play Intro Video">
-          <mat-icon role="button" class="overview-intro-overlay">play_arrow</mat-icon>
-        </div>
-      </div>
+
       <!-- Toc Section -->
       <div *ngSwitchCase="'contents'">
         <!-- Contents Bannner -->
       </div>
       <!-- Analytics Section -->
-      <div class="banner-overview-container" [hidden]="!content?.subTitle && showSubtitleOnBanner"
-        *ngSwitchCase="'analytics'">
-        <h2 class="overview-description" *ngIf="showSubtitleOnBanner" i18n-title title="Subtitle">
-          {{ content?.subTitle | pipeLimitTo: 250 }}
-        </h2>
-        <h3 class="overview-description" *ngIf="!showSubtitleOnBanner" i18n-title title="Description">
-          {{ content?.description | pipeLimitTo: 450 }}
-        </h3>
-        <div *ngIf="sanitizedIntroductoryVideoIcon" class="overview-intro ws-mat-primary-lite-background"
-          [style.backgroundImage]="sanitizedIntroductoryVideoIcon" role="button" (click)="playIntroVideo()"
-          i18n-matTooltip matTooltip="Play Intro Video">
-          <mat-icon role="button" class="overview-intro-overlay">play_arrow</mat-icon>
-        </div>
-      </div>
+     
     </div>
     <div class="header-actions">
       <ng-container *ngIf="
