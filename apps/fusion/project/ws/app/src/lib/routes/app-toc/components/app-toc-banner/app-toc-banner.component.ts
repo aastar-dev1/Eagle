@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core'
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core'
 import { MatDialog } from '@angular/material'
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser'
 import { ActivatedRoute, Event, NavigationEnd, Router } from '@angular/router'
@@ -86,7 +86,9 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
   ) { }
 
   ngOnInit() {
+    if(this.content)
     this.fetchCohorts(this.cohortTypesEnum.ACTIVE_USERS, this.content.identifier)
+
     this.route.data.subscribe(data => {
       this.tocConfig = data.pageData.data
       if (this.content && this.isPostAssessment) {
@@ -460,14 +462,14 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
           this.cohortResults[cohortType] = {
             contents: data || [],
             hasError: false,
-            count : data ? data.length : 0
+            count : data ? data.length : 0,
           }
         },
         () => {
           this.cohortResults[cohortType] = {
             contents: [],
             hasError: true,
-            count : 0
+            count : 0,
           }
         },
       )
@@ -477,7 +479,7 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
       this.cohortResults[cohortType] = {
         contents: [],
         hasError: false,
-        count : 0
+        count : 0,
       }
     }
   }
