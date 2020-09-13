@@ -15,7 +15,7 @@ import { UtilityService } from '@ws-widget/utils/src/lib/services/utility.servic
 import { AccessControlService } from '@ws/author'
 import { Subscription } from 'rxjs'
 import { NsAnalytics } from '../../models/app-toc-analytics.model'
-import { NsAppToc,NsCohorts } from '../../models/app-toc.model'
+import { NsAppToc, NsCohorts } from '../../models/app-toc.model'
 import { AppTocService } from '../../services/app-toc.service'
 import { AppTocDialogIntroVideoComponent } from '../app-toc-dialog-intro-video/app-toc-dialog-intro-video.component'
 import { MobileAppsService } from 'src/app/services/mobile-apps.service'
@@ -65,11 +65,11 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
   contextPath?: string
   tocConfig: any = null
   cohortResults: {
-    [key: string]: { hasError: boolean; contents: NsCohorts.ICohortsContent[],count:Number }
+    [key: string]: { hasError: boolean; contents: NsCohorts.ICohortsContent[], count: Number }
   } = {}
   identifier: any
   cohortTypesEnum = NsCohorts.ECohortTypes
-  //learnersCount:Number
+  // learnersCount:Number
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -86,7 +86,7 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.fetchCohorts(this.cohortTypesEnum.ACTIVE_USERS,this.content.identifier)
+    this.fetchCohorts(this.cohortTypesEnum.ACTIVE_USERS, this.content.identifier)
     this.route.data.subscribe(data => {
       this.tocConfig = data.pageData.data
       if (this.content && this.isPostAssessment) {
@@ -452,7 +452,7 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  fetchCohorts(cohortType: NsCohorts.ECohortTypes,identifier:string) {
+  fetchCohorts(cohortType: NsCohorts.ECohortTypes, identifier: string) {
     if (!this.cohortResults[cohortType] && !this.forPreview) {
 
       this.tocSvc.fetchContentCohorts(cohortType, identifier).subscribe(
@@ -460,7 +460,7 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
           this.cohortResults[cohortType] = {
             contents: data || [],
             hasError: false,
-            count : data?data.length:0
+            count : data ? data.length : 0
           }
         },
         () => {
