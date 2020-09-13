@@ -47,7 +47,7 @@ export class CreateCourseComponent implements OnInit {
         } else {
           this.entity.push(v)
           if (this.entity[1]) {
-            this.content = this.entity[1].id
+            this.content = this.entity[1]
           }
         }
       }

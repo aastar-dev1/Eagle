@@ -20,3 +20,8 @@
 //     padding-top: 3em;
 // }
 
+#auth-toc {
+    .mat-drawer-inner-container {
+      min-width: 250px;
+    }
+  }

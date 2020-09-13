@@ -48,6 +48,8 @@ import { ViewerComponent } from './viewer.component'
 import { ViewerTocComponent } from './components/viewer-toc/viewer-toc.component'
 import { ViewerTopBarModule } from './components/viewer-top-bar/viewer-top-bar.module'
 import { FilterResourcePipe } from './pipes/filter-resource.pipe'
+import { BtnMailUserModule } from './../../../../../library/ws-widget/collection/src/lib/btn-mail-user/btn-mail-user.module'
+import { UserImageModule } from './../../../../../library/ws-widget/collection/src/lib/_common/user-image/user-image.module'
 
 @NgModule({
   declarations: [ViewerComponent, ViewerTocComponent, FilterResourcePipe],
@@ -87,6 +89,8 @@ import { FilterResourcePipe } from './pipes/filter-resource.pipe'
     PlayerBriefModule,
     ViewerTopBarModule,
     FormsModule,
+    BtnMailUserModule,
+    UserImageModule,
   ],
 })
 export class ViewerModule { }

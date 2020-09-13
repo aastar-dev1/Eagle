@@ -24,6 +24,16 @@
 */
 }
 
+
+.header-left {
+  flex :1;
+  min-width : 50%
+}
+.header-right{
+   min-width: 40%;
+   background-size: 100% 100%;
+}
+
 .header-synopsis {
   height: 100%;
   @extend %container-padding;
@@ -54,10 +64,11 @@
     display: flex;
     margin-top: 24px;
 
-    .action-btns {
-      margin-left: auto;
-      order: 2;
-    }
+    // .action-btns {
+    //   margin-left: auto;
+    //   order: 2;
+    // }
+
   }
 }
 

@@ -19,18 +19,22 @@
     <img [src]="appIcon" alt="Application Logo" class="app-logo" />
   </a> -->
   <img [src]="collection?.appIcon " alt=" Logo" class="app-logo viewer-logo" />
-  <!-- <a mat-icon-button class="width-auto" [routerLink]="prevResourceUrl" *ngIf="isTypeOfCollection"
-    [disabled]="!prevResourceUrl" queryParamsHandling="preserve" accesskey="<">
-    <mat-icon>skip_previous</mat-icon><span *ngIf="logo">PREV</span>
-  </a> -->
-  <span *ngIf="logo" class="width-expand text-left margin-left-l text-truncate">
+ 
+  <span *ngIf="logo" class="text-left width-1-5 margin-left-l text-truncate">
     {{ collection?.subTitle }}
   </span>
-  <!-- <a mat-icon-button class="width-auto mr-10" [routerLink]="nextResourceUrl" *ngIf="isTypeOfCollection"
+
+  <a mat-icon-button class="width-auto" [routerLink]="prevResourceUrl" *ngIf="isTypeOfCollection"
+  [disabled]="!prevResourceUrl" queryParamsHandling="preserve" accesskey="<">
+  <mat-icon>skip_previous</mat-icon><span *ngIf="logo">PREV</span>
+</a>
+ <span class="header-spacer"></span>
+
+  <a mat-icon-button class="width-auto mr-10" [routerLink]="nextResourceUrl" *ngIf="isTypeOfCollection"
     [disabled]="!nextResourceUrl" queryParamsHandling="preserve" accesskey=">">
     <span *ngIf="logo">NEXT</span>
     <mat-icon>skip_next</mat-icon>
-  </a> -->
+  </a>
   <a mat-icon-button>
     <ws-widget-btn-fullscreen [widgetType]="'actionButton'" [widgetSubType]="'actionButtonFullscreen'"
       [widgetData]="{ fsContainer: frameReference }"></ws-widget-btn-fullscreen>

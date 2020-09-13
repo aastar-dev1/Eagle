@@ -1,8 +1,8 @@
 import { AccessControlService } from '@ws/author'
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
-import { ActivatedRoute, Data } from '@angular/router'
-import { NsContent } from '@ws-widget/collection'
+import { ActivatedRoute, Data ,Router} from '@angular/router'
+import { NsContent, } from '@ws-widget/collection'
 import { ConfigurationsService } from '@ws-widget/utils'
 import { Observable, Subscription } from 'rxjs'
 import { retry } from 'rxjs/operators'
@@ -10,6 +10,7 @@ import { TrainingApiService } from '../../../infy/routes/training/apis/training-
 import { TrainingService } from '../../../infy/routes/training/services/training.service'
 import { NsAppToc } from '../../models/app-toc.model'
 import { AppTocService } from '../../services/app-toc.service'
+
 
 @Component({
   selector: 'ws-app-app-toc-overview',
@@ -39,6 +40,7 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
     private trainingSvc: TrainingService,
     private domSanitizer: DomSanitizer,
     private authAccessControlSvc: AccessControlService,
+    private router: Router,
   ) {
     if (this.configSvc.restrictedFeatures) {
       this.askAuthorEnabled = !this.configSvc.restrictedFeatures.has('askAuthor')
@@ -161,4 +163,12 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
         .pipe(retry(2))
     }
   }
+  goToProfile(email:string){
+
+    console.log(email)
+
+      this.router.navigate(['/app/person-profile'], { queryParams: { emailId: email } })
+
+  }
+
 }
