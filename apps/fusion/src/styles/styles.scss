@@ -514,3 +514,18 @@ h3.shepherd-title {
     width: $size;
   }
 }
+
+
+.mat-grid-tile .mat-figure {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  align-items: start !important;
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
