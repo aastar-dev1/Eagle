@@ -1,5 +1,5 @@
-<div class="md:px-2" [ngClass]="{'flex':tocStructure==null}">
-  <div [ngClass]="{'width-1-3 pt-5 pr-5':tocStructure==null}">
+<div class="md:px-2">
+  <div [ngClass]="{'pt-5 pr-5':tocStructure==null}">
     <ws-widget-mark-as-complete [forPreview]="forPreview" [content]="content"></ws-widget-mark-as-complete>
     <ng-container *ngIf="content && isDownloadable">
       <mat-card class="mb-4">
@@ -10,7 +10,7 @@
       </mat-card>
     </ng-container>
   </div>
-  <div [ngClass]="{'width-1-3 pt-5 pr-5':tocStructure==null}">
+  <div [ngClass]="{'pt-5 pr-5':tocStructure==null}">
     <mat-card class="ws-mat-primary-lite-background-on-day ws-mat-primary-border-top-bolder info-container">
       <h2 i18n>At a glance</h2>
       <div class="info-item" *ngIf="tocConfig?.atAGlance?.displayContentType?.enabled && content?.displayContentType">
@@ -220,7 +220,7 @@
       </div>
     </mat-card>
   </div>
-  <div [ngClass]="{'width-1-3 pt-5':tocStructure==null}">
+  <div [ngClass]="{'pt-5 pr-5':tocStructure==null}">
     <ws-widget-user-content-rating class="mb-4 block" *ngIf="content?.identifier" [contentId]="content?.identifier"
       [isDisabled]="isPreviewMode" [forPreview]="forPreview">
     </ws-widget-user-content-rating>

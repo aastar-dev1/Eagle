@@ -24,6 +24,16 @@
 */
 }
 
+
+.header-left {
+  flex :1;
+  min-width : 50%
+}
+.header-right{
+   min-width: 40%;
+   background-size: 100% 100%;
+}
+
 .header-synopsis {
   height: 100%;
   @extend %container-padding;
@@ -58,7 +68,7 @@
     //   margin-left: auto;
     //   order: 2;
     // }
-    
+
   }
 }
 

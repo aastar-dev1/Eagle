@@ -1,4 +1,4 @@
-  <div class="appicon-image" [ngStyle]="{'background-image': 'url(' + content?.appIcon + ')'}">
+  <div class="appicon-image" >
   <mat-toolbar role="navigation" i18n-aria-label aria-label="Toolbar" *ngIf="!(isInIframe && forPreview)"
     class="detailBar" [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
     <ws-widget-btn-page-back [widgetData]="{ url: 'home',titles:[{title:'Details',url:'none'}] }">
@@ -34,6 +34,8 @@
         routerLinkActive="ws-mat-primary-text link-active" i18n>Analytics</a>
       <a mat-tab-link [routerLink]="'./discussion'" routerLinkActive="ws-mat-primary-text link-active" i18n>Discussions</a>
       <a mat-tab-link [routerLink]="'./details'"  [queryParams]="{id: content.identifier}" routerLinkActive="ws-mat-primary-text link-active" i18n>Details</a>
+     
+      <a mat-tab-link [routerLink]="'./license'"  routerLinkActive="ws-mat-primary-text link-active" i18n>License</a>
     </nav>
     <router-outlet></router-outlet>
     <ng-container>
@@ -42,7 +44,8 @@
         <!-- <ws-app-toc-discussion [content]="content" class="discussion"></ws-app-toc-discussion> -->
         <!-- <ws-app-toc-cohorts [content]="content" class="cohorts"></ws-app-toc-cohorts> -->
       <!-- </div> -->
-    </ng-container>
+
+   </ng-container>
   </div>
 </ng-container>
 

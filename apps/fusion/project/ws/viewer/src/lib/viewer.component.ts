@@ -132,8 +132,6 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
       // //console.log(this.error)
     })
 
- 
-
     // this.getDiscussionConfig()
   }
 

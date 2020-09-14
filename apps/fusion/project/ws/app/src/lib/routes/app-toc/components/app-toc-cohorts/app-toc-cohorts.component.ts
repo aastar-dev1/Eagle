@@ -33,6 +33,7 @@ export class AppTocCohortsComponent implements OnInit {
     if (this.identifier === undefined) {
       this.identifier = this.content.identifier
     }
+    this.fetchCohorts(this.cohortTypesEnum.ACTIVE_USERS)
   }
 
   public get enableFeature(): boolean {

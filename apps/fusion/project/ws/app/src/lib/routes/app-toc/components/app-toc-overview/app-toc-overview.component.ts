@@ -1,7 +1,7 @@
 import { AccessControlService } from '@ws/author'
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
-import { ActivatedRoute, Data } from '@angular/router'
+import { ActivatedRoute, Data , Router } from '@angular/router'
 import { NsContent } from '@ws-widget/collection'
 import { ConfigurationsService } from '@ws-widget/utils'
 import { Observable, Subscription } from 'rxjs'
@@ -39,6 +39,7 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
     private trainingSvc: TrainingService,
     private domSanitizer: DomSanitizer,
     private authAccessControlSvc: AccessControlService,
+    private router: Router,
   ) {
     if (this.configSvc.restrictedFeatures) {
       this.askAuthorEnabled = !this.configSvc.restrictedFeatures.has('askAuthor')
@@ -161,4 +162,8 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
         .pipe(retry(2))
     }
   }
+  goToProfile(email: string) {
+      this.router.navigate(['/app/person-profile'], { queryParams: { emailId: email } })
+  }
+
 }

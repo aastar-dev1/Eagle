@@ -13,6 +13,7 @@ import { AppTocContentsComponent } from './routes/app-toc-contents/app-toc-conte
 import { AppTocHomeComponent } from './routes/app-toc-home/app-toc-home.component'
 import { AppTocOverviewComponent as AppTocOverviewRootComponent } from './routes/app-toc-overview/app-toc-overview.component'
 import { AppTocCohortsComponent } from './components/app-toc-cohorts/app-toc-cohorts.component'
+import { LicenseComponent } from './components/license/license.component'
 
 const routes: Routes = [
   {
@@ -73,6 +74,10 @@ const routes: Routes = [
         data: {
           requiredFeatures: ['certificationLHub'],
         },
+      },
+      {
+        path: 'license',
+        component: LicenseComponent,
       },
       {
         path: '',
