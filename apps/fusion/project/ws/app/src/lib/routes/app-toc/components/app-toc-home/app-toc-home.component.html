@@ -34,6 +34,8 @@
         routerLinkActive="ws-mat-primary-text link-active" i18n>Analytics</a>
       <a mat-tab-link [routerLink]="'./discussion'" routerLinkActive="ws-mat-primary-text link-active" i18n>Discussions</a>
       <a mat-tab-link [routerLink]="'./details'"  [queryParams]="{id: content.identifier}" routerLinkActive="ws-mat-primary-text link-active" i18n>Details</a>
+     
+      <a mat-tab-link [routerLink]="'./license'"  routerLinkActive="ws-mat-primary-text link-active" i18n>License</a>
     </nav>
     <router-outlet></router-outlet>
     <ng-container>
@@ -42,7 +44,8 @@
         <!-- <ws-app-toc-discussion [content]="content" class="discussion"></ws-app-toc-discussion> -->
         <!-- <ws-app-toc-cohorts [content]="content" class="cohorts"></ws-app-toc-cohorts> -->
       <!-- </div> -->
-    </ng-container>
+
+   </ng-container>
   </div>
 </ng-container>
 
