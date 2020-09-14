@@ -86,8 +86,9 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
   ) { }
 
   ngOnInit() {
-    if(this.content)
+    if (this.content) {
     this.fetchCohorts(this.cohortTypesEnum.ACTIVE_USERS, this.content.identifier)
+    }
 
     this.route.data.subscribe(data => {
       this.tocConfig = data.pageData.data
