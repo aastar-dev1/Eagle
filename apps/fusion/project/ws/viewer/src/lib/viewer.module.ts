@@ -50,6 +50,7 @@ import { ViewerTopBarModule } from './components/viewer-top-bar/viewer-top-bar.m
 import { FilterResourcePipe } from './pipes/filter-resource.pipe'
 import { BtnMailUserModule } from './../../../../../library/ws-widget/collection/src/lib/btn-mail-user/btn-mail-user.module'
 import { UserImageModule } from './../../../../../library/ws-widget/collection/src/lib/_common/user-image/user-image.module'
+import { AppTocModule } from '@ws/app'
 
 @NgModule({
   declarations: [ViewerComponent, ViewerTocComponent, FilterResourcePipe],
@@ -91,6 +92,7 @@ import { UserImageModule } from './../../../../../library/ws-widget/collection/s
     FormsModule,
     BtnMailUserModule,
     UserImageModule,
+    AppTocModule,
   ],
 })
 export class ViewerModule { }

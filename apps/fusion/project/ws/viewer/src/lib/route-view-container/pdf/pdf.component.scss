@@ -110,3 +110,10 @@
   box-sizing: border-box;
   margin-bottom: $size-m;
 }
+
+.overflow-class {
+  display: block !important;
+  min-height: 85vh;
+  max-height: 85vh;
+  overflow: scroll;
+}

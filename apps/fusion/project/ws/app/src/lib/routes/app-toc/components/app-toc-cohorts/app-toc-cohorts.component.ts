@@ -30,6 +30,9 @@ export class AppTocCohortsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.identifier = params['id']
     })
+    if (this.identifier === undefined) {
+      this.identifier = this.content.identifier
+    }
   }
 
   public get enableFeature(): boolean {

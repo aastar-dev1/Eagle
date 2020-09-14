@@ -187,7 +187,7 @@ import { ApiService, AccessControlService } from '../../../../../author/src/publ
     ApiService,
     AccessControlService,
   ],
-  exports: [AppTocDiscussionComponent],
+  exports: [AppTocDiscussionComponent, AppTocCohortsComponent],
   entryComponents: [
     AppTocDialogIntroVideoComponent,
     AppTocOverviewComponent,

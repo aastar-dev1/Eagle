@@ -71,14 +71,14 @@
 
           <div class="stack-container">
             <div class="div-1">
-          <mat-card class="unit-meta-item mt-5 mr-5 ml-5 mb-4">
+          <mat-card class="unit-meta-item mt-5 ml-5 mb-4">
             <h2>{{ tocConfig?.overview?.description?.displayName }}</h2>
             <mat-card-content>
               <div class="mat-subheading-1" [innerHTML]="content?.description"></div>
             </mat-card-content>
           </mat-card>
           <!-- Content Body -->
-          <mat-card class="unit-meta-item mt-5 mr-5 ml-5 mb-4">
+          <mat-card class="unit-meta-item mt-5 ml-5 mb-4">
             <h2>{{ tocConfig?.overview?.body?.displayName }}</h2>
             <mat-card-content>
               <div class="break-words" [innerHTML]="content?.subTitle"></div>
@@ -86,15 +86,15 @@
           </mat-card>
 
 
-          <div class="width-1-1 mt-5 mr-5 ml-5 mb-4">
-            <div class="hidden sm:block margin-bottom-m" *ngIf="content?.creatorDetails?.length">
+          <div class="width-1-1 mt-5 ml-5 mb-4">
+            <div class="hidden sm:block margin-bottom-m mr-5" *ngIf="content?.creatorDetails?.length">
               <ng-container [ngTemplateOutlet]="creators" [ngTemplateOutletContext]="{
                 authors: content?.creatorDetails,
                 title: 'AUTHOR'
               }">
               </ng-container>
             </div>
-            <div class="hidden sm:block margin-bottom-m" *ngIf="content?.creatorContacts?.length">
+            <div class="hidden sm:block margin-bottom-m mr-5" *ngIf="content?.creatorContacts?.length">
               <ng-container [ngTemplateOutlet]="creators" [ngTemplateOutletContext]="{
                 authors: content?.creatorContacts,
                 title: 'CONTACT'
@@ -119,6 +119,9 @@
               </div>
             </mat-card>
           </ng-template>
+
+          <ws-app-toc-cohorts [content]="content" class="cohorts"></ws-app-toc-cohorts>
+
 
 
         </div>
@@ -174,6 +177,7 @@
         <mat-tab i18n-label label="Details">
           <ws-widget-player-brief [forPreview]="forPreview" [content]="content"></ws-widget-player-brief>
         </mat-tab>
+      
       </mat-tab-group>
 
     </mat-sidenav-content>

@@ -1,7 +1,7 @@
 <div class="padding-dynamic" *ngIf="pdfData">
   <div class="flex flex-around flex-wrapped">
     <div class="w-full">
-      <div>
+      <div clss="overflow-class">
         <mat-card>
           <mat-card-content>
             <div id="fullScreenContainer" class="video-player">
@@ -57,10 +57,10 @@
       <mat-icon>skip_next</mat-icon>
     </a>
   </div>
-  <div *ngIf="discussionForumWidget && isRestricted" class="padding-m">
+  <!-- <div *ngIf="discussionForumWidget && isRestricted" class="padding-m">
     <div class="video-discussion-forum-in margin-top-m margin-bottom-m">
       <h2 class="mat-toolbar discussion-head">Discussion Forum</h2>
       <ng-container [wsResolverWidget]="discussionForumWidget"></ng-container>
     </div>
-  </div>
+  </div> -->
 </div>
