@@ -878,7 +878,6 @@
           // users by City BarChart Data
           const barChartCityLabel: string[] = []
           const cityData: number[] = []
-          console.log(this.contentData)
           if(this.contentData.organizationLocationCity){
             this.contentData.organizationLocationCity.forEach((city: any) => {
               if (barChartCityLabel.length < 20) {
@@ -1647,6 +1646,7 @@
 
     }
     catch(e){
+      // tslint:disable-next-line: no-console
       console.log(e)
     }
 
