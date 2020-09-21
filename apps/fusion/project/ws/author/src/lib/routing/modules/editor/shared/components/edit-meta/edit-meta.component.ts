@@ -35,6 +35,7 @@ import { IFormMeta } from './../../../../../../interface/form'
 import { AccessControlService } from './../../../../../../modules/shared/services/access-control.service'
 import { AuthInitService } from './../../../../../../services/init.service'
 import { LoaderService } from './../../../../../../services/loader.service'
+// import { CollectionStoreService } from './../../../routing/modules/collection/services/store.service'
 import {
   debounceTime,
   distinctUntilChanged,
@@ -535,6 +536,20 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       if (originalMeta && this.isEditEnabled) {
         const expiryDate = this.contentForm.value.expiryDate
         const currentMeta: NSContent.IContentMeta = JSON.parse(JSON.stringify(this.contentForm.value))
+
+
+        if (currentMeta.status === 'Draft') {
+          const parentData = this.contentService.parentUpdatedMeta()
+         if (parentData) {
+            currentMeta.thumbnail = parentData.thumbnail !== '' ? parentData.thumbnail : currentMeta.thumbnail
+            currentMeta.appIcon = parentData.appIcon !== '' ? parentData.appIcon : currentMeta.appIcon
+            currentMeta.posterImage = parentData.posterImage !== '' ? parentData.posterImage : currentMeta.posterImage
+            currentMeta.subTitle = parentData.subTitle !== '' ?  parentData.subTitle : currentMeta.subTitle
+            currentMeta.body = parentData.body !== '' ?  parentData.body : currentMeta.body
+            currentMeta.categoryType = parentData.categoryType !== '' ?  parentData.categoryType : currentMeta.categoryType
+
+         }
+        }
         const meta = <any>{}
         if (this.canExpiry) {
           currentMeta.expiryDate = `${
@@ -580,15 +595,15 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
   }
-  emitSaveData(flag: boolean) {
-    if (flag) {
-      this.saveParent = 1
-      if (this.saveParent === 1) {
-        this.data.emit('save')
-      }
-      this.saveParent = 2
-    }
-  }
+  // emitSaveData(flag: boolean) {
+  //   if (flag) {
+  //     this.saveParent = 1
+  //     if (this.saveParent === 1) {
+  //       this.data.emit('save')
+  //     }
+  //     this.saveParent = 2
+  //   }
+  // }
 
   updateContentService(meta: string, value: any, event = false) {
     this.contentForm.controls[meta].setValue(value, { events: event })

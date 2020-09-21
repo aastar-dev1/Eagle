@@ -182,12 +182,23 @@ export class CollectionStoreService {
   ): Promise<boolean> {
     try {
       const meta = this.authInitService.creationEntity.get(type) as ICreateEntity
+      const parentData = this.contentService.parentUpdatedMeta()
+      console.log('parentData==>', parentData)
       const requestBody = {
         name: topicObj ? topicObj.topicName : 'Untitled Content',
         description: topicObj ? topicObj.topicDescription : '',
         mimeType: meta.mimeType,
         contentType: meta.contentType,
-        resourceType: meta.resourceType,
+        resourceType: parentData.categoryType || '',
+
+        // thumbnail: parentData.thumbnail,
+        // appIcon: parentData.appIcon,
+        // posterImage: parentData.posterImage,
+        // sourceName: parentData.sourceName,
+        // subTitle: parentData.subTitle,
+        // body: parentData.body,
+        // categoryType: parentData.categoryType,
+
         locale:
           // tslint:disable-next-line: ter-computed-property-spacing
           this.contentService.originalContent[
@@ -196,7 +207,18 @@ export class CollectionStoreService {
           ].locale || 'en',
         ...(meta.additionalMeta || {}),
       }
+      console.log('requestBody==>', requestBody)
       const content = await this.editorService.createAndReadContent(requestBody).toPromise()
+      if (content) {
+        content.thumbnail = parentData.thumbnail
+        content.appIcon = parentData.appIcon
+        content.posterImage = parentData.posterImage
+        content.sourceName = parentData.sourceName
+        content.subTitle = parentData.subTitle
+        content.body = parentData.body
+        content.categoryType = parentData.categoryType
+      }
+
       this.contentService.setOriginalMeta(content)
       const contentDataMap = new Map<string, NSContent.IContentMeta>()
       const treeStructure = this.resolver.buildTreeAndMap(

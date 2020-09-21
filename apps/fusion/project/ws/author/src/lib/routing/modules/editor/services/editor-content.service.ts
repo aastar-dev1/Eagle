@@ -139,6 +139,9 @@ export class EditorContentService {
     return meta
   }
 
+  parentUpdatedMeta() {
+    return this.getParentUpdatedMeta()
+  }
   createInAnotherLanguage(
     language: string,
     meta = {},

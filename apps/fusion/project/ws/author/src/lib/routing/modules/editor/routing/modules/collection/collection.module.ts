@@ -16,6 +16,16 @@ import { CollectionComponent } from './components/collection/collection.componen
 import { CourseCollectionComponent } from './components/course-collection/course-collection.component'
 import { AuthTocComponent } from './components/auth-toc/auth-toc.component'
 import { QuizModule } from './../quiz/quiz.module'
+import { CourseHeaderComponent } from './components/course-header/course-header.component'
+import { BtnPageBackModule } from '@ws-widget/collection'
+import { WebPageModule } from './../web-page/web-page.module'
+
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule,
+  MatTooltipModule,
+} from '@angular/material'
 
 @NgModule({
   declarations: [
@@ -26,6 +36,7 @@ import { QuizModule } from './../quiz/quiz.module'
     AuthCollectionMatmenuComponent,
     CourseCollectionComponent,
     AuthTocComponent,
+    CourseHeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +49,12 @@ import { QuizModule } from './../quiz/quiz.module'
     UploadModule,
     CurateModule,
     QuizModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    BtnPageBackModule,
+    WebPageModule,
   ],
 })
 export class CollectionModule {}

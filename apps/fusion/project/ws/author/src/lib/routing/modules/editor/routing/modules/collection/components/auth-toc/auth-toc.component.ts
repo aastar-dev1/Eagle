@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree'
-import { Component, EventEmitter, OnDestroy, OnInit, Output, Input } from '@angular/core'
+import { Component, EventEmitter, OnDestroy, OnInit, Output, Input, AfterViewInit } from '@angular/core'
 import { MatDialog, MatSnackBar } from '@angular/material'
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { NOTIFICATION_TIME } from '@ws/author/src/lib/constants/constant'
@@ -15,13 +15,14 @@ import { IContentTreeNode } from './../../interface/icontent-tree'
 import { CollectionStoreService } from './../../services/store.service'
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
 import { map } from 'rxjs/operators'
+declare var $: any;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ws-author-auth-toc',
   templateUrl: './auth-toc.component.html',
   styleUrls: ['./auth-toc.component.scss'],
 })
-export class AuthTocComponent  implements OnInit, OnDestroy {
+export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
   @Input() createdFromCourse: any
   @Output() action = new EventEmitter<{ type: string; identifier: string; nodeClicked?: boolean }>()
   @Output() closeEvent = new EventEmitter<boolean>()
@@ -136,18 +137,28 @@ export class AuthTocComponent  implements OnInit, OnDestroy {
     })
   }
 
+  ngAfterViewInit() {
+   if ( $('#cdk-drop-list-0 > mat-tree-node').hasClass('selected') === false) {
+      $('#cdk-drop-list-0 > mat-tree-node:nth-child(2)').trigger('click')
+      $('#cdk-drop-list-0 > mat-tree-node:nth-child(2)').find('button.mat-icon-button').trigger('click')
+   }   
+  }
   ngOnDestroy() {
     this.loaderService.changeLoad.next(false)
   }
 
   onNodeSelect(node: IContentTreeNode) {
-    if (node.id !== this.selectedNode) {
+    if ($('#cdk-drop-list-0 > mat-tree-node').hasClass('selected')) {
+      $('#cdk-drop-list-0 > mat-tree-node:nth-child(2)').removeClass('selected')
+   } 
+    // if (node.id !== this.selectedNode) {
       this.action.emit({ type: 'editContent', identifier: node.identifier, nodeClicked: true })
       this.selectedNode = node.id
       this.editorStore.currentContent = node.identifier
       this.store.currentSelectedNode = node.id
       this.editorStore.changeActiveCont.next(node.identifier)
-    }
+  
+    // }
   }
 
   closeSidenav() {

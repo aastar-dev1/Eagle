@@ -26,7 +26,11 @@ export class HeaderServiceService {
   }
 
   showCreatorHeader(name: string) {
+    if (name !== 'showlogo') {
     const courseName = name || 'Course Name'
     this.showCourseHeader.next(courseName)
+    } else {
+      this.showCourseHeader.next('')
+    }
   }
 }
