@@ -183,7 +183,7 @@ export class CollectionStoreService {
     try {
       const meta = this.authInitService.creationEntity.get(type) as ICreateEntity
       const parentData = this.contentService.parentUpdatedMeta()
-      console.log('parentData==>', parentData)
+      // console.log('parentData==>', parentData)
       const requestBody = {
         name: topicObj ? topicObj.topicName : 'Untitled Content',
         description: topicObj ? topicObj.topicDescription : '',
@@ -207,7 +207,7 @@ export class CollectionStoreService {
           ].locale || 'en',
         ...(meta.additionalMeta || {}),
       }
-      console.log('requestBody==>', requestBody)
+      // console.log('requestBody==>', requestBody)
       const content = await this.editorService.createAndReadContent(requestBody).toPromise()
       if (content) {
         content.thumbnail = parentData.thumbnail

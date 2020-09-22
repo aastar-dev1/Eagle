@@ -636,7 +636,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       hierarchy: this.storeService.changedHierarchy,
     }
 
-    console.log('requestBody==>', requestBody)
     return this.editorService.updateContentV2(requestBody).pipe(
       tap(() => {
         this.storeService.changedHierarchy = {}
