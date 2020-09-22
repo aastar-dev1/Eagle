@@ -87,8 +87,6 @@
 
       </form>
 
-
-      viewMode==>{{viewMode}}
       <ws-auth-url-upload [isCollectionEditor]="true" *ngIf="!showAddchapter && viewMode === 'curate'"
         [isSubmitPressed]="isSubmitPressed" (data)="action($event)"></ws-auth-url-upload>
       <ws-auth-file-upload [isCollectionEditor]="true" *ngIf="!showAddchapter && viewMode === 'upload'"

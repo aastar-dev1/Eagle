@@ -4,7 +4,7 @@ import { ConfigurationsService } from '@ws-widget/utils/src/public-api'
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser'
 import { HeaderServiceService } from './../../../../../../../../../../../../../src/app/services/header-service.service'
 import { IActionButtonConfig, IActionButton } from '@ws/author/src/lib/interface/action-button'
-import { CollectionStoreService } from '../../services/store.service';
+import { CollectionStoreService } from '../../services/store.service'
 
 @Component({
   // tslint:disable-next-line:component-selector
