@@ -42,7 +42,7 @@ $mat-orange: (50: #fff3e0,
     200: #ffcc80,
     300: #ffb74d,
     400: #ffa726,
-    500: #2096cd,
+    500: #f5d58d,
     600: #fb8c00,
     700: #15A9F4,
     // F5F6FA
@@ -83,8 +83,11 @@ $theme-background: mat-palette($mat-blue);
     &.day-mode {
         $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
         // -or- Can set colour by hex value too
-        $custom-background-color: #F5F6FA;
+        $custom-background-color: #ffffff;
 
+        $custom-typography: mat-typography-config(
+            $font-family: 'Roboto'
+        );
         $background: map-get($theme, background);
         $background: map_merge($background, (background: $custom-background-color));
         $theme: map_merge($theme, (background: $background));
@@ -93,7 +96,7 @@ $theme-background: mat-palette($mat-blue);
         // @include mat-button-theme($candy-app-theme);
         // @include mat-checkbox-theme($candy-app-theme);
         // @include mat-core($custom-typography);
-        // @include angular-material-typography($custom-typography);
+        @include angular-material-typography($custom-typography);
         @include angular-material-theme($theme);
         @include theme-based-configurations($theme);
         $background: $background-color;
@@ -102,11 +105,14 @@ $theme-background: mat-palette($mat-blue);
     &.night-mode {
         $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
         $custom-background-color: #444444;
+        $custom-typography: mat-typography-config(
+            $font-family: 'Roboto'
+        );
 
         $background: map-get($theme, background);
         $background: map_merge($background, (background: $custom-background-color));
         $theme: map_merge($theme, (background: $background));
-        // @include angular-material-typography($custom-typography);
+        @include angular-material-typography($custom-typography);
         @include angular-material-theme($theme);
         @include theme-based-configurations($theme);
         $background: $background-color;

@@ -7,6 +7,7 @@
   @include breakpoint-xs {
     flex-direction: column;
   }
+  color: #7b6961;
 }
 
 .font-12 {
@@ -20,7 +21,7 @@
   bottom: 0;
   position: absolute;
   display: flex;
-  align-items: start !important;
+  align-items: flex-start !important;
   justify-content: center;
   height: 100%;
   padding: 0;
@@ -31,3 +32,6 @@
   max-width : 100%;
 }
 
+.footer-heading {
+  font-size: 17px;
+}

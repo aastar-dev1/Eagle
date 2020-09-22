@@ -111,19 +111,19 @@
             ">
                   <a [color]="'primary'" *ngIf="showStart.show && !isPostAssessment"
                     [routerLink]="resumeData ? resumeDataLink?.url : firstResourceLink?.url"
-                    [queryParams]="resumeData ? generateQuery('RESUME') : generateQuery('START')" class="margin-right-m"
+                    [queryParams]="resumeData ? generateQuery('RESUME') : generateQuery('START')" class="margin-right-m ws-mat-primary-background"
                     mat-flat-button>
                     <ng-container *ngIf="!forPreview || isInIFrame; else authView" i18n>
                       {{resumeData?"Resume":"Start"}}
                     </ng-container>
                   </a>
                   <a [color]="'primary'" *ngIf="isPostAssessment && showTakeAssessment?.post_assessment"
-                    [routerLink]="firstResourceLink?.url" class="margin-right-m" mat-flat-button>
+                    [routerLink]="firstResourceLink?.url" class="margin-right-m ws-mat-primary-background" mat-flat-button>
                     <ng-container *ngIf="!forPreview || isInIFrame; else authView" i18n>Take Assessment</ng-container>
                   </a>
                 </ng-container>
                 <ng-container *ngIf="actionBtnStatus == 'reject' && content?.registrationUrl">
-                  <a [href]="content?.registrationUrl" target="_blank" [color]="'primary'" class="margin-right-m" i18n
+                  <a [href]="content?.registrationUrl" target="_blank" [color]="'primary'" class="margin-right-m ws-mat-primary-background" i18n
                     mat-flat-button>Register</a>
                 </ng-container>
               </div>

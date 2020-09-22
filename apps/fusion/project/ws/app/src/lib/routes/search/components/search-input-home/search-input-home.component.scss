@@ -9,7 +9,6 @@ ws-app-search-input-home .autocomplete-form {
   margin: auto;
 }
 .search-home{
-  background: #00A9F4 0% 0% no-repeat padding-box;
   border-radius: 0px 4px 4px 0px;
   padding: $size-s $size-m;
 }
@@ -19,7 +18,7 @@ ws-app-search-input-home input {
 }
 
 ws-app-search-input-home .search .mat-form-field-wrapper {
-   padding-bottom: 0px;
+   padding-bottom: 0px !important;
    .mat-form-field-infix{
       border-top-width: 5px !important;
       padding: 0px;

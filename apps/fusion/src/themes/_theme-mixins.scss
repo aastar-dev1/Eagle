@@ -27,8 +27,9 @@
   $iconColor: mat-color($foreground, icon);
   $colorGreen: #5fa800;
   $colorRed: #ff0000;
-  $footerColor: grey;
+  $footerColor: #f3f3f0;
   $footerTextColor: #DEDFE0;
+  $dark-text: #424242;
 
 
   outline-color: mat-color($accent, lighter);
@@ -95,11 +96,11 @@
     }
 
     .ws-mat-primary-text {
-      color: $colorAccentLight !important;
+      color: $dark-text !important;
     }
 
     .ws-mat-accent-text {
-      color: $colorAccentLight !important;
+      color: $dark-text !important;
     }
 
     .ws-mat-primary-lite-background-on-day {
@@ -238,7 +239,7 @@
     }
 
     .ws-mat-accent-text {
-      color: $colorAccent;
+      color: $dark-text;
     }
 
     .ws-mat-primary-lite-background-on-day {
@@ -284,7 +285,7 @@
     a[href^='mailto'],
     a[target='_blank'] {
       color: $colorAccent;
-      background-color: $colorPrimaryLight;
+      background-color: transparent;
     }
   }
 

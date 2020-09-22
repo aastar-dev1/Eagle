@@ -529,3 +529,15 @@ h3.shepherd-title {
   padding: 0;
   margin: 0;
 }
+
+@media (min-width: 640px) {
+  .sm\:px-8 {
+    padding-left: 14rem;
+    padding-right: 14rem;
+  }
+}
+
+.theme-igot.day-mode .mat-list-base .mat-list-item {
+  color: #7b6961 !important;
+  font-size: 13px !important;
+}
