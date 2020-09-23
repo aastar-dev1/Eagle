@@ -48,7 +48,9 @@
   .ws-mat-primary-lite-background-op30 {
     background: rgba($colorPrimaryLight, 0.3);
   }
-
+    .mat-toolbar {
+      background-color: $footerColor !important;
+  }
   .ws-mat-primary-background-op70 {
     background: rgba($colorPrimary, 0.7);
   }
@@ -467,7 +469,6 @@
   }
 
   ws-widget-btn-catalog {
-    flex: 1;
     margin-top: 7px;
   }
 }

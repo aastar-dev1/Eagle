@@ -1,72 +1,86 @@
 <div class="mat-toolbar mat-ws-mat-primary-text footer-container px-6 sm:px-10 py-5">
   <div class="mat-body flex-1">
     <ng-container i18n>
-      <mat-grid-list cols="5" rowHeight="1:1">
+      <mat-grid-list cols="6" rowHeight="1:1" class="ml-20">
         <mat-grid-tile>
           <mat-list>
-            <mat-list-item>
-              <h2 class="footer-heading">Quick Links</h2>
-            </mat-list-item>
             <mat-list-item> <a routerLink="/app/info/about" i18n> <span i18n>About Us</span></a> </mat-list-item>
-            <mat-list-item> <a routerLink="/app/tnc" i18n>Privacy</a> </mat-list-item>
-            <mat-list-item> <a routerLink="/public/contact" i18n>Help & Contact </a> </mat-list-item>
+
+            <mat-list-item><a>Vision</a></mat-list-item>
+            <mat-list-item><a>Team</a></mat-list-item>
+            <mat-list-item><a>References</a></mat-list-item>
+            <mat-list-item> <a routerLink="/app/tnc" i18n>Privacy Policy</a> </mat-list-item>
+           
+              <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" >
+                <img [src]="appIcon" alt="Application Logo" class="app-logo mt-8" />
+              </a>
+            
           </mat-list>
+         
+          
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-list>
-            <mat-list-item></mat-list-item>
-
             <mat-list-item> <a routerLink="/" i18n> <span i18n>Aastar for Organizations</span></a> </mat-list-item>
+            <mat-list-item> <a routerLink="/" i18n>Featured Courses</a> </mat-list-item>
             <mat-list-item> <a routerLink="/" i18n>Blog</a> </mat-list-item>
+            <mat-list-item> <a routerLink="/public/contact" i18n>Help & Contact </a> </mat-list-item>
             <mat-list-item> <a routerLink="/" i18n>Sitemap</a> </mat-list-item>
           </mat-list>
         </mat-grid-tile>
+
         <mat-grid-tile>
+          <mat-list>
+            <mat-list-item> <a routerLink="/" i18n> <span i18n>Aastar for Organizations</span></a> </mat-list-item>
+            <mat-list-item> <a routerLink="/" i18n>Featured Courses</a> </mat-list-item>
+            <mat-list-item> <a routerLink="/" i18n>Blog</a> </mat-list-item>
+            <mat-list-item> <a routerLink="/public/contact" i18n>Help & Contact </a> </mat-list-item>
+            <mat-list-item> <a routerLink="/" i18n>Sitemap</a> </mat-list-item>
+          </mat-list>
+        </mat-grid-tile>
+
+        <mat-grid-tile class="text-center">
           <mat-list>
             <mat-list-item>
               <h2 class="footer-heading">An initiative of</h2>
             </mat-list-item>
-            <mat-list-item>
-            </mat-list-item>
-            <mat-list-item></mat-list-item>
-            <mat-list-item>
-              <a href="https://rohininilekani.org/" target="_blank"><img class="footer-image"
-                  src="https://www.aastar.org/wp-content/uploads/2020/03/nilekani-philanthropies-logo.png" /></a>
-            </mat-list-item>
-          </mat-list>
 
+            <a href="https://rohininilekani.org/" target="_blank"><img class="footer-image mt-1"
+                src="https://www.aastar.org/wp-content/uploads/2020/03/nilekani-philanthropies-logo.png" /></a>
+
+          </mat-list>
         </mat-grid-tile>
-        <mat-grid-tile>
+
+        <mat-grid-tile class="text-center">
           <mat-list>
             <mat-list-item>
-              <h2 class="footer-heading">An Collaboration with </h2>
+              <h2 class="footer-heading margin-left-l">An Collaboration with </h2>
             </mat-list-item>
             
-            <mat-list-item></mat-list-item>
-            <mat-list-item>
-              <a href="https://societalplatform.org/" target="_blank"><img class="footer-image"
+              <a href="https://societalplatform.org/" target="_blank"><img class="footer-image mt-2"
                   src="https://www.aastar.org/wp-content/uploads/2020/06/SPT-logo.png" /></a>
-            </mat-list-item>
+           
           </mat-list>
-
         </mat-grid-tile>
+
         <mat-grid-tile>
           <mat-list>
-            <mat-list-item>
+            <mat-list-item class="mb-5">
               <h2 class="footer-heading">Endorsing</h2>
             </mat-list-item>
-
-            <mat-list-item></mat-list-item>
             <mat-list-item>
-              <a href="https://www.whiteribbonalliance.org/respectful-maternity-care-charter/" target="_blank"><img class="footer-image"
+              <a href="https://www.whiteribbonalliance.org/respectful-maternity-care-charter/" target="_blank"><img
+                  class="footer-image mt-6"
                   src="https://www.aastar.org/wp-content/uploads/2020/03/respectful-maternal-care-logo.png" /></a>
-            </mat-list-item>  
-            <mat-list-item>         
-              <span class="margin-top-xl" i18n>&copy; 2020 Aastar Urmika Pvt. Ltd</span>
-          </mat-list-item> 
+            </mat-list-item>
+           
           </mat-list>
+          
         </mat-grid-tile>
+        <div class="text-dark mt-8" i18n>&copy; 2019 Aastar Urmika Pvt.Ltd </div>
       </mat-grid-list>
+      
+
     </ng-container>
 
   </div>

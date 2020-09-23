@@ -14,6 +14,12 @@
   font-size: 12px !important;
 }
 
+.text-dark {
+  color: #7b6961 !important;
+  position: absolute;
+  bottom: 30px;
+  right: 93px;
+}
 .mat-figure {
   top: 0;
   left: 0;
@@ -33,5 +39,18 @@
 }
 
 .footer-heading {
-  font-size: 17px;
+  font-size: 16px !important;
+}
+.mat-list-base .mat-list-item {
+  height: 37px !important;
+}
+
+.theme-igot.day-mode .mat-list-base .mat-list-item {
+ font-size: 14px !important;
+}
+
+@media only screen and (max-width: 760px) {
+  .footer-container {
+    display: none;
+  }
 }

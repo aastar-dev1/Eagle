@@ -17,6 +17,15 @@ ws-app-search-input-home input {
   padding-left: .5rem !important;
 }
 
+.search-placeholder {
+  font-size: 16px;
+}
+
+::-webkit-input-placeholder {
+  font-size: 16px;
+  font-style: italic;
+}
+
 ws-app-search-input-home .search .mat-form-field-wrapper {
    padding-bottom: 0px !important;
    .mat-form-field-infix{
@@ -28,9 +37,10 @@ ws-app-search-input-home .search .mat-form-field-wrapper {
 }
 
 ws-app-search-input-home .search-border {
-  border-radius: 4px; /*.75rem;*/
+  border-radius: 10px; /*.75rem;*/
   border:1px solid #DEDFE0;
   flex: 1;
+  background-color: #fff;
   /* border-color: #cecece;*/
 }
 

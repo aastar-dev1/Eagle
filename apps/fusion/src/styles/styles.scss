@@ -523,7 +523,7 @@ h3.shepherd-title {
   bottom: 0;
   position: absolute;
   display: flex;
-  align-items: start !important;
+  align-items: flex-start !important;
   justify-content: center;
   height: 100%;
   padding: 0;
@@ -539,5 +539,8 @@ h3.shepherd-title {
 
 .theme-igot.day-mode .mat-list-base .mat-list-item {
   color: #7b6961 !important;
-  font-size: 13px !important;
+}
+.mat-raised-button {
+  line-height: 40px !important;
+  box-shadow: none !important;
 }

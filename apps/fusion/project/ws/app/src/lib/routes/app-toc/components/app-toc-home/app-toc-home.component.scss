@@ -2,7 +2,7 @@
 @import 'ws-vars';
 
 %container-padding {
-  padding: $size-xl 2 * $size-xl;
+  padding: $size-xl 14rem;
   @include breakpoint-xs {
     padding: $size-m $size-l;
   }
