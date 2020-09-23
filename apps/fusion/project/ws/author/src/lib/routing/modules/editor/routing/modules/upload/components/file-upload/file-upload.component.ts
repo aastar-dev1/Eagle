@@ -419,7 +419,7 @@ export class FileUploadComponent implements OnInit {
         if (error) {
           for (let i = 0; i < error.children.length; i += 1) {
             error.children[i].innerHTML = error.children[i].innerHTML.replace(
-              /[^A-Za-z0-9./]/g,
+              /[^A-Za-z0-9_.\-\/]/g,
               match => {
                 return `<i style=background-color:red;font-weight:bold>${match}</i>`
               },
