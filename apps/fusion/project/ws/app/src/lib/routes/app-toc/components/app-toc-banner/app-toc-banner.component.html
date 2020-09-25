@@ -5,8 +5,16 @@
   <div class="flex flex-between flex-wrapped">
     <div class="header-left">
       <div class="header-synopsis" [ngClass]="{ 'header-synopsis-gradient': bannerUrl }" *ngIf="content">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Course Category</a></li>
+            <li class="breadcrumb-item"><a >Sub Category</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Sub Category</li>
+          </ol>
+        </nav>
+
         <div class="header-title margin-bottom-m">
-          <h1 class="mat-display-2 margin-remove-bottom padding-bottom-xs hidden sm:block" [title]="content?.name">
+          <h1 class="fs-28 margin-remove-bottom padding-bottom-xs hidden sm:block" [title]="content?.name">
             {{ content?.name }}
           </h1>
           <h1 class="mat-display-1 margin-remove-bottom padding-bottom-xs block sm:hidden" [title]="content?.name">
@@ -111,19 +119,19 @@
             ">
                   <a [color]="'primary'" *ngIf="showStart.show && !isPostAssessment"
                     [routerLink]="resumeData ? resumeDataLink?.url : firstResourceLink?.url"
-                    [queryParams]="resumeData ? generateQuery('RESUME') : generateQuery('START')" class="margin-right-m"
+                    [queryParams]="resumeData ? generateQuery('RESUME') : generateQuery('START')" class="margin-right-m ws-mat-primary-background"
                     mat-flat-button>
                     <ng-container *ngIf="!forPreview || isInIFrame; else authView" i18n>
                       {{resumeData?"Resume":"Start"}}
                     </ng-container>
                   </a>
                   <a [color]="'primary'" *ngIf="isPostAssessment && showTakeAssessment?.post_assessment"
-                    [routerLink]="firstResourceLink?.url" class="margin-right-m" mat-flat-button>
+                    [routerLink]="firstResourceLink?.url" class="margin-right-m ws-mat-primary-background" mat-flat-button>
                     <ng-container *ngIf="!forPreview || isInIFrame; else authView" i18n>Take Assessment</ng-container>
                   </a>
                 </ng-container>
                 <ng-container *ngIf="actionBtnStatus == 'reject' && content?.registrationUrl">
-                  <a [href]="content?.registrationUrl" target="_blank" [color]="'primary'" class="margin-right-m" i18n
+                  <a [href]="content?.registrationUrl" target="_blank" [color]="'primary'" class="margin-right-m ws-mat-primary-background" i18n
                     mat-flat-button>Register</a>
                 </ng-container>
               </div>

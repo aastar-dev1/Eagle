@@ -17,7 +17,7 @@
       showNavbar &&
       isNavBarRequired
   }">
-  <router-outlet class="test"></router-outlet>
+  <router-outlet></router-outlet>
 </div>
 <ws-app-footer class="app-footer" [ngClass]="{ 'padding-bottom: 56px': !isSetupPage}"
   *ngIf="(authSvc.isLoggedIn$ | async) === true && showNavbar"></ws-app-footer>

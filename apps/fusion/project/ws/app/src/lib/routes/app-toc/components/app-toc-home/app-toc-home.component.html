@@ -1,8 +1,8 @@
   <div class="appicon-image" >
-  <mat-toolbar role="navigation" i18n-aria-label aria-label="Toolbar" *ngIf="!(isInIframe && forPreview)"
+  <mat-toolbar role="navigation" i18n-aria-label aria-label="Toolbar" *ngIf="isAuthor && !forPreview"
     class="detailBar" [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
-    <ws-widget-btn-page-back [widgetData]="{ url: 'home',titles:[{title:'Details',url:'none'}] }">
-    </ws-widget-btn-page-back>
+    <!-- <ws-widget-btn-page-back [widgetData]="{ url: 'home',titles:[{title:'Details',url:'none'}] }">
+    </ws-widget-btn-page-back> -->
     <!-- <span class="margin-left-xs text-truncate">
       <span i18n>Details</span>
     </span> -->
@@ -20,7 +20,7 @@
 </div>
 <ng-container>
   <div role="main" class="toc-body" *ngIf="!errorCode; else tocError">
-    <nav mat-tab-nav-bar class="toc-links mat-app-background">
+    <nav mat-tab-nav-bar class="toc-links mt-8 mat-app-background">
       <a mat-tab-link [routerLink]="'./overview'" routerLinkActive="ws-mat-primary-text link-active" i18n>Overview</a>
       <a mat-tab-link *ngIf="content?.resourceType === 'Certification'" [routerLink]="'./certification'"
         routerLinkActive="ws-mat-primary-text link-active">

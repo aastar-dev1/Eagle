@@ -1,15 +1,99 @@
 <div class="mat-toolbar mat-ws-mat-primary-text footer-container px-6 sm:px-10 py-5">
-  <div class="mat-body text-center flex-1">
+  <div class="mat-body flex-1">
     <ng-container i18n>
-      <span i18n>&copy; Copyright 2020 -2021</span>
-      &nbsp;&nbsp; | &nbsp;&nbsp;
-      <a routerLink="/app/info/about" i18n> <span i18n>About Us</span></a>
-      &nbsp;&nbsp; | &nbsp;&nbsp;
-      <a routerLink="/app/tnc" i18n>Privacy</a>
-      &nbsp;&nbsp; | &nbsp;&nbsp;
-      <a routerLink="/public/contact" i18n>Help & Contact </a>
-       <!-- &
-      <a routerLink="/public/contact" i18n> Contact</a> -->
+      <mat-grid-list cols="6" rowHeight="1:1" class="ml-24">
+        <mat-grid-tile>
+          <mat-list>
+            <mat-list-item> <a routerLink="/app/info/about" i18n> <span i18n>About Us</span></a> </mat-list-item>
+
+            <mat-list-item><a>Vision</a></mat-list-item>
+            <mat-list-item><a>Team</a></mat-list-item>
+            <mat-list-item><a>References</a></mat-list-item>
+            <mat-list-item> <a routerLink="/app/tnc" i18n>Privacy Policy</a> </mat-list-item>
+
+          </mat-list>
+
+
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-list>
+            <mat-list-item> <a routerLink="/" i18n> <span i18n>Aastar for Organizations</span></a> </mat-list-item>
+            <mat-list-item> <a routerLink="/" i18n>Featured Courses</a> </mat-list-item>
+            <mat-list-item> <a routerLink="/" i18n>Blog</a> </mat-list-item>
+            <mat-list-item> <a routerLink="/public/contact" i18n>Help & Contact </a> </mat-list-item>
+            <mat-list-item> <a routerLink="/" i18n>Sitemap</a> </mat-list-item>
+          </mat-list>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-list>
+            <mat-list-item> <a routerLink="/" i18n> <span i18n>Aastar for Organizations</span></a> </mat-list-item>
+            <mat-list-item> <a routerLink="/" i18n>Featured Courses</a> </mat-list-item>
+            <mat-list-item> <a routerLink="/" i18n>Blog</a> </mat-list-item>
+            <mat-list-item> <a routerLink="/public/contact" i18n>Help & Contact </a> </mat-list-item>
+            <mat-list-item> <a routerLink="/" i18n>Sitemap</a> </mat-list-item>
+          </mat-list>
+        </mat-grid-tile>
+
+        <mat-grid-tile class="text-center">
+          <mat-list>
+            <mat-list-item>
+              <h2 class="footer-heading">An initiative of</h2>
+            </mat-list-item>
+
+            <a href="https://rohininilekani.org/" target="_blank"><img class="footer-image mt-1"
+                src="https://www.aastar.org/wp-content/uploads/2020/03/nilekani-philanthropies-logo.png" /></a>
+
+          </mat-list>
+        </mat-grid-tile>
+
+        <mat-grid-tile class="text-center">
+          <mat-list>
+            <mat-list-item>
+              <h2 class="footer-heading margin-left-l">An Collaboration with </h2>
+            </mat-list-item>
+
+            <a href="https://societalplatform.org/" target="_blank"><img class="footer-image mt-2"
+                src="https://www.aastar.org/wp-content/uploads/2020/06/SPT-logo.png" /></a>
+
+          </mat-list>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-list>
+            <mat-list-item class="mb-5 ml-1">
+              <h2 class="footer-heading">Endorsing</h2>
+            </mat-list-item>
+            <mat-list-item>
+              <a href="https://www.whiteribbonalliance.org/respectful-maternity-care-charter/" target="_blank"><img
+                  class="footer-image mt-6"
+                  src="https://www.aastar.org/wp-content/uploads/2020/03/respectful-maternal-care-logo.png" /></a>
+            </mat-list-item>
+
+          </mat-list>
+
+        </mat-grid-tile>
+      
+      </mat-grid-list>
+
+
     </ng-container>
+
   </div>
+
 </div>
+
+<footer class="docs-footer px-6 sm:px-10 -mt-20 ">
+  <div class="docs-footer-list flex">
+    <div class="docs-footer-logo flex-1 ml-40">
+      <div class="docs-footer-version"><img [src]="appIcon" alt="Angular icon"
+        class="docs-footer-aastar-logo">
+      </div>
+    </div>
+    <!-- <div class="docs-footer-version">
+    </div> -->
+    <div class="docs-footer-copyright flex-1 mr-20">
+      <div>  <div class="text-dark mt-8" i18n>&copy; 2019 Aastar Urmika Pvt.Ltd </div></div>
+    </div>
+  </div>
+</footer>

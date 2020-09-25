@@ -6,8 +6,6 @@
       <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" class="logo-dim">
         <img [src]="appIcon" alt="Application Logo" class="app-logo" />
       </a>
-      <div class="site-description">
-        <p>A Nilekani Philanthropies <br/>Initiative</p></div>
     </div>
       <!-- <span class="spacer"></span> -->
       <ng-container *ngIf="primaryNavbarConfig?.mediumScreen">
@@ -15,7 +13,7 @@
           *ngFor="let item of primaryNavbarConfig?.mediumScreen?.left">
         </ng-container>
 
-        <ws-app-search-input-home placeHolder="Search anything you want to learn..." class="my-search flex-1"
+        <ws-app-search-input-home placeHolder="What do you want to learn today ?" class="my-search flex-1"
           [ref]="'home'"></ws-app-search-input-home>
         <span class="spacer"></span>
         <div ngClass="search-small-logo">

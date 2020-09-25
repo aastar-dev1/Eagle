@@ -30,3 +30,9 @@
 .pad {
   padding: $size-l 0 $size-l $size-l;
 }
+h1 {
+  font-size: 28px;
+}
+::ng-deep #continueLearning {
+  margin-bottom: 5rem;
+}

@@ -192,7 +192,7 @@ mat-toolbar {
 
   &.mat-toolbar-row,
   &.mat-toolbar-single-row {
-    height: 56px;
+    height: 80px;
   }
 }
 
@@ -498,6 +498,9 @@ h3.shepherd-title {
 .mat-flat-button {
   font-weight: bold;
   border: 1px solid;
+  line-height: 48px !important;
+  padding: 0 20px !important;
+  border-radius: 8px !important;
 }
 
 .post-content img, .ql-editor img {
@@ -513,4 +516,52 @@ h3.shepherd-title {
     height: $size;
     width: $size;
   }
+}
+
+
+.mat-grid-tile .mat-figure {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  align-items: flex-start !important;
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .sm\:px-8 {
+    padding-left: 9rem;
+    padding-right: 9rem;
+  }
+}
+
+.theme-igot.day-mode .mat-list-base .mat-list-item {
+  color: #7b6961 !important;
+  font-size: 14px !important;
+  font-weight: 500;
+}
+.mat-raised-button {
+  line-height: 40px !important;
+  box-shadow: none !important;
+  background-color: #F5D58D;
+}
+.theme-igot.day-mode .mat-raised-button.mat-primary {
+  background-color: #F5D58D !important;
+  line-height: 40px !important;
+}
+
+.action-button {
+  margin-right: 17px !important;
+}
+.action-icons {
+  border: solid 2px #f5d58d;
+  border-radius: 8px;
+  padding: 8px;
+  width: 27px;
+  margin-top: 1px;
 }

@@ -23,12 +23,13 @@
   $colorWarn: mat-color($warn, default);
 
   $colorBackground: mat-color($background, background);
-  $colorText: mat-color($foreground, text);
+  $colorText: #424242;
   $iconColor: mat-color($foreground, icon);
   $colorGreen: #5fa800;
   $colorRed: #ff0000;
-  $footerColor: #373434;
+  $footerColor: #f3f3f0;
   $footerTextColor: #DEDFE0;
+  $dark-text: #424242;
 
 
   outline-color: mat-color($accent, lighter);
@@ -47,7 +48,9 @@
   .ws-mat-primary-lite-background-op30 {
     background: rgba($colorPrimaryLight, 0.3);
   }
-
+    .mat-toolbar {
+      background-color: $footerColor !important;
+  }
   .ws-mat-primary-background-op70 {
     background: rgba($colorPrimary, 0.7);
   }
@@ -95,11 +98,11 @@
     }
 
     .ws-mat-primary-text {
-      color: $colorAccentLight !important;
+      color: $dark-text !important;
     }
 
     .ws-mat-accent-text {
-      color: $colorAccentLight !important;
+      color: $dark-text !important;
     }
 
     .ws-mat-primary-lite-background-on-day {
@@ -132,6 +135,9 @@
 
     .mat-tab-links {
       background: $colorPrimaryDark !important;
+    }
+    .theme-igot.day-mode .mat-tab-link {
+      font-size: 20px !important;
     }
 
     .card-standard-container {
@@ -238,7 +244,7 @@
     }
 
     .ws-mat-accent-text {
-      color: $colorAccent;
+      color: $dark-text;
     }
 
     .ws-mat-primary-lite-background-on-day {
@@ -283,8 +289,8 @@
     a[href^='http'],
     a[href^='mailto'],
     a[target='_blank'] {
-      color: $colorAccent;
-      background-color: $colorPrimaryLight;
+      color: $colorAccentDark;
+      background-color: transparent;
     }
   }
 
@@ -466,7 +472,6 @@
   }
 
   ws-widget-btn-catalog {
-    flex: 1;
     margin-top: 7px;
   }
 }

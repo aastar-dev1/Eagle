@@ -64,7 +64,7 @@
   <!-- </mat-card> -->
 
   <!-- <mat-form-field class="width-1-1" > -->
-   
+
     <!-- <mat-form-field>
       <input matInput placeholder="Search" (input)="filterChanged($event.target.value)">
    </mat-form-field> -->
@@ -75,8 +75,8 @@
 
   <mat-divider *ngIf="collection" class="margin-bottom-xs"></mat-divider>
   <div *ngIf="collection" class="flex flex-middle">
-    <div i18n class="padding-left-m" *ngIf="tocMode === 'TREE'">Structure</div>
-    <div i18n class="padding-left-m" *ngIf="tocMode === 'FLAT'">Queue</div>
+    <!-- <div i18n class="padding-left-m" *ngIf="tocMode === 'TREE'">Structure</div> -->
+    <!-- <div i18n class="padding-left-m" *ngIf="tocMode === 'FLAT'">Queue</div>
     <span class="spacer"></span>
     <div class="margin-right-m">
       <mat-slide-toggle [checked]="tocMode === 'FLAT'" (change)="changeTocMode()"
@@ -84,7 +84,7 @@
           <mat-icon>view_list</mat-icon>
         </span></mat-slide-toggle
       >
-    </div>
+    </div> -->
   </div>
   <mat-divider class="margin-top-xs"></mat-divider>
   <section *ngIf="!collection">

@@ -12,6 +12,7 @@ import {
   MatIconModule,
   MatMenuModule,
   MatProgressBarModule,
+  MatGridListModule,
   MatRippleModule,
   MatSliderModule,
   MatToolbarModule,
@@ -20,6 +21,7 @@ import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatInputModule,
   MatFormFieldModule,
+  MatListModule
 } from '@angular/material'
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -112,7 +114,9 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
+    MatListModule,
     MatMenuModule,
+    MatGridListModule,
     MatDividerModule,
     MatProgressBarModule,
     MatExpansionModule,

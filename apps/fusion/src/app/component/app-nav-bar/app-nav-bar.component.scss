@@ -15,7 +15,7 @@
 }
 
 .custom {
-  height: 72px;
+  height: 80px;
 }
 
 .tourGuideBtn:hover {
@@ -53,9 +53,9 @@
   // letter-spacing: .04em;
   // font-weight: 400;
   // max-width: 120px;
-  padding-left: 8px;
+  padding-left: 11px;
   // padding-right: 35px;
-  margin-left: 8px;
+  margin-left: 11px;
   border-left: 1px solid #473f3b;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -179,10 +179,13 @@
 
 .my-search {
   display: flex;
-  margin-left: 0;
+  margin-left: 8px;
   margin-right: 0;
   text-align: center;
-  flex: 3;
+  flex: 1;  
+  height: 50px;
+  margin-top: 6px;
+  max-width: 470px;
 }
 
 @media only screen and (max-width: 760px) {
