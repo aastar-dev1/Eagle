@@ -1,7 +1,8 @@
-<div class="flex flex-1">
+<div class="flex flex-1" [class.min-width]="showBackIcon">
   <a i18n-aria-label aria-label="Back" *ngIf="widgetData.url && widgetData.url !== 'none'"
     [routerLink]="backUrl.routeUrl" [queryParams]="backUrl.queryParams" [fragment]="backUrl?.fragment" mat-icon-button>
-    <mat-icon class="ws-mat-default-text">home</mat-icon>
+    <mat-icon class="ws-mat-default-text" *ngIf="!showBackIcon">home</mat-icon>
+    <span class="material-icons mr-5 back-icon" *ngIf="showBackIcon"> keyboard_backspace</span>
   </a>
   <ng-container *ngIf="widgetData.titles && widgetData.titles.length>0">
     <div class="flex flex-1 ws-mat-default-text" *ngFor="let title of widgetData.titles">

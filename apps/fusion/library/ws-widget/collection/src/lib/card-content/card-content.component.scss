@@ -199,6 +199,10 @@
     overflow: hidden;
     height: $description-line-count * $description-line-height;
     line-height: $description-line-height;
+    font-size: 13px;
+  }
+  .fs-13 {
+    font-size: 13px;
   }
 
   .mat-chip-list-wrapper {

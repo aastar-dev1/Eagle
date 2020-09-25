@@ -12,6 +12,7 @@ export class BtnPageBackComponent extends WidgetBaseComponent
   implements OnInit, NsWidgetResolver.IWidgetData<{ url: TUrl }> {
   @Input() widgetData: { url: TUrl, titles?: NsWidgetResolver.ITitle[] } = { url: 'none', titles: [] }
   presentUrl = ''
+  showBackIcon = false
   constructor(
     private btnBackSvc: BtnPageBackService,
     private router: Router,
@@ -21,6 +22,11 @@ export class BtnPageBackComponent extends WidgetBaseComponent
 
   ngOnInit() {
     this.presentUrl = this.router.url
+    if (this.widgetData && this.widgetData.url) {
+      if (this.widgetData.url.indexOf('overview') > -1) {
+        this.showBackIcon = true
+      }
+    }
 
   }
 

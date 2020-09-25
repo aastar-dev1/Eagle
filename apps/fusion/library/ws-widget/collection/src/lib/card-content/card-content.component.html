@@ -261,7 +261,7 @@
               <ng-container [ngTemplateOutlet]="rating"></ng-container>
             <div *ngIf="widgetData.content.duration" class="duration ml-2" i18n-title title="Duration">
               <mat-icon>access_time</mat-icon>
-              <span class="time-text">{{ widgetData.content.duration | pipeDurationTransform: 'hms' }}</span>
+              <span class="time-text fs-13">{{ widgetData.content.duration | pipeDurationTransform: 'hms' }}</span>
             </div>
            
           </div>
@@ -570,7 +570,7 @@
     <mat-icon class="mr-1" *ngIf="widgetData.content.averageRating && widgetData.content.averageRating != 5"
       color="accent">star_half</mat-icon>
     <mat-icon class="mr-1" *ngIf="!widgetData.content.averageRating">star_border</mat-icon>
-    <span>{{ widgetData.content.averageRating | number: '1.1-1' }}</span>
+    <span class="fs-13">{{ widgetData.content.averageRating | number: '1.1-1' }}</span>
   </div>
 </ng-template>
 

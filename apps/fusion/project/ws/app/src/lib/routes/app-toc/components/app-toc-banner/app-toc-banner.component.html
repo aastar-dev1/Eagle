@@ -5,8 +5,16 @@
   <div class="flex flex-between flex-wrapped">
     <div class="header-left">
       <div class="header-synopsis" [ngClass]="{ 'header-synopsis-gradient': bannerUrl }" *ngIf="content">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Course Category</a></li>
+            <li class="breadcrumb-item"><a >Sub Category</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Sub Category</li>
+          </ol>
+        </nav>
+
         <div class="header-title margin-bottom-m">
-          <h1 class="mat-display-2 margin-remove-bottom padding-bottom-xs hidden sm:block" [title]="content?.name">
+          <h1 class="fs-28 margin-remove-bottom padding-bottom-xs hidden sm:block" [title]="content?.name">
             {{ content?.name }}
           </h1>
           <h1 class="mat-display-1 margin-remove-bottom padding-bottom-xs block sm:hidden" [title]="content?.name">

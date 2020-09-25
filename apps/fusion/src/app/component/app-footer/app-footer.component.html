@@ -1,7 +1,7 @@
 <div class="mat-toolbar mat-ws-mat-primary-text footer-container px-6 sm:px-10 py-5">
   <div class="mat-body flex-1">
     <ng-container i18n>
-      <mat-grid-list cols="6" rowHeight="1:1" class="ml-20">
+      <mat-grid-list cols="6" rowHeight="1:1" class="ml-24">
         <mat-grid-tile>
           <mat-list>
             <mat-list-item> <a routerLink="/app/info/about" i18n> <span i18n>About Us</span></a> </mat-list-item>
@@ -10,14 +10,10 @@
             <mat-list-item><a>Team</a></mat-list-item>
             <mat-list-item><a>References</a></mat-list-item>
             <mat-list-item> <a routerLink="/app/tnc" i18n>Privacy Policy</a> </mat-list-item>
-           
-              <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" >
-                <img [src]="appIcon" alt="Application Logo" class="app-logo mt-8" />
-              </a>
-            
+
           </mat-list>
-         
-          
+
+
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-list>
@@ -56,16 +52,16 @@
             <mat-list-item>
               <h2 class="footer-heading margin-left-l">An Collaboration with </h2>
             </mat-list-item>
-            
-              <a href="https://societalplatform.org/" target="_blank"><img class="footer-image mt-2"
-                  src="https://www.aastar.org/wp-content/uploads/2020/06/SPT-logo.png" /></a>
-           
+
+            <a href="https://societalplatform.org/" target="_blank"><img class="footer-image mt-2"
+                src="https://www.aastar.org/wp-content/uploads/2020/06/SPT-logo.png" /></a>
+
           </mat-list>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-list>
-            <mat-list-item class="mb-5">
+            <mat-list-item class="mb-5 ml-1">
               <h2 class="footer-heading">Endorsing</h2>
             </mat-list-item>
             <mat-list-item>
@@ -73,15 +69,31 @@
                   class="footer-image mt-6"
                   src="https://www.aastar.org/wp-content/uploads/2020/03/respectful-maternal-care-logo.png" /></a>
             </mat-list-item>
-           
+
           </mat-list>
-          
+
         </mat-grid-tile>
-        <div class="text-dark mt-8" i18n>&copy; 2019 Aastar Urmika Pvt.Ltd </div>
-      </mat-grid-list>
       
+      </mat-grid-list>
+
 
     </ng-container>
 
   </div>
+
 </div>
+
+<footer class="docs-footer px-6 sm:px-10 -mt-20 ">
+  <div class="docs-footer-list flex">
+    <div class="docs-footer-logo flex-1 ml-40">
+      <div class="docs-footer-version"><img [src]="appIcon" alt="Angular icon"
+        class="docs-footer-aastar-logo">
+      </div>
+    </div>
+    <!-- <div class="docs-footer-version">
+    </div> -->
+    <div class="docs-footer-copyright flex-1 mr-20">
+      <div>  <div class="text-dark mt-8" i18n>&copy; 2019 Aastar Urmika Pvt.Ltd </div></div>
+    </div>
+  </div>
+</footer>

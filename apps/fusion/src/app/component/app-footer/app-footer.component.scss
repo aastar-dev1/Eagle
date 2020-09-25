@@ -16,9 +16,7 @@
 
 .text-dark {
   color: #7b6961 !important;
-  position: absolute;
-  bottom: 30px;
-  right: 93px;
+  
 }
 .mat-figure {
   top: 0;
@@ -45,12 +43,41 @@
   height: 37px !important;
 }
 
-.theme-igot.day-mode .mat-list-base .mat-list-item {
+.theme-igot.day-mode .mat-list-base .mat-list-item a{
  font-size: 14px !important;
+
 }
 
 @media only screen and (max-width: 760px) {
   .footer-container {
     display: none;
   }
+}
+
+@media only screen and ( min-width: 2000px ) {
+  footer.docs-footer.-mt-20 {
+    margin-top: -12rem;
+  }
+}
+.docs-footer {
+  background: #f3f3f0;
+  color: #fff
+}
+
+.docs-footer-list {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 8px;
+}
+
+img.docs-footer-aastar-logo {
+  max-width: 137px;
+}
+.docs-footer-copyright{
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  min-width: 225px;
+  margin-top: 16px;
 }

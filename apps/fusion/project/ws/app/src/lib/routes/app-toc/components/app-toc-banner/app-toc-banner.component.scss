@@ -2,7 +2,7 @@
 @import 'ws-mixins';
 
 %container-padding {
-  padding: $size-xl 2 * $size-xl;
+  padding: 22px  2 * $size-xl $size-xl 147px;
 
   @include breakpoint-xs {
     padding: $size-xl $size-l;
@@ -22,6 +22,10 @@
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0.3) 100%)
     /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.8) 100%);
 */
+}
+
+.fs-28 {
+  font-size: $size-lg !important;
 }
 
 
@@ -145,4 +149,56 @@
   @include breakpoint-xs {
     display: block;
   }
+}
+
+
+.breadcrumb {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: .625rem 1rem 0 0;
+}
+
+.breadcrumb, .breadcrumb-item {
+  -ms-flex-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.breadcrumb-item+.breadcrumb-item {
+  margin-left: .5rem;
+}
+
+.breadcrumb-item {
+
+  align-items: center;
+  display: flex;
+}
+
+.breadcrumb-item.active {
+  color: rgba(0,0,0,.87);
+  font-weight: bolder;
+}
+
+.breadcrumb-item+.breadcrumb-item:before {
+  font-size: 1.714286em;
+  line-height: .583333em;
+  vertical-align: -.302198em;
+  font-family: Material Icons;
+  -webkit-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  color: rgba(0,0,0,.54);
+  content: "chevron_right";
+  display: inline-block;
+  margin-right: .5rem;
 }

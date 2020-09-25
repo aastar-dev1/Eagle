@@ -23,7 +23,7 @@
   $colorWarn: mat-color($warn, default);
 
   $colorBackground: mat-color($background, background);
-  $colorText: mat-color($foreground, text);
+  $colorText: #424242;
   $iconColor: mat-color($foreground, icon);
   $colorGreen: #5fa800;
   $colorRed: #ff0000;
@@ -135,6 +135,9 @@
 
     .mat-tab-links {
       background: $colorPrimaryDark !important;
+    }
+    .theme-igot.day-mode .mat-tab-link {
+      font-size: 20px !important;
     }
 
     .card-standard-container {
@@ -286,7 +289,7 @@
     a[href^='http'],
     a[href^='mailto'],
     a[target='_blank'] {
-      color: $colorAccent;
+      color: $colorAccentDark;
       background-color: transparent;
     }
   }
