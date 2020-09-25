@@ -158,7 +158,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.regionCtrl = new FormControl()
     this.accessPathsCtrl = new FormControl()
     this.accessPathsCtrl.disable()
-
     this.creatorContactsCtrl.valueChanges
       .pipe(
         debounceTime(500),
@@ -541,12 +540,13 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         if (currentMeta.status === 'Draft') {
           const parentData = this.contentService.parentUpdatedMeta()
          if (parentData) {
-            currentMeta.thumbnail = parentData.thumbnail !== '' ? parentData.thumbnail : currentMeta.thumbnail
-            currentMeta.appIcon = parentData.appIcon !== '' ? parentData.appIcon : currentMeta.appIcon
+         //   currentMeta.thumbnail = parentData.thumbnail !== '' ? parentData.thumbnail : currentMeta.thumbnail
+           // currentMeta.appIcon = parentData.appIcon !== '' ? parentData.appIcon : currentMeta.appIcon
             currentMeta.posterImage = parentData.posterImage !== '' ? parentData.posterImage : currentMeta.posterImage
             currentMeta.subTitle = parentData.subTitle !== '' ?  parentData.subTitle : currentMeta.subTitle
             currentMeta.body = parentData.body !== '' ?  parentData.body : currentMeta.body
             currentMeta.categoryType = parentData.categoryType !== '' ?  parentData.categoryType : currentMeta.categoryType
+            currentMeta.resourceType = parentData.resourceType !== '' ?  parentData.resourceType : currentMeta.resourceType
 
          }
         }
@@ -563,7 +563,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         Object.keys(currentMeta).map(v => {
           if (
             JSON.stringify(currentMeta[v as keyof NSContent.IContentMeta]) !==
-            JSON.stringify(originalMeta[v as keyof NSContent.IContentMeta])
+            JSON.stringify(originalMeta[v as keyof NSContent.IContentMeta]) && v!=='jobProfile'
           ) {
             if (
               currentMeta[v as keyof NSContent.IContentMeta] ||

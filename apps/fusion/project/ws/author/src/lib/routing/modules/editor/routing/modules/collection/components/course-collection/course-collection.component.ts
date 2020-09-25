@@ -183,7 +183,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
           this.storeService.selectedNodeChange.next(newCreatedNode)
         }
 
-        
+
         if (data.contents[0] && data.contents[0].content && data.contents[0].content.children[0] &&
           data.contents[0].content.children[0].identifier) {
           this.subAction({ type: 'editContent', identifier: data.contents[0].content.children[0].identifier, nodeClicked: true })
@@ -300,7 +300,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       })
 
       if (isDone) {
-        
+
         const newCreatedLexid = this.editorService.newCreatedLexid
         const newCreatedNode = (this.storeService.lexIdMap.get(newCreatedLexid) as number[])[0]
         this.storeService.currentSelectedNode = newCreatedNode
@@ -636,7 +636,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       hierarchy: this.storeService.changedHierarchy,
     }
 
-    console.log('requestBody==>', requestBody)
+   
     return this.editorService.updateContentV2(requestBody).pipe(
       tap(() => {
         this.storeService.changedHierarchy = {}
@@ -685,11 +685,11 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
         break
       case 'editContent':
         if (event.nodeClicked === false) {
-          this.save('refresh')
+        //  this.save('refresh')
         }
-       
+
         const content = this.contentService.getUpdatedMeta(event.identifier)
-        // console.log('content.isExternal==>', content.isExternal)
+        // console.log('content==>', content)
         if (['application/pdf', 'application/x-mpegURL'].includes(content.mimeType)) {
           this.viewMode = 'upload'
         } else if (content.mimeType === 'application/html' && content.isExternal) {

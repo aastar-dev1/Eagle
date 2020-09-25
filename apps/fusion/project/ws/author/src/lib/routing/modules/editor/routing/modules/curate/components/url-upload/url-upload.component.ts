@@ -121,7 +121,7 @@ export class UrlUploadComponent implements OnInit {
     //   // })
     // } else {
       this.storeData()
-      this.data.emit('scroll')
+      this.data.emit('save')
     // }
   }
 
