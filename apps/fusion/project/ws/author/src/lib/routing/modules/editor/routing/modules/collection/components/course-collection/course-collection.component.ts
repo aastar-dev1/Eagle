@@ -149,7 +149,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
 
     })
 
-
     if (this.activateRoute.parent && this.activateRoute.parent.parent) {
       this.routerSubscription = this.activateRoute.parent.parent.data.subscribe(data => {
 
@@ -183,7 +182,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
           this.storeService.selectedNodeChange.next(newCreatedNode)
         }
 
-
         if (data.contents[0] && data.contents[0].content && data.contents[0].content.children[0] &&
           data.contents[0].content.children[0].identifier) {
           this.subAction({ type: 'editContent', identifier: data.contents[0].content.children[0].identifier, nodeClicked: true })
@@ -203,10 +201,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
         //   }
         // })
 
-
       })
-
-
 
       this.activateRoute.parent.url.subscribe(data => {
         const urlParam = data[0].path
@@ -217,7 +212,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       })
     }
   }
-
 
   expandNodesById(ids?: number[]) {
     const idSet = ids ? new Set(ids) : this.expandedNodes
@@ -268,7 +262,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       this.couseCreated = param
       const asSibling = false
 
-
       const node = {
         id: this.storeService.currentParentNode,
         identifier: this.storeService.parentNode[0],
@@ -281,8 +274,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
 
       const parentNode = node
       this.loaderService.changeLoad.next(true)
-
-
 
       const isDone = await this.storeService.createChildOrSibling(
         this.couseCreated,
@@ -309,7 +300,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       }
       this.showAddchapter = false
       this.loaderService.changeLoad.next(false)
-
 
       this.subAction({ type: 'editContent', identifier: this.editorService.newCreatedLexid, nodeClicked: false })
 
@@ -636,7 +626,6 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       hierarchy: this.storeService.changedHierarchy,
     }
 
-   
     return this.editorService.updateContentV2(requestBody).pipe(
       tap(() => {
         this.storeService.changedHierarchy = {}

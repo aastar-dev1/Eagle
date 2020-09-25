@@ -536,7 +536,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         const expiryDate = this.contentForm.value.expiryDate
         const currentMeta: NSContent.IContentMeta = JSON.parse(JSON.stringify(this.contentForm.value))
 
-
         if (currentMeta.status === 'Draft') {
           const parentData = this.contentService.parentUpdatedMeta()
          if (parentData) {
@@ -563,7 +562,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         Object.keys(currentMeta).map(v => {
           if (
             JSON.stringify(currentMeta[v as keyof NSContent.IContentMeta]) !==
-            JSON.stringify(originalMeta[v as keyof NSContent.IContentMeta]) && v!=='jobProfile'
+            JSON.stringify(originalMeta[v as keyof NSContent.IContentMeta]) && v !== 'jobProfile'
           ) {
             if (
               currentMeta[v as keyof NSContent.IContentMeta] ||
