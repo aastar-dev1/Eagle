@@ -55,7 +55,9 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() data = new EventEmitter<string>()
   @Input() isSubmitPressed = false
   @Input() nextAction = 'done'
-  @Input() stage = 3
+  @Input() stage = 1
+  @Input() type = ''
+
   location = CONTENT_BASE_STATIC
   selectable = true
   removable = true
@@ -582,6 +584,12 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
             }
           }
         })
+
+
+        if (this.stage >= 1 && !this.type) {
+          delete meta.artifactUrl
+        }
+     
         this.contentService.setUpdatedMeta(meta, this.contentMeta.identifier)
       }
     } catch (ex) {
