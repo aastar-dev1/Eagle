@@ -585,11 +585,10 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
           }
         })
 
-
         if (this.stage >= 1 && !this.type) {
           delete meta.artifactUrl
         }
-     
+
         this.contentService.setUpdatedMeta(meta, this.contentMeta.identifier)
       }
     } catch (ex) {
