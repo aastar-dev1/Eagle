@@ -555,6 +555,10 @@ h3.shepherd-title {
   line-height: 40px !important;
 }
 
+.theme-igot.day-mode .mat-raised-button[disabled][disabled] {
+  background-color: white !important;
+}
+
 .action-button {
   margin-right: 17px !important;
 }
@@ -564,4 +568,42 @@ h3.shepherd-title {
   padding: 8px;
   width: 27px;
   margin-top: 1px;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+}
+.player-nav-links {
+  position: relative;
+  top: -50%;
+  z-index: 999;
+}
+
+.theme-igot.day-mode a.width-auto.mat-button[disabled][disabled]:hover {
+  opacity: 0.4;
+}
+
+a.width-auto.mat-button {
+  width: 78px;
+  height: 72px;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  padding-top: 12px;
+  opacity: 0;
+  &:hover {
+    opacity: 1;
+  }
+  mat-icon {
+    color: #fff;
+    font-size: 42px;
+  }
+}
+
+::ng-deep .pdf-fullscreen > button > span > img {
+  border: none !important;
+  width: 18px !important;
+}
+.svg {
+  filter: invert(0.9);
+  width: 30px;
+  margin-top: 7px;
 }

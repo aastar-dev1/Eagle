@@ -25,21 +25,54 @@
     {{ collection?.name }}
   </span>
 
-  <a mat-icon-button class="width-auto" [routerLink]="prevResourceUrl" *ngIf="isTypeOfCollection"
-  [disabled]="!prevResourceUrl" queryParamsHandling="preserve" accesskey="<">
-  <mat-icon>skip_previous</mat-icon><span *ngIf="logo">PREV</span>
-</a>
+ 
  <span class="header-spacer"></span>
 
-  <a mat-icon-button class="width-auto margin-right-xl" [routerLink]="nextResourceUrl" *ngIf="isTypeOfCollection"
-    [disabled]="!nextResourceUrl" queryParamsHandling="preserve" accesskey=">">
-    <span *ngIf="logo">NEXT</span>
-    <mat-icon>skip_next</mat-icon>
-  </a>
-  <a mat-icon-button>
+ <div class="flex justify-center mt-3">
+  <!-- <ws-widget-btn-content-download [forPreview]="forPreview" [widgetData]="
+      pdfData
+        | pipePartialContent
+          : [
+              'identifier',
+              'contentType',
+              'resourceType',
+              'mimeType',
+              'downloadUrl',
+              'isExternal',
+      'artifactUrl'
+            ]
+    "></ws-widget-btn-content-download> -->
+    <!-- screenContent ==>{{ obj| json}} -->
+  <ws-widget-btn-content-like [forPreview]="forPreview" *ngIf="obj" [widgetData]="{
+      identifier: obj.identifier,
+      isDisabled: isPreviewMode
+    }"></ws-widget-btn-content-like>
+  <ws-widget-btn-content-share [forPreview]="forPreview" [widgetData]="obj"
+    [isDisabled]="isPreviewMode">
+  </ws-widget-btn-content-share>
+  <ws-widget-btn-goals [forPreview]="forPreview"></ws-widget-btn-goals>
+  <ws-widget-btn-playlist [forPreview]="forPreview" [widgetData]="{
+      contentId: obj?.identifier,
+      contentName: obj?.name,
+      contentType: 'Resource',
+      mode: 'dialog',
+      isDisabled: isPreviewMode
+    }"></ws-widget-btn-playlist>
+  <ws-widget-btn-content-feedback-v2 [forPreview]="forPreview" [widgetData]="{
+      identifier: obj.identifier,
+      name: obj.name,
+      isDisabled: isPreviewMode
+    }"></ws-widget-btn-content-feedback-v2>
+    
     <ws-widget-btn-fullscreen [widgetType]="'actionButton'" [widgetSubType]="'actionButtonFullscreen'"
-      [widgetData]="{ fsContainer: frameReference }"></ws-widget-btn-fullscreen>
-  </a>
+    [widgetData]="{ fsContainer: frameReference }"></ws-widget-btn-fullscreen>
+
+</div>
+
+
+
+
+ 
   <!-- <a mat-icon-button *ngIf="isTypeOfCollection" class="width-auto" [ngClass]="{'xsmall': !logo}"
     (click)="toggleSideBar()" accesskey="M">
     <mat-icon>menu</mat-icon>

@@ -1,9 +1,9 @@
 <section *ngIf="isNotEmbed">
   <viewer-viewer-top-bar *ngIf="fullScreenContainer" [forPreview]="forPreview" [frameReference]="fullScreenContainer"
-    (toggle)="toggleSideBar()">
+    (toggle)="toggleSideBar()" [screenContent]="content">
   </viewer-viewer-top-bar>
   <viewer-viewer-top-bar *ngIf="!fullScreenContainer" [forPreview]="forPreview" [frameReference]="fullScreenContainer"
-    (toggle)="toggleSideBar()">
+    (toggle)="toggleSideBar()" [screenContent]="content">
   </viewer-viewer-top-bar>
   <mat-sidenav-container autosize class="viewer-sidenav-container">
     <mat-sidenav [ngClass]="isTypeOfCollection?'viewer-sidenav':'viewer-sidenav-standalone'" position="start"
@@ -61,7 +61,7 @@
       <section *ngIf="status === 'pending'">
         <mat-spinner></mat-spinner>
       </section>
-      <router-outlet (activate)="getContentData($event)"></router-outlet>
+      <router-outlet class="ssss" (activate)="getContentData($event)"></router-outlet>
 
       <mat-tab-group>
         <mat-tab *ngIf="isTypeOfCollection" i18n-label label="Overview">

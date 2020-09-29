@@ -10,8 +10,6 @@ import { CreateCourseComponent } from './components/create-course/create-course.
 import { EditorContentService } from '../editor/services/editor-content.service'
 import { EditorService } from '../editor/services/editor.service'
 import { CatalogSelectModule } from './../editor/shared/components/catalog-select/catalog-select.module'
-
-
 @NgModule({
   declarations: [
     CreateComponent,

@@ -90,3 +90,12 @@
       }
     }
   }
+
+  ::ng-deep .mat-tab-link, ::ng-deep .mat-tab-label {
+    opacity:1;
+    font-size: 20px !important;
+  }
+
+  ::ng-deep .mat-tab-label-active {
+    border-bottom: solid 3px #969696;
+  }

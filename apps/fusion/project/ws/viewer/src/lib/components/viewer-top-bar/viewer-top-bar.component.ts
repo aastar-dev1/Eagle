@@ -1,17 +1,19 @@
 // import { IContent } from './../../../../../../../../web-services/src/models/content.model';
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, OnChanges } from '@angular/core'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
 import { ActivatedRoute } from '@angular/router'
 import { ConfigurationsService, NsPage, ValueService } from '@ws-widget/utils'
 import { Subscription } from 'rxjs'
 import { ViewerDataService } from '../../viewer-data.service'
 import { WidgetContentService } from '@ws-widget/collection/src/lib/_services/widget-content.service'
+import { ViewerUtilService } from '../../viewer-util.service'
+import { NsContent } from '@ws-widget/collection/src/lib/_services/widget-content.model'
 @Component({
   selector: 'viewer-viewer-top-bar',
   templateUrl: './viewer-top-bar.component.html',
   styleUrls: ['./viewer-top-bar.component.scss'],
 })
-export class ViewerTopBarComponent implements OnInit, OnDestroy {
+export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
   @Input() frameReference: any
   @Input() forPreview = false
   @Output() toggle = new EventEmitter()
@@ -32,6 +34,8 @@ export class ViewerTopBarComponent implements OnInit, OnDestroy {
   forChannel = false
   collection: any
   collectionCard: any
+  @Input() screenContent: NsContent.IContent | null = null
+  obj: NsContent.IContent | null = null
   constructor(
     private activatedRoute: ActivatedRoute,
     private domSanitizer: DomSanitizer,
@@ -39,11 +43,19 @@ export class ViewerTopBarComponent implements OnInit, OnDestroy {
     private configSvc: ConfigurationsService,
     private viewerDataSvc: ViewerDataService,
     private valueSvc: ValueService,
-    private contentSvc: WidgetContentService
+    private contentSvc: WidgetContentService,
+    private viewerSvc: ViewerUtilService
   ) {
     this.valueSvc.isXSmall$.subscribe(isXSmall => {
       this.logo = !isXSmall
     })
+  }
+
+  ngOnChanges() {
+    if (this.screenContent !== null) {
+      this.obj = this.screenContent
+    }
+   
   }
 
   ngOnInit() {
@@ -73,6 +85,17 @@ export class ViewerTopBarComponent implements OnInit, OnDestroy {
           })
         }
 
+        // this.viewerDataSubscription = this.viewerSvc
+        // .getContent(this.activatedRoute.snapshot.paramMap.get('resourceId') || '')
+        // .subscribe(data => {
+        //   this.pdfData = data
+        //   // if (this.pdfData) {
+        //   //   this.formDiscussionForumWidget(this.pdfData)
+        //   //   if (this.discussionForumWidget) {
+        //   //     this.discussionForumWidget.widgetData.isDisabled = true
+        //   //   }
+        //   // }    
+        // }
     if (this.configSvc.instanceConfig) {
       this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(
         this.configSvc.instanceConfig.logos.app,
@@ -96,6 +119,7 @@ export class ViewerTopBarComponent implements OnInit, OnDestroy {
         this.resourceName = this.viewerDataSvc.resource ? this.viewerDataSvc.resource.name : ''
       },
     )
+    this.viewerSvc.castResource .subscribe(user => this.screenContent = user)
   }
 
   ngOnDestroy() {

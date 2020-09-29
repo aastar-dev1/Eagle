@@ -7,6 +7,8 @@
   min-height: 56px;
   overflow: hidden;
   font: inherit;
+  background-color: #edf1e5 !important;
+  height: 60px !important;
 }
 
 .pdf-page-container {
@@ -36,6 +38,16 @@
   overflow-y: hidden;
 }
 
+// .pdf-scroll {
+//   overflow-y: scroll;
+//   height: 650px;
+// }
+
 .mat-toolbar-single-row {
   padding: 0;
+}
+
+::ng-deep .pdf-fullscreen img.action-icons {
+  border: none !important;
+  width: 20px;
 }

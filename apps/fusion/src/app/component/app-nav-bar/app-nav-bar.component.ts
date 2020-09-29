@@ -55,7 +55,7 @@ export class AppNavBarComponent implements OnInit, OnChanges {
     })
 
     // Header view
-  
+
   }
 
   ngOnInit() {

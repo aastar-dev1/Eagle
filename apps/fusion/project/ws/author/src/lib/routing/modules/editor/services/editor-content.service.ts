@@ -275,7 +275,7 @@ export class EditorContentService {
       }
     } catch (ex) {
       // tslint:disable-next-line: no-console
-      // console.log(ex)
+      // console.log(ex);
       returnValue = false
     }
     return returnValue

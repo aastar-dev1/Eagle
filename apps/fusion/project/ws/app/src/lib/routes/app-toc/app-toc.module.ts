@@ -94,7 +94,7 @@ import { AppTocAnalyticsTilesComponent } from './components/app-toc-analytics-ti
 import { KnowledgeArtifactDetailsComponent } from './components/knowledge-artifact-details/knowledge-artifact-details.component'
 import { ProfileImageModule } from '../../../../../../../library/ws-widget/collection/src/lib/_common/profile-image/profile-image.module'
 import { EditorService } from '../../../../../author/src/lib/routing/modules/editor/services/editor.service'
-import { ApiService, AccessControlService } from '../../../../../author/src/public-api';
+import { ApiService, AccessControlService } from '../../../../../author/src/public-api'
 import { LicenseComponent } from './components/license/license.component'
 
 @NgModule({

@@ -13,41 +13,6 @@
               <viewer-plugin-audio-native [artifactUrl]="audioData?.artifactUrl">
               </viewer-plugin-audio-native>
             </div>
-            <div class="flex justify-end mt-3">
-              <ws-widget-btn-content-download [forPreview]="forPreview" [widgetData]="
-                  audioData
-                    | pipePartialContent
-                      : [
-                          'identifier',
-                          'contentType',
-                          'resourceType',
-                          'mimeType',
-                          'downloadUrl',
-                          'isExternal',
-                  'artifactUrl'
-                        ]
-                ">
-              </ws-widget-btn-content-download>
-              <ws-widget-btn-content-like [forPreview]="forPreview"
-                [widgetData]="{ identifier: audioData.identifier, isDisabled: isPreviewMode }">
-              </ws-widget-btn-content-like>
-              <ws-widget-btn-content-share [forPreview]="forPreview" [widgetData]="audioData"
-                [isDisabled]="isPreviewMode">
-              </ws-widget-btn-content-share>
-              <ws-widget-btn-goals [forPreview]="forPreview"></ws-widget-btn-goals>
-              <ws-widget-btn-playlist [forPreview]="forPreview" [widgetData]="{
-                  contentId: audioData?.identifier,
-                  contentName: audioData?.name,
-                  contentType: 'Resource',
-                  mode: 'dialog',
-                  isDisabled: isPreviewMode
-                }"></ws-widget-btn-playlist>
-              <ws-widget-btn-content-feedback-v2 [forPreview]="forPreview" [widgetData]="{
-                  identifier: audioData.identifier,
-                  name: audioData.name,
-                  isDisabled: isPreviewMode
-                }"></ws-widget-btn-content-feedback-v2>
-            </div>
           </mat-card-content>
         </mat-card>
       </div>

@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { ConfigurationsService } from '@ws-widget/utils/src/public-api'
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser'
 import { HeaderServiceService } from './../../../../../../../../../../../../../src/app/services/header-service.service'
@@ -18,7 +18,7 @@ export class CourseHeaderComponent implements OnInit {
   @Input() buttonConfig: IActionButtonConfig | null = null
   @Output() action = new EventEmitter<string>()
   @Output() subAction = new EventEmitter<{ type: string; identifier: string; nodeClicked?: boolean }>()
- 
+
   requiredConfig: IActionButton[] = []
 
   constructor(private configSvc: ConfigurationsService, private domSanitizer: DomSanitizer,

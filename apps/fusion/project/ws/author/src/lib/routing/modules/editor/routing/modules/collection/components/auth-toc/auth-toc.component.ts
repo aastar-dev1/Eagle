@@ -15,7 +15,7 @@ import { IContentTreeNode } from './../../interface/icontent-tree'
 import { CollectionStoreService } from './../../services/store.service'
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
 import { map } from 'rxjs/operators'
-declare var $: any;
+declare var $: any
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ws-author-auth-toc',
@@ -138,10 +138,10 @@ export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-   if ( $('#cdk-drop-list-0 > mat-tree-node').hasClass('selected') === false) {
+   if ($('#cdk-drop-list-0 > mat-tree-node').hasClass('selected') === false) {
       $('#cdk-drop-list-0 > mat-tree-node:nth-child(2)').trigger('click')
       $('#cdk-drop-list-0 > mat-tree-node:nth-child(2)').find('button.mat-icon-button').trigger('click')
-   }   
+   }
   }
   ngOnDestroy() {
     this.loaderService.changeLoad.next(false)
@@ -150,14 +150,14 @@ export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
   onNodeSelect(node: IContentTreeNode) {
     if ($('#cdk-drop-list-0 > mat-tree-node').hasClass('selected')) {
       $('#cdk-drop-list-0 > mat-tree-node:nth-child(2)').removeClass('selected')
-   } 
+   }
     // if (node.id !== this.selectedNode) {
       this.action.emit({ type: 'editContent', identifier: node.identifier, nodeClicked: true })
       this.selectedNode = node.id
       this.editorStore.currentContent = node.identifier
       this.store.currentSelectedNode = node.id
       this.editorStore.changeActiveCont.next(node.identifier)
-  
+
     // }
   }
 
