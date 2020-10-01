@@ -73,7 +73,7 @@
     <div class="margin-top-xl margin-right-xl" *ngIf="currentStep === 2">
       <ng-container *ngIf="contentLoaded">
         <div class="flex justify-between">
-          <button (click)="sideNavBar.toggle()" *ngIf="mediumScreenSize" mat-icon-button>
+          <button (click)="sideNavBar.toggle()"  mat-icon-button>
             <mat-icon>menu</mat-icon>
           </button>
           <!-- <button type="button" (click)="showErrorLog()" mat-icon-button>
@@ -120,8 +120,12 @@
       </ws-auth-edit-meta>
     </div>
   </div>
-
-<!-- 
+  <button (click)="action('save')"  mat-menu-item>
+    <!-- <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Save content">
+      Save</mat-icon> -->
+    <ng-container i18n>Save</ng-container>
+  </button>
+<!--
   <button (click)="action('save')"  mat-menu-item>
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Save content">
       Save</mat-icon>
@@ -136,7 +140,7 @@
 </button>
 </div> -->
 
-  <div class="buttons margin-top-xl">
+  <!-- <div class="buttons margin-top-xl">
     <div class="button-grid margin-right-xxs cursor-pointer" (click)="toggleSettingButtons()">
       <button mat-icon-button class="padding-remove ws-mat-primary-background mat-elevation-z6">
         <mat-icon class="text-white" *ngIf="showSettingButtons" i18n-matTooltip matTooltip="Close">close</mat-icon>
@@ -160,7 +164,7 @@
           <mat-icon class="text-white small-icon ws-mat-primary-text">save</mat-icon>
         </button>
         <p class="mat-h5 margin-remove button-text" i18n-matTooltip matTooltip="save" i18n>
-          Save 
+          Save
         </p>
       </div>
       <div class="button-grid cursor-pointer" (click)="action('push'); submitPressed = true">
@@ -197,7 +201,7 @@
             </div>
     </ng-container>
   </div>
-</div>
+</div> -->
 
 <div *ngIf="previewMode">
   <mat-icon (click)="closePreview()" class="close-preview" matTooltip="Back" i18n-matTooltip="Back button to go to previous page">
