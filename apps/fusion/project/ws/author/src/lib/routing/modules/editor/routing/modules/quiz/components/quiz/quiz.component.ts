@@ -116,7 +116,8 @@ export class QuizComponent implements OnInit, OnDestroy {
         // Children
         if (courseChildren) {
           courseChildren.forEach((element: NSContent.IContentMeta) => {
-            if (element.categoryType === 'Assessment') {
+        //    console.log('element',element)
+            if (element.mimeType === "application/quiz") {
               this.allContents.push(element)
               this.quizStoreSvc.collectiveQuiz[element.identifier] = v.contents[0].data
                 ? v.contents[0].data.questions
@@ -247,6 +248,7 @@ export class QuizComponent implements OnInit, OnDestroy {
         },
       },
     }
+
     return this.editorService
       .updateContent(requestBody)
       .pipe(tap(() => this.metaContentService.resetOriginalMeta(meta, id)))
@@ -255,6 +257,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   wrapperForTriggerSave() {
     this.loaderService.changeLoad.next(true)
     const updatedQuizData = this.quizStoreSvc.collectiveQuiz[this.currentId]
+  
     const hasTimeChanged =
       (this.metaContentService.upDatedContent[this.currentId] || {}).duration &&
       this.quizDuration !== this.metaContentService.upDatedContent[this.currentId].duration

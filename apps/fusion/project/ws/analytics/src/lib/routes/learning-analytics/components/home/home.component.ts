@@ -867,7 +867,7 @@
       }
     }
     populateChartData() {
-      try{
+      try {
         if (this.contentData) {
           // all contents count
           this.contentUsers = this.contentData.content_users
@@ -878,7 +878,7 @@
           // users by City BarChart Data
           const barChartCityLabel: string[] = []
           const cityData: number[] = []
-          if(this.contentData.organizationLocationCity){
+          if (this.contentData.organizationLocationCity) {
             this.contentData.organizationLocationCity.forEach((city: any) => {
               if (barChartCityLabel.length < 20) {
                 barChartCityLabel.push(city.key)
@@ -1024,7 +1024,7 @@
           // users by Roles BarChart Data
           const barChartRolesLabel: string[] = []
           const rolesData: number[] = []
-          if(this.contentData.role){
+          if (this.contentData.role) {
             this.contentData.role.forEach((source: any) => {
               if (barChartRolesLabel.length < 20) {
                 barChartRolesLabel.push(source.key)
@@ -1353,7 +1353,7 @@
           // users by Device Category PieChart Data
           const pieChartDeviceCategoryLabel: string[] = []
           const deviceCategoryData: number[] = []
-          if(this.contentData.device_category){
+          if (this.contentData.device_category) {
             this.contentData.device_category.forEach((city: any) => {
               if (pieChartDeviceCategoryLabel.length < 20) {
                 pieChartDeviceCategoryLabel.push(city.key)
@@ -1644,8 +1644,7 @@
           }
         }
 
-    }
-    catch(e){
+    } catch (e) {
       // tslint:disable-next-line: no-console
       console.log(e)
     }
