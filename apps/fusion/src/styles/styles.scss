@@ -562,6 +562,7 @@ h3.shepherd-title {
 .action-button {
   margin-right: 17px !important;
 }
+
 .action-icons {
   border: solid 2px #f5d58d;
   border-radius: 8px;
@@ -569,33 +570,50 @@ h3.shepherd-title {
   width: 27px;
   margin-top: 1px;
   opacity: 0.7;
-  &:hover {
-    opacity: 1;
-  }
 }
 .player-nav-links {
   position: relative;
   top: -50%;
   z-index: 999;
+  opacity: 0;
 }
+
+#fullScreenContainer:hover > div{
+  opacity: 1;
+}
+
 
 .theme-igot.day-mode a.width-auto.mat-button[disabled][disabled]:hover {
   opacity: 0.4;
 }
 
+
 a.width-auto.mat-button {
-  width: 78px;
-  height: 72px;
+  width: 50px;
+  height: 67px;
   background-color: rgba(0, 0, 0, 0.7) !important;
-  padding-top: 12px;
-  opacity: 0;
-  &:hover {
-    opacity: 1;
-  }
+  padding-top: 13px;
+  border-radius: 0 !important;
+
+ 
+ 
+
   mat-icon {
     color: #fff;
     font-size: 42px;
   }
+}
+.prev-button .title, .next-button .title {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  padding: 21px 10px 26px;
+  color: #fff;
+}
+.next-button .title {
+ padding-right: 0px;
+}
+.prev-button .title {
+  padding-left: 0px;
 }
 
 ::ng-deep .pdf-fullscreen > button > span > img {

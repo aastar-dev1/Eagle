@@ -8,20 +8,25 @@
           <mat-card-content>
             <div id="fullScreenContainer"
               [ngClass]="{ 'video-player': htmlData?.isIframeSupported.toLowerCase() != 'no' }">
-              <viewer-plugin-html [htmlContent]="htmlData">
+              <viewer-plugin-html [htmlContent]="htmlData"> 
               </viewer-plugin-html>
 
               <div class="player-nav-links">
                 <div class="flex justify-between html">
+                  <div class="prev-button">
                   <a mat-button class="width-auto" [routerLink]="prevResourceUrl" queryParamsHandling="preserve"
                     accesskey="<" [disabled]="!prevResourceUrl">
                     <img src="/assets/images/left.svg" class="svg"/>
-                  </a>
+                  </a> <span class="title">{{prevTitle}} </span>
+                </div>
 
+                <div class="next-button">
+                  <span class="title">{{nextTitle}}</span>
                   <a mat-button class="width-auto mr-10" [routerLink]="nextResourceUrl" queryParamsHandling="preserve"
                     accesskey=">" [disabled]="!nextResourceUrl">
-                    <img src="/assets/images/right.svg" class="svg"/>
+                     <img src="/assets/images/right.svg" class="svg"/>
                   </a>
+                </div>
                 </div>
               </div>
 
@@ -44,5 +49,5 @@
   </div> -->
 </div>
 <div class="full-height-width-iframe" *ngIf="!isNotEmbed">
-  <viewer-plugin-html [htmlContent]="htmlData"></viewer-plugin-html>
+  <viewer-plugin-html [htmlContent]="htmlData" class="tet"></viewer-plugin-html>
 </div>
