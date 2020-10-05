@@ -442,7 +442,7 @@ export class CollectionStoreService {
       if (!this.contentService.isValid(lexId)) {
         errorMsg.push('Mandatory fields are missing')
       }
-      
+
       if (content.category === 'Resource') {
         if (content.mimeType === 'application/html' && !content.artifactUrl && !content.body) {
           errorMsg.push('Provide URL or populate "Body" field')
