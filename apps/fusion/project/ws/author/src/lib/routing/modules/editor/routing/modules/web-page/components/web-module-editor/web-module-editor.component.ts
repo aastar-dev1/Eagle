@@ -103,7 +103,7 @@ export class WebModuleEditorComponent implements OnInit, OnDestroy {
     this.showSettingButtons = this.accessService.rootOrg === 'client1'
     this.mediumSizeBreakpoint$.subscribe(isLtMedium => {
       this.sideNavBarOpened = !isLtMedium
-      this.mediumScreenSize = isLtMedium
+      this.mediumScreenSize = !isLtMedium
       if (isLtMedium) {
         this.showContent = false
       } else {
@@ -150,6 +150,7 @@ export class WebModuleEditorComponent implements OnInit, OnDestroy {
         }
       })
     }
+    this.contentLoaded = true
     this.allLanguages = this.authInitService.ordinals.subTitles
     this.loaderService.changeLoadState(true)
     // active lex id

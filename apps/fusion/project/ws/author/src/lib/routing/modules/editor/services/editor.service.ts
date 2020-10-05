@@ -264,7 +264,7 @@ export class EditorService {
       `${CONTENT_READ_HIERARCHY_AND_DATA}${id}`,
     ).pipe(
       catchError((v: any) => {
-
+        console.log(v)
         return of(v)
       }),
     )

@@ -209,6 +209,11 @@
                   <span class="text-white" i18n>Next</span>
                 </button>
               </div>
+              <button (click)="action('save')"  mat-menu-item>
+                <!-- <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Save content">
+                  Save</mat-icon> -->
+                <ng-container i18n>Save</ng-container>
+              </button>
             </ng-container>
             <div class="flex items-center justify-center h-64" *ngIf="!userData[currentId].pages.length">
               <span i18n>No pages found, Kindly add!</span>

@@ -117,12 +117,13 @@ export class QuizComponent implements OnInit, OnDestroy {
         // Children
         if (courseChildren) {
           courseChildren.forEach((element: NSContent.IContentMeta) => {
-         
+
             if (element.mimeType === 'application/quiz') {
               //do a get for the data
               this.allContents.push(element)
               this.editorService.getDataForContent(element.identifier).subscribe(data => {
                 v.contents=data;
+                console.log(data);
                 this.quizStoreSvc.collectiveQuiz[element.identifier] = v.contents[0].data
                 ? v.contents[0].data.questions
                 : []
@@ -139,6 +140,13 @@ export class QuizComponent implements OnInit, OnDestroy {
           })
 
         }
+        this.canEditJson = this.quizResolverSvc.canEdit(v.contents[0].content)
+        this.resourceType = v.contents[0].content.categoryType || 'Quiz'
+        this.quizDuration = v.contents[0].content.duration || 300
+        this.questionsArr =
+          this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier] || []
+        this.contentLoaded = true
+
         if (!this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier]) {
           this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier] = []
         }
@@ -170,6 +178,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       this.quizStoreSvc.currentId = id
       this.quizStoreSvc.changeQuiz(0)
     })
+    console.log(this.quizConfig)
   }
 
   customStepper(step: number) {
