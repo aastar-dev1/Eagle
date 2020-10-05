@@ -70,6 +70,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   activeIndexSubscription?: Subscription
   questionsArr: any[] = []
   quizConfig!: any
+  quizData!:any
   /**
    * reviwer and publisher cannot add or delete or edit quizs but can rearrange them
    */
@@ -116,10 +117,13 @@ export class QuizComponent implements OnInit, OnDestroy {
         // Children
         if (courseChildren) {
           courseChildren.forEach((element: NSContent.IContentMeta) => {
-        //    console.log('element',element)
-            if (element.mimeType === "application/quiz") {
+         
+            if (element.mimeType === 'application/quiz') {
+              //do a get for the data
               this.allContents.push(element)
-              this.quizStoreSvc.collectiveQuiz[element.identifier] = v.contents[0].data
+              this.editorService.getDataForContent(element.identifier).subscribe(data => {
+                v.contents=data;
+                this.quizStoreSvc.collectiveQuiz[element.identifier] = v.contents[0].data
                 ? v.contents[0].data.questions
                 : []
               this.canEditJson = this.quizResolverSvc.canEdit(v.contents[0].content)
@@ -128,6 +132,9 @@ export class QuizComponent implements OnInit, OnDestroy {
               this.questionsArr =
                 this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier] || []
               this.contentLoaded = true
+              }
+              )
+
             }
           })
 
@@ -257,7 +264,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   wrapperForTriggerSave() {
     this.loaderService.changeLoad.next(true)
     const updatedQuizData = this.quizStoreSvc.collectiveQuiz[this.currentId]
-  
+
     const hasTimeChanged =
       (this.metaContentService.upDatedContent[this.currentId] || {}).duration &&
       this.quizDuration !== this.metaContentService.upDatedContent[this.currentId].duration

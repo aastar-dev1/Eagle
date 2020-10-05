@@ -13,6 +13,7 @@ import {
   STATUS_CHANGE,
   SEARCH_V6_ADMIN,
   SEARCH_V6_AUTH,
+  CONTENT_READ_HIERARCHY_AND_DATA
 } from '@ws/author/src/lib/constants/apiEndpoints'
 import { NSApiResponse } from '@ws/author/src/lib/interface//apiResponse'
 import { NSApiRequest } from '@ws/author/src/lib/interface/apiRequest'
@@ -256,5 +257,16 @@ export class EditorService {
         author: this.accessService.userId,
         isAdmin: this.accessService.hasRole(['editor', 'admin']),
       })
+  }
+
+  getDataForContent(id: string){
+    return this.apiService.get<{ content: NSContent.IContentMeta, data: any }[]>(
+      `${CONTENT_READ_HIERARCHY_AND_DATA}${id}`,
+    ).pipe(
+      catchError((v: any) => {
+
+        return of(v)
+      }),
+    )
   }
 }
