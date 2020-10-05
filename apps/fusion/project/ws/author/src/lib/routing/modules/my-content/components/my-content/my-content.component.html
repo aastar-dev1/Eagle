@@ -7,7 +7,7 @@ class="matExpansion flex flex-middle margin-top-m margin-left-l margin-right-l p
 </button>
 </div> -->
 <mat-drawer-container class="example-container">
-  <mat-drawer mode="side"class="width-240" opened>
+  <mat-drawer mode="side" class="width-240" opened>
     <ng-container *ngIf="isNewDesign">
       <mat-accordion expanded *ngIf="allowAuthor">
         <mat-expansion-panel [expanded]="true" class="no-shadow">
@@ -245,14 +245,19 @@ class="matExpansion flex flex-middle margin-top-m margin-left-l margin-right-l p
                   <mat-icon>search</mat-icon>
                 </div>
               </div>
-              <div>
-                <mat-icon>border_all</mat-icon>
+              <div class="flex items-center">
+                <div (click)="listview=false"><span>
+                    <mat-icon class="pointer">border_all</mat-icon>
+                  </span>
+                </div>
+                <div (click)="listview=true"><span><mat-icon class="pointer">list</mat-icon></span></div>
               </div>
+
             </div>
             <div *ngIf="cardContent" class="flex flex-wrapped flex-dynamic margin-xs">
               <ng-template #oldDesign>
-                <div class="margin-l full-width-field" *ngFor="let content of cardContent">
-                  <ws-auth-root-content-card [data]="content" [forExpiry]="status === 'expiry'"
+                <div [ngClass]="listview == true ? 'full-width-field': 'margin-l'" *ngFor="let content of cardContent">
+                  <ws-auth-root-content-card [data]="content" [forExpiry]="status === 'expiry'" [changeView]="listview"
                     [forDelete]="status === 'deleted'" [ordinals]="ordinals" (action)="action($event)">
                   </ws-auth-root-content-card>
                 </div>

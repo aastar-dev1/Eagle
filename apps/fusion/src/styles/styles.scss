@@ -573,7 +573,7 @@ h3.shepherd-title {
 }
 .player-nav-links {
   position: relative;
-  top: -50%;
+  top: 20%;
   z-index: 999;
   opacity: 0;
 }
@@ -583,6 +583,13 @@ h3.shepherd-title {
 }
 
 
+span.title {
+  display: none !important;
+}
+a.width-auto:hover + span, .next-button:hover > span{
+  display: inline-block !important;
+}
+
 .theme-igot.day-mode a.width-auto.mat-button[disabled][disabled]:hover {
   opacity: 0.4;
 }
@@ -590,9 +597,9 @@ h3.shepherd-title {
 
 a.width-auto.mat-button {
   width: 50px;
-  height: 67px;
-  background-color: rgba(0, 0, 0, 0.7) !important;
-  padding-top: 13px;
+  background-color: #f0efef !important;
+  padding-top: 15px;
+  padding-bottom: 12px;
   border-radius: 0 !important;
 
  
@@ -605,9 +612,9 @@ a.width-auto.mat-button {
 }
 .prev-button .title, .next-button .title {
   display: inline-block;
-  background-color: rgba(0, 0, 0, 0.7) !important;
-  padding: 21px 10px 26px;
-  color: #fff;
+  background-color: #e7e6e6 !important;
+  padding: 23px 10px 19px;
+  color: #000;
 }
 .next-button .title {
  padding-right: 0px;
@@ -621,7 +628,7 @@ a.width-auto.mat-button {
   width: 18px !important;
 }
 .svg {
-  filter: invert(0.9);
+  filter: invert(0.2);
   width: 30px;
-  margin-top: 7px;
+  margin-top: -3px;
 }

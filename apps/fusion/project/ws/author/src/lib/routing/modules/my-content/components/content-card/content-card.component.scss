@@ -25,6 +25,34 @@ mat-card {
   height: 150px;
 }
 
+.action-buttons {
+  float: right;
+}
+.d-flex {
+  display: flex;
+}
+.item1 {
+  padding: 10px;
+ width: 25%;
+ 
+ img {
+   width: 48px
+ }
+}
+
+.item2 {
+  padding: 10px;
+ width: 60%;
+ font-size: 16px;
+}
+.item3 {
+  padding: 10px;
+ width: 15%
+}
+
+.fs-13 {
+  font-size: 13px;
+}
 mat-card-actions {
   position: absolute;
   bottom: $card-padding;
