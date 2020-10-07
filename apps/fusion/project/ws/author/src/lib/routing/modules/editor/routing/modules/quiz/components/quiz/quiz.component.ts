@@ -124,7 +124,6 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
               this.allContents.push(element)
               this.editorService.getDataForContent(element.identifier).subscribe(data => {
                 v.contents = data
-                console.log(data)
                 this.quizStoreSvc.collectiveQuiz[element.identifier] = v.contents[0].data
                 ? v.contents[0].data.questions
                 : []
@@ -179,11 +178,9 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
       this.quizStoreSvc.currentId = id
       this.quizStoreSvc.changeQuiz(0)
     })
-    console.log(this.quizConfig)
   }
 
   ngOnChanges() {
-    console.log('this.callSave===>', this.callSave)
     if (this.callSave) {
       this.save()
     }
