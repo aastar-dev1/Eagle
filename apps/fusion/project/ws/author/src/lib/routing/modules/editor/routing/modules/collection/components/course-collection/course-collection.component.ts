@@ -74,6 +74,8 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
   parentNodeId!: number
   expandedNodes = new Set<number>()
   treeControl!: FlatTreeControl<IContentTreeNode>
+  triggerQuizSave = false
+  triggerUploadSave = false
 
   constructor(
     private contentService: EditorContentService,
@@ -312,6 +314,12 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
 
   save(nextAction?: string) {
     const updatedContent = this.contentService.upDatedContent || {}
+    if (this.viewMode === 'assessment') {
+      this.triggerQuizSave = true
+    } else
+    if (this.viewMode === 'upload') {
+      this.triggerUploadSave = true
+    }
     if (
       Object.keys(updatedContent).length ||
       Object.keys(this.storeService.changedHierarchy).length

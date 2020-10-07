@@ -556,7 +556,7 @@ h3.shepherd-title {
 }
 
 .theme-igot.day-mode .mat-raised-button[disabled][disabled] {
-  background-color: white !important;
+  // background-color: white !important;
 }
 
 .action-button {
@@ -572,10 +572,11 @@ h3.shepherd-title {
   opacity: 0.7;
 }
 .player-nav-links {
-  position: relative;
-  top: 20%;
+  position: absolute;
+  top: 50%;
   z-index: 999;
   opacity: 0;
+  width: 100%;
 }
 
 #fullScreenContainer:hover > div{
@@ -599,7 +600,7 @@ a.width-auto.mat-button {
   width: 50px;
   background-color: #f0efef !important;
   padding-top: 15px;
-  padding-bottom: 12px;
+  padding-bottom: 11px;
   border-radius: 0 !important;
 
  

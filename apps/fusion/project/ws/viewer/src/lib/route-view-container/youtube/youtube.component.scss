@@ -46,6 +46,7 @@
 
 .video-player {
   width: 100%;
+  position: relative;
   @include breakpoint-xs {
     position: fixed;
     top: 55px;
