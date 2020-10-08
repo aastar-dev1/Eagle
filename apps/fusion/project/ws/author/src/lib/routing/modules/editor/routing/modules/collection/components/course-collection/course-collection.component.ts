@@ -304,7 +304,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       this.loaderService.changeLoad.next(false)
 
       this.subAction({ type: 'editContent', identifier: this.editorService.newCreatedLexid, nodeClicked: false })
-
+      this.createTopicForm.reset()
     }
   }
 
@@ -689,10 +689,10 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
         // console.log('content==>', content)
         if (['application/pdf', 'application/x-mpegURL'].includes(content.mimeType)) {
           this.viewMode = 'upload'
-        } else if (content.mimeType === 'application/html' && content.isExternal) {
+        }  else if (content.mimeType === 'application/html') {
           this.viewMode = 'curate'
-        } else if (content.mimeType === 'application/html') {
-          this.viewMode = 'curate'
+        } else if (content.mimeType === 'application/html' && !content.isExternal) {
+          this.viewMode = 'upload'
         } else if (content.mimeType === 'application/quiz') {
           this.viewMode = 'assessment'
         } else if (content.mimeType === 'application/web-module') {

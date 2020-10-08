@@ -91,9 +91,9 @@ export class FileUploadComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    // if (this.callSave) {
-    //   this.triggerUpload()
-    // }
+    if (this.callSave) {
+      this.triggerUpload()
+    }
   }
   triggerDataChange() {
     const updatedMeta = this.contentService.getUpdatedMeta(this.currentContent)

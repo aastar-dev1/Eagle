@@ -32,22 +32,30 @@ mat-card {
   display: flex;
 }
 .item1 {
-  padding: 10px;
- width: 25%;
- 
- img {
-   width: 48px
- }
+  padding: 10px 10px 10px 30px;
+  width: 7%;
+
+  img {
+    width: 48px;
+    margin-top: 0.6rem;
+  }
 }
 
 .item2 {
   padding: 10px;
- width: 60%;
- font-size: 16px;
+  width: 75%;
+  font-size: 16px;
 }
 .item3 {
   padding: 10px;
- width: 15%
+  width: 15%;
+}
+.max-width-name {
+  width: 122px;
+  max-width: 140px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .fs-13 {
@@ -98,5 +106,5 @@ mat-card-actions {
 }
 
 .border-bottom {
-   border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
 }

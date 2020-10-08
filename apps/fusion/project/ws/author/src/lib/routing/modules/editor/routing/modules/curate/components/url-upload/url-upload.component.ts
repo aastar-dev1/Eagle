@@ -20,6 +20,7 @@ import { URLCheckerClass } from './url-upload.helper'
 })
 export class UrlUploadComponent implements OnInit {
   urlUploadForm!: FormGroup
+  // iprAccepted = false
   currentContent = ''
   canUpdate = true
   @Input() isCollectionEditor = false
@@ -56,7 +57,7 @@ export class UrlUploadComponent implements OnInit {
   createForm() {
     this.urlUploadForm = this.formBuilder.group({
       artifactUrl: [''],
-      isIframeSupported: [{ value: 'Yes', disabled: false }, Validators.required],
+      isIframeSupported: [{ value: 'No', disabled: false }, Validators.required],
       mimeType: [],
       isInIntranet: ['', Validators.required],
       isExternal: [],
@@ -68,7 +69,7 @@ export class UrlUploadComponent implements OnInit {
     })
     this.urlUploadForm.controls.artifactUrl.valueChanges.subscribe(() => {
       if (this.canUpdate) {
-        // this.check()
+        this.check()
         // this.iprAccepted = false
       }
     })
@@ -89,7 +90,7 @@ export class UrlUploadComponent implements OnInit {
     //   this.iprAccepted = true
     // }
     if (meta.artifactUrl) {
-      // this.check()
+      this.check()
     } else {
       this.storeData()
     }
@@ -112,13 +113,13 @@ export class UrlUploadComponent implements OnInit {
   // }
 
   submit() {
-    // if (this.urlUploadForm.controls.artifactUrl.value) {
-    //   // this.snackBar.openFromComponent(NotificationComponent, {
-    //   //   data: {
-    //   //     type: Notify.IPR_DECLARATION,
-    //   //   },
-    //   //   duration: NOTIFICATION_TIME * 1000,
-    //   // })
+    // if (this.urlUploadForm.controls.artifactUrl.value && !this.iprAccepted) {
+    //   this.snackBar.openFromComponent(NotificationComponent, {
+    //     data: {
+    //       type: Notify.IPR_DECLARATION,
+    //     },
+    //     duration: NOTIFICATION_TIME * 1000,
+    //   })
     // } else {
       this.storeData()
       this.data.emit('save')
@@ -129,7 +130,7 @@ export class UrlUploadComponent implements OnInit {
     const originalMeta = this.contentService.getOriginalMeta(this.currentContent)
     const currentMeta = this.urlUploadForm.value
     const meta: any = {}
-    // if (currentMeta.artifactUrl) {
+    // if (currentMeta.artifactUrl && !this.iprAccepted) {
     //   return
     // }
     Object.keys(currentMeta).map(v => {
@@ -159,7 +160,7 @@ export class UrlUploadComponent implements OnInit {
   }
 
   check() {
-    const disableIframe = true
+    // const disableIframe = true
     const artifactUrl = this.urlUploadForm.controls.artifactUrl.value
     this.canUpdate = false
     if (
@@ -177,7 +178,7 @@ export class UrlUploadComponent implements OnInit {
             this.urlUploadForm.controls.mimeType.setValue('application/html')
             // disableIframe = false
           }
-          if (v.allowReplace) {
+          // if (v.allowReplace) {
             switch (v.source) {
               case 'youtube':
                 this.urlUploadForm.controls.artifactUrl.setValue(
@@ -187,20 +188,20 @@ export class UrlUploadComponent implements OnInit {
                 this.urlUploadForm.controls.mimeType.setValue('video/x-youtube')
                 break
             }
-          }
+          // }
+        } else {
+          this.urlUploadForm.controls.isIframeSupported.setValue('No')
         }
       })
     }
     this.canUpdate = true
     this.storeData()
-    const iframe = this.urlUploadForm.controls.isIframeSupported
-    // tslint:disable-next-line:no-console
-    console.log('disableIframe', disableIframe)
-    if (disableIframe) {
-      iframe.disable()
-    } else {
-      iframe.enable()
-    }
+    // const iframe = this.urlUploadForm.controls.isIframeSupported
+    // if (disableIframe) {
+    //   iframe.disable()
+    // } else {
+    //   iframe.enable()
+    // }
   }
 
   showError(formControl: AbstractControl) {

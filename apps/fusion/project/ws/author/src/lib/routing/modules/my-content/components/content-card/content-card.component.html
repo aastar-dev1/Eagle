@@ -67,8 +67,10 @@
         data.description
       }}</span> -->
     <p class="fs-13 margin-remove flex items-center">
-     <span class="mr-1"> by {{ data.creatorContacts[0].name}} </span> <span class="mr-1" *ngIf="data?.publishedOn"> on
-        {{ data?.publishedOn | date }},</span>
+     <span class="mr-1 max-width-name"> by {{ data.creatorContacts[0].name}} </span> <span class="mr-1" *ngIf="data?.publishedOn"> on
+        {{ data?.publishedOn | date }},</span> 
+        <span class="mr-1" *ngIf="!data?.publishedOn && data?.lastUpdatedOn"> on
+          {{ data?.lastUpdatedOn | date }},</span>
 
       <span class="mr-1"> {{data.viewCount}} Views, </span> <span  class="mr-1"> {{data.uniqueUsersCount}} Learners </span>
       <span class="flex items-center ml-3 mr-2">

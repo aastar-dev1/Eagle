@@ -84,9 +84,9 @@ class="matExpansion flex flex-middle margin-top-m margin-left-l margin-right-l p
           </mat-expansion-panel-header>
           <!-- Shown when logged in as admin-->
           <mat-list role="list">
-            <mat-list-item mat-button role="listitem" [routerLinkActive]="['active']">
+            <!-- <mat-list-item mat-button role="listitem" [routerLinkActive]="['active']">
               <a routerLink="/author/my-content" [queryParams]="{ status: 'all' }" i18n>All</a>
-            </mat-list-item>
+            </mat-list-item> -->
             <mat-list-item mat-button role="listitem" [routerLinkActive]="['active']">
               <a routerLink="/author/my-content" [queryParams]="{ status: 'draft' }" i18n>Draft</a>
             </mat-list-item>
@@ -182,12 +182,12 @@ class="matExpansion flex flex-middle margin-top-m margin-left-l margin-right-l p
                 </a>
               </div>
               <mat-icon class="px-1">chevron_right</mat-icon>
-              <div class="mat-subheading-2 margin-remove-bottom">
+              <!-- <div class="mat-subheading-2 margin-remove-bottom">
                 <a routerLink="/author/my-content" [queryParams]="{ status: 'all' }" i18n>
                   All
                 </a>
               </div>
-              <mat-icon class="px-1" *ngIf="status !== 'all'">chevron_right</mat-icon>
+              <mat-icon class="px-1" *ngIf="status !== 'all'">chevron_right</mat-icon> -->
               <div class="mat-subheading-2 margin-remove-bottom">
                 <a routerLink="/author/my-content" *ngIf="status === 'draft'" [queryParams]="{ status: 'draft' }"
                   i18n>Draft</a>
@@ -246,7 +246,7 @@ class="matExpansion flex flex-middle margin-top-m margin-left-l margin-right-l p
                 </div>
               </div>
               <div class="flex items-center">
-                <div (click)="listview=false"><span>
+                <div (click)="listview=false"><span class="mr-2">
                     <mat-icon class="pointer">border_all</mat-icon>
                   </span>
                 </div>
