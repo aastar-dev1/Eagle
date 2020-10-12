@@ -29,7 +29,7 @@ export class WebModuleComponent implements OnInit {
   viewerDataServiceSubscription: any
   prevTitle: string | null | undefined
   nextTitle: string | null | undefined
-  
+
   constructor(private activatedRoute: ActivatedRoute, private configSvc: ConfigurationsService,
               private viewerDataSvc: ViewerDataService) { }
 

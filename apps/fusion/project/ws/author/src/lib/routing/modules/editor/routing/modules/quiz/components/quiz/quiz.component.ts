@@ -70,7 +70,7 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
   activeIndexSubscription?: Subscription
   questionsArr: any[] = []
   quizConfig!: any
-  quizData!:any
+  quizData!: any
   /**
    * reviwer and publisher cannot add or delete or edit quizs but can rearrange them
    */
@@ -178,7 +178,6 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
       this.quizStoreSvc.currentId = id
       this.quizStoreSvc.changeQuiz(0)
     })
-    console.log(this.quizConfig)
   }
 
   ngOnChanges() {
