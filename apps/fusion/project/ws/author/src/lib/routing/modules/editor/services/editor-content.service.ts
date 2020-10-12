@@ -77,6 +77,19 @@ export class EditorContentService {
     delete this.upDatedContent[id]
   }
 
+  resetStatus() {
+    let isDraftPresent
+    Object.keys(this.originalContent).map(v => {
+      isDraftPresent = this.originalContent[v].status === 'Draft'
+    })
+    return isDraftPresent
+  }
+  changeStatusDraft() {
+    Object.keys(this.originalContent).map(v => {
+      this.originalContent[v].status = 'Draft'
+    })
+  }
+
   setUpdatedMeta(meta: NSContent.IContentMeta, id: string, emit = true) {
     this.upDatedContent[id] = {
       ...(this.upDatedContent[id] ? this.upDatedContent[id] : {}),

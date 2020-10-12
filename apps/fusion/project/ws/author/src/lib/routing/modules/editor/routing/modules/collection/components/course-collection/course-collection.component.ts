@@ -686,10 +686,10 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
         }
 
         const content = this.contentService.getUpdatedMeta(event.identifier)
-        // console.log('content==>', content)
+        // console.log('content', content)
         if (['application/pdf', 'application/x-mpegURL'].includes(content.mimeType)) {
           this.viewMode = 'upload'
-        }  else if (content.mimeType === 'application/html') {
+        }  else if ((content.mimeType === 'application/html' || content.mimeType === 'video/x-youtube') && content.isExternal) {
           this.viewMode = 'curate'
         } else if (content.mimeType === 'application/html' && !content.isExternal) {
           this.viewMode = 'upload'
@@ -870,7 +870,13 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       case 'InReview':
         return 'review'
       case 'Reviewed':
+       const isDraftPresent = this.contentService.resetStatus()
+        if (isDraftPresent) {
+          this.contentService.changeStatusDraft()
+          return 'sendForReview'
+        }
         return 'publish'
+        
       default:
         return 'sendForReview'
     }

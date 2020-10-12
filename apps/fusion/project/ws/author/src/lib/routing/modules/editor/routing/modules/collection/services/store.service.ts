@@ -189,6 +189,7 @@ export class CollectionStoreService {
         mimeType: meta.mimeType,
         contentType: meta.contentType,
         resourceType: parentData.categoryType || '',
+        isExternal: meta.isExternal ? meta.isExternal : false,
 
         // thumbnail: parentData.thumbnail,
         // appIcon: parentData.appIcon,
