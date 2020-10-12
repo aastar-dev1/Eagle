@@ -55,7 +55,7 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
     if (this.screenContent !== null) {
       this.obj = this.screenContent
     }
-   
+
   }
 
   ngOnInit() {
@@ -94,7 +94,7 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
         //   //   if (this.discussionForumWidget) {
         //   //     this.discussionForumWidget.widgetData.isDisabled = true
         //   //   }
-        //   // }    
+        //   // }
         // }
     if (this.configSvc.instanceConfig) {
       this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(

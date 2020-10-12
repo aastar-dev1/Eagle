@@ -14,7 +14,7 @@ import { BtnFullscreenModule, BtnPageBackModule ,
   BtnPlaylistModule,
   BtnContentFeedbackModule,
   // DisplayContentTypeIconModule,
-  BtnContentFeedbackV2Module,} from '@ws-widget/collection'
+  BtnContentFeedbackV2Module } from '@ws-widget/collection'
 import { RouterModule } from '@angular/router'
 import { ValueService, PipePartialContentModule } from '@ws-widget/utils'
 @NgModule({
