@@ -28,8 +28,10 @@
   $colorGreen: #5fa800;
   $colorRed: #ff0000;
   $footerColor: #f3f3f0;
-  $footerTextColor: #DEDFE0;
+  $pdfFooterColor: #edf1e5;
+  $footerTextColor: #7b6961 ;
   $dark-text: #424242;
+  $linkActiveColor: #929292;
 
 
   outline-color: mat-color($accent, lighter);
@@ -51,6 +53,10 @@
     .mat-toolbar {
       background-color: $footerColor !important;
   }
+  .mat-toolbar.pdf-nav-bar {
+    background-color: $pdfFooterColor !important;
+  }
+ 
   .ws-mat-primary-background-op70 {
     background: rgba($colorPrimary, 0.7);
   }
@@ -113,7 +119,7 @@
     // .mat-tab-group
     .mat-tab-nav-bar,
     .mat-form-field-outline-thick .mat-ink-bar {
-      background-color: $colorAccentLight !important
+      background-color: $linkActiveColor !important
     }
 
 
@@ -136,7 +142,7 @@
     .mat-tab-links {
       background: $colorPrimaryDark !important;
     }
-    .theme-igot.day-mode .mat-tab-link {
+    ::ng-deep .theme-igot.day-mode .mat-tab-label {
       font-size: 20px !important;
     }
 
@@ -206,7 +212,7 @@
     }
 
     .mat-ink-bar {
-      background-color: $colorAccent !important
+      background-color: $linkActiveColor !important
     }
 
     .mat-input-element {
@@ -289,7 +295,7 @@
     a[href^='http'],
     a[href^='mailto'],
     a[target='_blank'] {
-      color: $colorAccentDark;
+      color: $footerTextColor;
       background-color: transparent;
     }
   }

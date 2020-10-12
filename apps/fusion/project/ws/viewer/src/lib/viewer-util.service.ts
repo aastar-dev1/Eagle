@@ -1,7 +1,7 @@
 import { ConfigurationsService } from '@ws-widget/utils'
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { noop, Observable } from 'rxjs'
+import { noop, Observable, BehaviorSubject } from 'rxjs'
 import { NsContent } from '@ws-widget/collection'
 
 @Injectable({
@@ -15,6 +15,13 @@ export class ViewerUtilService {
   downloadRegex = new RegExp(`(/content-store/.*?)(\\\)?\\\\?['"])`, 'gm')
   authoringBase = '/apis/authContent/'
   constructor(private http: HttpClient, private configservice: ConfigurationsService) { }
+
+  private currentResource = new BehaviorSubject<NsContent.IContent | null>(null)
+  castResource = this.currentResource.asObservable()
+
+  editResourceData(newResource: any) {
+    this.currentResource.next(newResource)
+  }
 
   async fetchManifestFile(url: string) {
     this.setS3Cookie(url)
@@ -66,5 +73,7 @@ export class ViewerUtilService {
       ),
     )
   }
+
+
 
 }

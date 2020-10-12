@@ -34,6 +34,8 @@ export class PdfComponent implements OnInit {
   nextResourceUrl: string | null = null
   viewerDataServiceSubscription: any
   collectionType: any
+  prevTitle: string | null | undefined
+  nextTitle: string | null | undefined
 
   constructor(private activatedRoute: ActivatedRoute, private configSvc: ConfigurationsService,
               private viewerDataSvc: ViewerDataService) { }
@@ -48,6 +50,8 @@ export class PdfComponent implements OnInit {
     this.collectionType = this.activatedRoute.snapshot.queryParams.collectionType
 
     this.viewerDataServiceSubscription = this.viewerDataSvc.tocChangeSubject.subscribe(data => {
+      this.prevTitle = data.previousTitle
+      this.nextTitle = data.nextResTitle
       this.prevResourceUrl = data.prevResource
       this.nextResourceUrl = data.nextResource
     })

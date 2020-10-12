@@ -1,5 +1,5 @@
 import { DeleteDialogComponent } from '@ws/author/src/lib/modules/shared/components/delete-dialog/delete-dialog.component'
-import { Component, OnInit, ChangeDetectorRef, OnDestroy, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, ChangeDetectorRef, OnDestroy, Input, Output, EventEmitter, OnChanges } from '@angular/core'
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar'
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
 import { map, mergeMap, tap, catchError } from 'rxjs/operators'
@@ -47,7 +47,7 @@ import { AccessControlService } from '@ws/author/src/lib/modules/shared/services
   styleUrls: ['./quiz.component.scss'],
   providers: [QuizResolverService],
 })
-export class QuizComponent implements OnInit, OnDestroy {
+export class QuizComponent implements OnInit, OnChanges, OnDestroy {
 
   selectedQuizIndex!: number
   allContents: NSContent.IContentMeta[] = []
@@ -86,6 +86,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   @Input() isCollectionEditor = false
   @Input() isSubmitPressed = false
   @Output() data = new EventEmitter<string>()
+  @Input() callSave = false
 
   constructor(
     private router: Router,
@@ -119,11 +120,10 @@ export class QuizComponent implements OnInit, OnDestroy {
           courseChildren.forEach((element: NSContent.IContentMeta) => {
 
             if (element.mimeType === 'application/quiz') {
-              //do a get for the data
+              // do a get for the data
               this.allContents.push(element)
               this.editorService.getDataForContent(element.identifier).subscribe(data => {
-                v.contents=data;
-                console.log(data);
+                v.contents = data
                 this.quizStoreSvc.collectiveQuiz[element.identifier] = v.contents[0].data
                 ? v.contents[0].data.questions
                 : []
@@ -181,6 +181,11 @@ export class QuizComponent implements OnInit, OnDestroy {
     console.log(this.quizConfig)
   }
 
+  ngOnChanges() {
+    if (this.callSave) {
+      this.save()
+    }
+  }
   customStepper(step: number) {
     if (step === 1) {
       this.disableCursor = true

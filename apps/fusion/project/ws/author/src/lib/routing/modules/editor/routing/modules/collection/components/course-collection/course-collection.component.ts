@@ -74,6 +74,8 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
   parentNodeId!: number
   expandedNodes = new Set<number>()
   treeControl!: FlatTreeControl<IContentTreeNode>
+  triggerQuizSave = false
+  triggerUploadSave = false
 
   constructor(
     private contentService: EditorContentService,
@@ -302,7 +304,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       this.loaderService.changeLoad.next(false)
 
       this.subAction({ type: 'editContent', identifier: this.editorService.newCreatedLexid, nodeClicked: false })
-
+      this.createTopicForm.reset()
     }
   }
 
@@ -312,6 +314,12 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
 
   save(nextAction?: string) {
     const updatedContent = this.contentService.upDatedContent || {}
+    if (this.viewMode === 'assessment') {
+      this.triggerQuizSave = true
+    } else
+    if (this.viewMode === 'upload') {
+      this.triggerUploadSave = true
+    }
     if (
       Object.keys(updatedContent).length ||
       Object.keys(this.storeService.changedHierarchy).length
@@ -681,10 +689,10 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
         // console.log('content==>', content)
         if (['application/pdf', 'application/x-mpegURL'].includes(content.mimeType)) {
           this.viewMode = 'upload'
-        } else if (content.mimeType === 'application/html' && content.isExternal) {
+        }  else if (content.mimeType === 'application/html') {
           this.viewMode = 'curate'
-        } else if (content.mimeType === 'application/html') {
-          this.viewMode = 'curate'
+        } else if (content.mimeType === 'application/html' && !content.isExternal) {
+          this.viewMode = 'upload'
         } else if (content.mimeType === 'application/quiz') {
           this.viewMode = 'assessment'
         } else if (content.mimeType === 'application/web-module') {

@@ -38,3 +38,10 @@
 .header-spacer {
   flex: 1 1 auto;
 }
+.margin-fs {
+  margin-top: 7px;
+}
+::ng-deep .mt-3 img.action-icons {
+  border: none !important;
+  width: 20px;
+}

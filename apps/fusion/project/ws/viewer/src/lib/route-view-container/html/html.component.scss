@@ -52,6 +52,7 @@
 .video-player {
   width: 100%;
   height: 75vh;
+  position: relative;
 }
 
 .video-player-m {
@@ -134,4 +135,8 @@
 .full-height-width-iframe {
   height: 100vh;
   width: 100vw;
+}
+
+#fullScreenContainer {
+  min-height: 75vh;
 }

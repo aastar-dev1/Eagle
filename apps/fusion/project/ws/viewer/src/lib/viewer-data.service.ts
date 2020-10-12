@@ -6,6 +6,8 @@ export interface IViewerTocChangeEvent {
   tocAvailable: boolean
   nextResource: string | null
   prevResource: string | null
+  previousTitle: string | null
+  nextResTitle: string | null
 }
 export interface IViewerResourceOptions {
   page?: {
@@ -59,12 +61,15 @@ export class ViewerDataService {
     }
     this.changedSubject.next()
   }
-  updateNextPrevResource(isValid = true, prev: string | null = null, next: string | null = null) {
+  updateNextPrevResource({ isValid = true, prev = null, prevTitle, nextTitle, next = null }:
+     { isValid: boolean; prev: string | null; prevTitle: string | null; nextTitle: string | null; next?: string | null }) {
     this.tocChangeSubject.next(
       {
         tocAvailable: isValid,
         nextResource: next,
         prevResource: prev,
+        previousTitle: prevTitle,
+        nextResTitle: nextTitle,
       },
     )
   }

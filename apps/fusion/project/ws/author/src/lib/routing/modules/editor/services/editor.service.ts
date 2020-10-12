@@ -259,7 +259,7 @@ export class EditorService {
       })
   }
 
-  getDataForContent(id: string){
+  getDataForContent(id: string) {
     return this.apiService.get<{ content: NSContent.IContentMeta, data: any }[]>(
       `${CONTENT_READ_HIERARCHY_AND_DATA}${id}`,
     ).pipe(

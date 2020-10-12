@@ -555,13 +555,81 @@ h3.shepherd-title {
   line-height: 40px !important;
 }
 
+.theme-igot.day-mode .mat-raised-button[disabled][disabled] {
+  // background-color: white !important;
+}
+
 .action-button {
   margin-right: 17px !important;
 }
+
 .action-icons {
   border: solid 2px #f5d58d;
   border-radius: 8px;
   padding: 8px;
   width: 27px;
   margin-top: 1px;
+  opacity: 0.7;
+}
+.player-nav-links {
+  position: absolute;
+  top: 50%;
+  z-index: 999;
+  opacity: 0;
+  width: 100%;
+}
+
+#fullScreenContainer:hover > div{
+  opacity: 1;
+}
+
+
+span.title {
+  display: none !important;
+}
+a.width-auto:hover + span, .next-button:hover > span{
+  display: inline-block !important;
+}
+
+.theme-igot.day-mode a.width-auto.mat-button[disabled][disabled]:hover {
+  opacity: 0.4;
+}
+
+
+a.width-auto.mat-button {
+  width: 50px;
+  background-color: #f0efef !important;
+  padding-top: 15px;
+  padding-bottom: 11px;
+  border-radius: 0 !important;
+
+ 
+ 
+
+  mat-icon {
+    color: #fff;
+    font-size: 42px;
+  }
+}
+.prev-button .title, .next-button .title {
+  display: inline-block;
+  background-color: #e7e6e6 !important;
+  padding: 23px 10px 19px;
+  color: #000;
+}
+.next-button .title {
+ padding-right: 0px;
+}
+.prev-button .title {
+  padding-left: 0px;
+}
+
+::ng-deep .pdf-fullscreen > button > span > img {
+  border: none !important;
+  width: 18px !important;
+}
+.svg {
+  filter: invert(0.2);
+  width: 30px;
+  margin-top: -3px;
 }
