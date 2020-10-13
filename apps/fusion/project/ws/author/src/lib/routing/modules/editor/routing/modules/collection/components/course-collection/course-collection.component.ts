@@ -686,7 +686,8 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
         }
 
         const content = this.contentService.getUpdatedMeta(event.identifier)
-        // console.log('content', content)
+        // tslint:disable-next-line:no-console
+        console.log('content.isExternal', content.isExternal, 'content.mimeType', content.mimeType)
         if (['application/pdf', 'application/x-mpegURL'].includes(content.mimeType)) {
           this.viewMode = 'upload'
         }  else if ((content.mimeType === 'application/html' || content.mimeType === 'video/x-youtube') && content.isExternal) {
@@ -871,12 +872,12 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
         return 'review'
       case 'Reviewed':
        const isDraftPresent = this.contentService.resetStatus()
+       /**Change all content as draft, if one of the content is draft status */
         if (isDraftPresent) {
           this.contentService.changeStatusDraft()
           return 'sendForReview'
         }
         return 'publish'
-        
       default:
         return 'sendForReview'
     }
