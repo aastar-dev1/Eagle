@@ -264,9 +264,7 @@ export namespace NsContent {
   ]
   export const PLAYLIST_SUPPORTED_CONTENT_TYPES: EContentTypes[] = [
     EContentTypes.COURSE,
-    EContentTypes.MODULE,
     EContentTypes.PROGRAM,
-    EContentTypes.RESOURCE,
   ]
   export enum EMimeTypes {
     COLLECTION = 'application/vnd.ekstep.content-collection',

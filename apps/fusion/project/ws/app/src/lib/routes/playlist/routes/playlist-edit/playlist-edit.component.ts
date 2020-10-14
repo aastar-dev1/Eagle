@@ -28,6 +28,7 @@ export class PlaylistEditComponent implements OnInit {
 
   selectedContentIds = new Set<string>()
   changedContentIds = new Set<string>()
+  removedContentIds = new Set<string>();
   pageNavbar: Partial<NsPage.INavBackground> = this.configurationSvc.pageNavBar
 
   constructor(
@@ -63,7 +64,7 @@ export class PlaylistEditComponent implements OnInit {
 
   contentChanged(content: Partial<NsContent.IContent>, checked: boolean) {
     if (content && content.identifier) {
-      checked ? this.changedContentIds.add(content.identifier) : this.changedContentIds.delete(content.identifier)
+      checked ? this.changedContentIds.add(content.identifier) : this.playlist.contents = this.playlist.contents.filter(item => item.identifier !==  content.identifier)
     }
   }
 

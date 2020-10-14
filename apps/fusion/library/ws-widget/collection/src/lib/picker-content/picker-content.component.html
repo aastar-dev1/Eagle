@@ -75,7 +75,7 @@
     <mat-checkbox name="content-checkbox-{{searchResults?.indexOf(content)+1}}" *ngIf="selectionType !== 'radio'"
       [checked]="
         selectedContentIds?.has(content?.identifier) || preSelected?.has(content?.identifier)
-      " [disabled]="preSelected?.has(content?.identifier) && !widgetData?.enablePreselected"
+      "
       (change)="selectedContentChanged(content?.identifier, $event.checked)" class="leading-none pr-4">
     </mat-checkbox>
     <mat-radio-button name="content-radio-button-{{searchResults?.indexOf(content)+1}}"
