@@ -537,25 +537,30 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       if (originalMeta && this.isEditEnabled) {
         const expiryDate = this.contentForm.value.expiryDate
         const currentMeta: NSContent.IContentMeta = JSON.parse(JSON.stringify(this.contentForm.value))
-       
+
         // currentMeta.resourceType=currentMeta.categoryType;
         if (currentMeta.status === 'Draft') {
           const parentData = this.contentService.parentUpdatedMeta()
-          console.log(parentData && currentMeta.identifier != parentData.identifier);
-         if (parentData  && currentMeta.identifier != parentData.identifier) {
+
+         if (parentData  && currentMeta.identifier !== parentData.identifier) {
          //   currentMeta.thumbnail = parentData.thumbnail !== '' ? parentData.thumbnail : currentMeta.thumbnail
            // currentMeta.appIcon = parentData.appIcon !== '' ? parentData.appIcon : currentMeta.appIcon
-           if(!currentMeta.posterImage)
+           if (!currentMeta.posterImage) {
             currentMeta.posterImage = parentData.posterImage !== '' ? parentData.posterImage : currentMeta.posterImage
-            if(!currentMeta.subTitle)
+           }
+            if (!currentMeta.subTitle) {
             currentMeta.subTitle = parentData.subTitle !== '' ?  parentData.subTitle : currentMeta.subTitle
-            if(!currentMeta.body)
+            }
+            if (!currentMeta.body) {
             currentMeta.body = parentData.body !== '' ?  parentData.body : currentMeta.body
-            if(!currentMeta.categoryType)
+            }
+            if (!currentMeta.categoryType) {
             currentMeta.categoryType = parentData.categoryType !== '' ?  parentData.categoryType : currentMeta.categoryType
-            if(!currentMeta.resourceType)
+            }
+            if (!currentMeta.resourceType) {
             currentMeta.resourceType = parentData.resourceType !== '' ?  parentData.resourceType : currentMeta.resourceType
-            if(!currentMeta.sourceName){
+            }
+            if (!currentMeta.sourceName) {
             currentMeta.sourceName = parentData.sourceName !== '' ?  parentData.sourceName : currentMeta.sourceName
             }
          }
