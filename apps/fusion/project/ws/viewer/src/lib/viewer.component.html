@@ -16,6 +16,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content class="sidenavContent" #scrollableContent>
+  
       <section *ngIf="status === 'error'">
         <div *ngIf="errorWidgetData?.widgetData?.errorType" [wsResolverWidget]="errorWidgetData"></div>
         <div *ngIf="error.errorType === errorType.mimeTypeMismatch">

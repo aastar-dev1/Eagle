@@ -118,15 +118,17 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
         // Children
         if (courseChildren) {
           courseChildren.forEach((element: NSContent.IContentMeta) => {
-
             if (element.mimeType === 'application/quiz') {
               // do a get for the data
               this.allContents.push(element)
+
               this.editorService.getDataForContent(element.identifier).subscribe(data => {
                 v.contents = data
+
                 this.quizStoreSvc.collectiveQuiz[element.identifier] = v.contents[0].data
                 ? v.contents[0].data.questions
                 : []
+
               this.canEditJson = this.quizResolverSvc.canEdit(v.contents[0].content)
               this.resourceType = v.contents[0].content.categoryType || 'Quiz'
               this.quizDuration = v.contents[0].content.duration || 300
@@ -140,11 +142,11 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
           })
 
         }
-        this.canEditJson = this.quizResolverSvc.canEdit(v.contents[0].content)
-        this.resourceType = v.contents[0].content.categoryType || 'Quiz'
-        this.quizDuration = v.contents[0].content.duration || 300
-        this.questionsArr =
-          this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier] || []
+        // this.canEditJson = this.quizResolverSvc.canEdit(v.contents[0].content)
+        // this.resourceType = v.contents[0].content.categoryType || 'Quiz'
+        // this.quizDuration = v.contents[0].content.duration || 300
+        // this.questionsArr =
+        //   this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier] || []
         this.contentLoaded = true
 
         if (!this.quizStoreSvc.collectiveQuiz[v.contents[0].content.identifier]) {
@@ -181,9 +183,9 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges() {
-    if (this.callSave) {
-      this.save()
-    }
+    // if (this.callSave) {
+    //   this.save()
+    // }
   }
   customStepper(step: number) {
     if (step === 1) {
@@ -414,6 +416,7 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
         }
       })
     })
+    this.resourceType = this.metaContentService.getUpdatedMeta(this.currentId).identifier
     // console.log(dataWithAns, dataWithOutAns)
     const uploadData = this.resourceType === ASSESSMENT ? dataWithOutAns : dataWithAns
     return forkJoin([
