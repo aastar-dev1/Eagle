@@ -141,7 +141,7 @@ export class BtnPlaylistService {
         playlist.id,
         {
           contentIds,
-        },
+        }, false
       )
     }
     return throwError({ error: 'ERROR_PLAYLIST_UNDEFINED' })
