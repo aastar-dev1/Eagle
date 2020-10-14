@@ -109,6 +109,7 @@ export class BtnPlaylistService {
   }
 
   patchPlaylist(playlist: NsPlaylist.IPlaylist, newIDs?: string[]) {
+   // tslint:disable-next-line
     const content_ids = playlist.contents.map(content => {
       const id = { identifier: content.identifier }
       return id
@@ -141,7 +142,8 @@ export class BtnPlaylistService {
         playlist.id,
         {
           contentIds,
-        }, false
+        },
+        false
       )
     }
     return throwError({ error: 'ERROR_PLAYLIST_UNDEFINED' })
