@@ -184,7 +184,9 @@
         widgetData.deletedMode === 'greyOut' && !isLiveOrMarkForDeletion
           ? true
           : widgetData?.intranetMode === 'greyOut' && showIntranetContent
-    }" (click)="(showIntranetContent || !isLiveOrMarkForDeletion) && showSnackbar()">
+    }" (click)="(showIntranetContent || !isLiveOrMarkForDeletion) && showSnackbar()"
+    [mdePopoverTriggerFor]="appPopover" mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger"
+    [mdePopoverEnterDelay]="1000" [mdePopoverArrowWidth]="2" [mdePopoverOffsetX]="290" [mdePopoverOffsetY]="-340">
     <!-- <ws-widget-content-progress
       class="progress-bar"
       *ngIf="widgetData.content?.identifier"
@@ -213,8 +215,8 @@
             <div class="source-div">
               <!-- [src]="sourseIcon(widgetData.content.sourceName)" -->
               <!-- <img [src]="widgetData.content.creatorLogo" [id]="'source_' + widgetData.content.identifier" -->
-                <!-- class="source-icon" [wsUtilsDefaultThumbnail]="defaultSLogo" -->
-                <!-- [alt]="widgetData.content.sourceName || iGOT" [title]="widgetData.content.sourceName" /> -->
+              <!-- class="source-icon" [wsUtilsDefaultThumbnail]="defaultSLogo" -->
+              <!-- [alt]="widgetData.content.sourceName || iGOT" [title]="widgetData.content.sourceName" /> -->
             </div>
           </div>
         </a>
@@ -259,13 +261,13 @@
           <div class="mt-0 flex justify-between items-center absolute bottom-0 left-0 right-0 px-3 py-0">
             <div class="flex items-start">
               <ng-container [ngTemplateOutlet]="rating"></ng-container>
-            <div *ngIf="widgetData.content.duration" class="duration ml-2" i18n-title title="Duration">
-              <mat-icon>access_time</mat-icon>
-              <span class="time-text fs-13">{{ widgetData.content.duration | pipeDurationTransform: 'hms' }}</span>
+              <div *ngIf="widgetData.content.duration" class="duration ml-2" i18n-title title="Duration">
+                <mat-icon>access_time</mat-icon>
+                <span class="time-text fs-13">{{ widgetData.content.duration | pipeDurationTransform: 'hms' }}</span>
+              </div>
+
             </div>
-           
-          </div>
-            <div class="flex items-center">              
+            <div class="flex items-center">
               <button type="button" mat-icon-button i18n-aria-label aria-label="action items"
                 [matMenuTriggerFor]="cardMenu">
                 <mat-icon>more_vertical</mat-icon>
@@ -287,7 +289,75 @@
         </p>
       </ng-container>
     </div>
+
   </mat-card>
+
+
+  <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
+    <mat-card class="popover-card">
+      <mat-card-content>
+        <div class="ws-mat-primary-text mat-h1 ws-mat-text-block-fade-gradient" [matTooltip]="widgetData.content.name">
+          {{ widgetData.content.name }}
+        </div>
+        <div class="description-text ws-mat-text-block-fade-gradient mb-2" i18n-title title="Description">
+          {{ widgetData.content.description | pipeHtmlTagRemoval }}
+        </div>
+        <div class="description-text ws-mat-text-block-fade-gradient mb-2" i18n-title title="Sub title">
+          {{ widgetData.content.subTitle | pipeHtmlTagRemoval }}
+        </div>
+        <p>Course contents: {{ widgetData?.content?.children?.length}}</p>
+        <p *ngIf="widgetData.content?.creatorContacts">Author: {{ widgetData.content?.creatorContacts[0]?.name}}</p>
+        <p *ngIf="widgetData.content?.publishedOn">Published on: {{widgetData.content?.publishedOn | date }}</p>
+        <p *ngIf="widgetData.content?.uniqueUsersCount">Users enrolled: {{widgetData.content?.uniqueUsersCount}}</p>
+        <p *ngIf="widgetData.content?.sourceName">Source: {{widgetData.content.sourceName}}</p>
+        <p *ngIf="widgetData.content.duration" class="duration ml-2" i18n-title title="Duration">
+          <span>Duration: </span>
+          <mat-icon>access_time</mat-icon>
+          <span class="time-text fs-13">{{ widgetData.content.duration | pipeDurationTransform: 'hms' }}</span>
+        </p>
+        <!-- {{widgetData.content | json}} -->
+        <div class="mt-0 flex justify-between items-center left-0 right-0 px-3 py-0">
+          <div class="flex items-start">
+            <ng-container [ngTemplateOutlet]="rating"></ng-container>
+          </div>
+        </div>
+        <div class="mt-0 flex justify-between items-center absolute bottom-0 left-0 right-0 px-3 py-5">
+          <button mat-raised-button i18n class="header-btn text-white ws-mat-primary-background mat-button-base"
+            [routerLink]="(widgetData.content | pipeContentRoute).url">
+            View Course </button>
+
+          <div class="flex flex-middle">
+            <ws-widget-btn-content-share [widgetData]="widgetData.content"></ws-widget-btn-content-share>
+            <ws-widget-btn-content-like [color]="'primary'" class="flex items-center"
+              [widgetData]="widgetData.content | pipePartialContent: ['identifier']" [likesCount]="widgetData.likes">
+            </ws-widget-btn-content-like>
+
+            <ws-widget-btn-playlist *ngIf="btnPlaylistConfig" [widgetData]="btnPlaylistConfig">
+            </ws-widget-btn-playlist>
+            <ws-widget-btn-content-download [widgetData]="
+                widgetData.content
+                  | pipePartialContent
+                    : [
+                        'identifier',
+                        'contentType',
+                        'resourceType',
+                        'mimeType',
+                        'downloadUrl',
+                        'isExternal',
+                        'artifactUrl'
+                      ]
+              "></ws-widget-btn-content-download>
+
+            <mat-icon class="px-2 cursor-pointer" aria-label="Comment" i18n-aria-label matTooltip="Comment"
+              i18n-matTooltip="Comment Button" [routerLink]="(widgetData.content | pipeContentRoute).url"
+              [queryParams]="(widgetData.content | pipeContentRoute).queryParams" [fragment]="'discussion-forum'">
+              comment</mat-icon>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mde-popover>
+
 </ng-template>
 
 <ng-template #cardDescriptionBack>

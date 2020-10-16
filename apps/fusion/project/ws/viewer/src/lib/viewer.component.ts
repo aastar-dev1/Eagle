@@ -194,7 +194,7 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   toggleSideBar() {
-    this.sideNavBarOpened = true
+    this.sideNavBarOpened = !this.sideNavBarOpened
   }
 
   minimizeBar() {

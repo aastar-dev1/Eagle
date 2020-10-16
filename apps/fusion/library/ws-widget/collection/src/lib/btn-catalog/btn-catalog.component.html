@@ -10,7 +10,7 @@
   [fetchStatus]="catalogFetchStatus" isRoot="true">
 </ws-widget-tree-catalog-menu> -->
 
-<button mat-button (click)="getCatalog()" i18n-matTooltip matTooltip="Categories" class="fw-400 pt-5 pl-2" #rootTrigger="matMenuTrigger"
+<button mat-button (click)="getCatalog()" [autofocus]="false" i18n-matTooltip matTooltip="Categories" class="fw-400 pt-5 pl-2" #rootTrigger="matMenuTrigger"
   [matMenuTriggerFor]="rootMenu.childMenu">
   <span i18n>Categories</span>
   <span class="material-icons">

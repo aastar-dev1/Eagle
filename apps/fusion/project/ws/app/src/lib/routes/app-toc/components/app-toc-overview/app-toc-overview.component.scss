@@ -8,7 +8,11 @@
   .unit-meta-item {
     border-radius: 2px;
     box-sizing: border-box;
-    margin-bottom: $size-m;
+    margin-bottom: $size-xl;
+    margin-top: $size-m;
+    h2 {
+      font-size: 22px;
+    }
   }
 
   @include breakpoint-xs {

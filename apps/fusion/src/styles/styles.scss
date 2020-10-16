@@ -596,6 +596,17 @@ a.width-auto:hover + span, .next-button:hover > span{
 }
 
 
+.mat-button-focus-overlay {
+  background-color: transparent!important;
+}
+.mat-menu-content:not(:empty) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.mat-menu-panel {
+  min-height: auto !important;
+}
+
 a.width-auto.mat-button {
   width: 50px;
   background-color: #f0efef !important;

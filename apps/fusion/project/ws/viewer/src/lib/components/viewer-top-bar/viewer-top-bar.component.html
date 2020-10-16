@@ -70,11 +70,8 @@
 </div>
 
 
-
-
- 
-  <!-- <a mat-icon-button *ngIf="isTypeOfCollection" class="width-auto" [ngClass]="{'xsmall': !logo}"
+  <a mat-icon-button *ngIf="isTypeOfCollection" class="width-auto" 
     (click)="toggleSideBar()" accesskey="M">
-    <mat-icon>menu</mat-icon>
-  </a> -->
+    <mat-icon [ngClass]="logo ? 'hidden' : 'xsmall'">menu</mat-icon>
+  </a>
 </mat-toolbar>

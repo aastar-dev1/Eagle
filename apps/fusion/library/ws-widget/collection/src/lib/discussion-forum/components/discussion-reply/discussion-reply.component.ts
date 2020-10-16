@@ -80,4 +80,8 @@ export class DiscussionReplyComponent implements OnInit {
     this.updatedBody = eventData.htmlText
   }
 
+  cancelReply() {
+    this.editMode = false
+    this.reply.postContent.body = ''
+  }
 }
