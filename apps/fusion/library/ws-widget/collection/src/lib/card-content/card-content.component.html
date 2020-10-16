@@ -185,7 +185,7 @@
           ? true
           : widgetData?.intranetMode === 'greyOut' && showIntranetContent
     }" (click)="(showIntranetContent || !isLiveOrMarkForDeletion) && showSnackbar()"
-    [mdePopoverTriggerFor]="appPopover" mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger"
+    [mdePopoverTriggerFor]="appPopover" mdePopoverTriggerOn="hover" #popoverTrigger="mdePopoverTrigger"
     [mdePopoverEnterDelay]="1000" [mdePopoverArrowWidth]="2" [mdePopoverOffsetX]="290" [mdePopoverOffsetY]="-340">
     <!-- <ws-widget-content-progress
       class="progress-bar"
