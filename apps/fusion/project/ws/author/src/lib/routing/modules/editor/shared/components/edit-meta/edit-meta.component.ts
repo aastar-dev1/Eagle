@@ -538,17 +538,31 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         const expiryDate = this.contentForm.value.expiryDate
         const currentMeta: NSContent.IContentMeta = JSON.parse(JSON.stringify(this.contentForm.value))
 
+        // currentMeta.resourceType=currentMeta.categoryType;
         if (currentMeta.status === 'Draft') {
           const parentData = this.contentService.parentUpdatedMeta()
-         if (parentData) {
+
+         if (parentData  && currentMeta.identifier !== parentData.identifier) {
          //   currentMeta.thumbnail = parentData.thumbnail !== '' ? parentData.thumbnail : currentMeta.thumbnail
            // currentMeta.appIcon = parentData.appIcon !== '' ? parentData.appIcon : currentMeta.appIcon
+           if (!currentMeta.posterImage) {
             currentMeta.posterImage = parentData.posterImage !== '' ? parentData.posterImage : currentMeta.posterImage
+           }
+            if (!currentMeta.subTitle) {
             currentMeta.subTitle = parentData.subTitle !== '' ?  parentData.subTitle : currentMeta.subTitle
+            }
+            if (!currentMeta.body) {
             currentMeta.body = parentData.body !== '' ?  parentData.body : currentMeta.body
+            }
+            if (!currentMeta.categoryType) {
             currentMeta.categoryType = parentData.categoryType !== '' ?  parentData.categoryType : currentMeta.categoryType
+            }
+            if (!currentMeta.resourceType) {
             currentMeta.resourceType = parentData.resourceType !== '' ?  parentData.resourceType : currentMeta.resourceType
-
+            }
+            if (!currentMeta.sourceName) {
+            currentMeta.sourceName = parentData.sourceName !== '' ?  parentData.sourceName : currentMeta.sourceName
+            }
          }
         }
         const meta = <any>{}
@@ -566,6 +580,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
             JSON.stringify(currentMeta[v as keyof NSContent.IContentMeta]) !==
             JSON.stringify(originalMeta[v as keyof NSContent.IContentMeta]) && v !== 'jobProfile'
           ) {
+
             if (
               currentMeta[v as keyof NSContent.IContentMeta] ||
               (this.authInitService.authConfig[v as keyof IFormMeta].type === 'boolean' &&
@@ -588,7 +603,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         if (this.stage >= 1 && !this.type) {
           delete meta.artifactUrl
         }
-
         this.contentService.setUpdatedMeta(meta, this.contentMeta.identifier)
       }
     } catch (ex) {

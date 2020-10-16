@@ -860,7 +860,7 @@
                   [required]="checkCondition('resourceType', 'required')">
                   <mat-option *ngIf="!checkCondition('resourceType', 'required')" i18n [value]="null">None
                   </mat-option>
-                  <mat-option *ngFor="let resource of ordinals.categoryType" [value]="resource">
+                  <mat-option *ngFor="let resource of ordinals.resourceType" [value]="resource">
                     {{ resource }}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="showError('resourceType')" i18n>Category Type is mandatory

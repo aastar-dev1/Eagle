@@ -48,7 +48,7 @@
               availableFilters: 'contentType',
               preselected: selectedContentIds,
               enablePreselected: true,
-              showChips: true,
+              showChips: false,
               chipNamesHash: chipNamesHash
             }" (suggestedDurationChange)="suggestedDuration = $event"
             (change)="contentChanged($event?.content, $event?.checked)">

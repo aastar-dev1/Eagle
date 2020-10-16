@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { MatSnackBar } from '@angular/material'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { PLAYLIST_TITLE_MIN_LENGTH, PLAYLIST_TITLE_MAX_LENGTH } from '../../constants/playlist.constant'
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'ws-app-playlist-edit',
@@ -28,6 +29,7 @@ export class PlaylistEditComponent implements OnInit {
 
   selectedContentIds = new Set<string>()
   changedContentIds = new Set<string>()
+  removedContentIds = new Set<string>()
   pageNavbar: Partial<NsPage.INavBackground> = this.configurationSvc.pageNavBar
 
   constructor(
@@ -37,6 +39,7 @@ export class PlaylistEditComponent implements OnInit {
     private playlistSvc: BtnPlaylistService,
     private snackBar: MatSnackBar,
     private configurationSvc: ConfigurationsService,
+    private location: Location
   ) {
     this.editPlaylistForm = this.fb.group({
       title: [
@@ -63,7 +66,8 @@ export class PlaylistEditComponent implements OnInit {
 
   contentChanged(content: Partial<NsContent.IContent>, checked: boolean) {
     if (content && content.identifier) {
-      checked ? this.changedContentIds.add(content.identifier) : this.changedContentIds.delete(content.identifier)
+      // tslint:disable-next-line: max-line-length
+      checked ? this.changedContentIds.add(content.identifier) : this.playlist.contents = this.playlist.contents.filter(item => item.identifier !==  content.identifier)
     }
   }
 
@@ -90,8 +94,8 @@ export class PlaylistEditComponent implements OnInit {
       this.playlistSvc.patchPlaylist(this.playlist, Array.from(this.changedContentIds)).subscribe(() => {
         // if (!this.changedContentIds.size) {
         this.snackBar.open(this.editPlaylistSuccess.nativeElement.value)
-        this.router.navigate([this.router.url.replace('/edit', '')])
-
+        // this.router.navigate([this.router.url.replace('/edit', '')])
+        this.location.back()
         // }
       })
     }
