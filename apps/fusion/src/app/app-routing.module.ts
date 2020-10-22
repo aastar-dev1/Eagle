@@ -358,6 +358,7 @@ const routes: Routes = [
     data: {
       pageType: 'feature',
       pageKey: 'about',
+      isPublic: true,
     },
     resolve: {
       pageData: PageResolve,

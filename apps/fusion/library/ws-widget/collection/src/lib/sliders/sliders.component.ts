@@ -11,7 +11,7 @@ import { EventService } from '../../../../utils/src/public-api'
 })
 export class SlidersComponent extends WidgetBaseComponent
   implements OnInit, NsWidgetResolver.IWidgetData<ICarousel[]> {
-  @Input() widgetData!: ICarousel[]
+  @Input() widgetData!: any
 
   currentIndex = 0
   slideInterval: Subscription | null = null
@@ -22,6 +22,10 @@ export class SlidersComponent extends WidgetBaseComponent
 
   ngOnInit() {
     this.reInitiateSlideInterval()
+    if (!this.widgetData) {
+      // tslint:disable-next-line:max-line-length
+      this.widgetData = '[{"banners":{"l":"assets/instances/eagle/banners/home/1/l.png","m":"assets/instances/eagle/banners/home/1/l.png","s":"assets/instances/eagle/banners/home/1/l.png","xl":"assets/instances/eagle/banners/home/1/xl.png","xs":"assets/instances/eagle/banners/home/1/xs.png","xxl":"assets/instances/eagle/banners/home/1/xl.png"},"redirectUrl":"/app/goals/me/all","queryParams":{"q":"Salesforce","lang":"en","f":"{}"},"title":""},{"banners":{"l":"assets/instances/eagle/banners/home/2/l.png","m":"assets/instances/eagle/banners/home/2/l.png","s":"assets/instances/eagle/banners/home/2/l.png","xl":"assets/instances/eagle/banners/home/2/xl.png","xs":"assets/instances/eagle/banners/home/2/xs.png","xxl":"assets/instances/eagle/banners/home/2/xl.png"},"redirectUrl":"/app/goals/me/all","queryParams":{"q":"Salesforce","lang":"en","f":"{}"},"title":""},{"banners":{"l":"assets/instances/eagle/banners/home/3/l.png","m":"assets/instances/eagle/banners/home/3/s.png","s":"assets/instances/eagle/banners/home/3/s.png","xl":"assets/instances/eagle/banners/home/3/xl.png","xs":"assets/instances/eagle/banners/home/3/xs.png","xxl":"assets/instances/eagle/banners/home/3/xl.png"},"redirectUrl":"/app/goals/me/all","queryParams":{"q":"Salesforce","lang":"en","f":"{}"},"title":""}]'
+    }
   }
   reInitiateSlideInterval() {
     if (this.widgetData.length > 1) {

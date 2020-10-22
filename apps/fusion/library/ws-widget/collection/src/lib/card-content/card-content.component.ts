@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { MatSnackBar } from '@angular/material'
 import { NsWidgetResolver, WidgetBaseComponent } from '@ws-widget/resolver'
-import { ConfigurationsService, EventService, UtilityService, NsInstanceConfig } from '@ws-widget/utils'
+import { ConfigurationsService, EventService, UtilityService, NsInstanceConfig, AuthKeycloakService } from '@ws-widget/utils'
 import { Subscription } from 'rxjs'
 import { NsGoal } from '../btn-goals/btn-goals.model'
 import { NsPlaylist } from '../btn-playlist/btn-playlist.model'
@@ -29,16 +29,22 @@ export class CardContentComponent extends WidgetBaseComponent
   sourceLogos: NsInstanceConfig.ISourceLogo[] | undefined
 
   isIntranetAllowedSettings = false
+  showLoggedInCard = false
   constructor(
     private events: EventService,
     private configSvc: ConfigurationsService,
     private utilitySvc: UtilityService,
     private snackBar: MatSnackBar,
+    private authSvc: AuthKeycloakService,
   ) {
     super()
   }
 
   ngOnInit() {
+    const url = window.location.href
+    if (url.indexOf('login') > 0) {
+      this.showLoggedInCard = true
+    }
     this.isIntranetAllowedSettings = this.configSvc.isIntranetAllowed
     this.prefChangeSubscription = this.configSvc.prefChangeNotifier.subscribe(() => {
       this.isIntranetAllowedSettings = this.configSvc.isIntranetAllowed
@@ -127,6 +133,10 @@ export class CardContentComponent extends WidgetBaseComponent
     if (this.prefChangeSubscription) {
       this.prefChangeSubscription.unsubscribe()
     }
+  }
+
+  login(key: 'E' | 'N' | 'S') {
+    this.authSvc.login(key, document.baseURI)
   }
 
   ngAfterViewInit() {

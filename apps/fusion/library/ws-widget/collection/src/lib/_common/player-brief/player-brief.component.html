@@ -1,5 +1,5 @@
 <div class="md:px-2">
-  <div [ngClass]="{'pt-5 pr-5':tocStructure==null}">
+  <!-- <div [ngClass]="{'pt-5 pr-5':tocStructure==null}">
     <ws-widget-mark-as-complete [forPreview]="forPreview" [content]="content"></ws-widget-mark-as-complete>
     <ng-container *ngIf="content && isDownloadable">
       <mat-card class="mb-4">
@@ -65,7 +65,7 @@
         </h3>
       </div>
       <mat-divider *ngIf="tocConfig?.atAGlance?.sourceShortName?.enabled && content?.sourceShortName"></mat-divider>
-      <!-- Structure -->
+      
       <div class="info-item"
         *ngIf="tocConfig?.atAGlance?.structure?.enabled && hasTocStructure && content?.children?.length">
         <h3 class="item-heading ws-mat-primary-text">{{tocConfig?.atAGlance?.structure?.displayName}}</h3>
@@ -219,12 +219,12 @@
         </button>
       </div>
     </mat-card>
-  </div>
-  <div [ngClass]="{'pt-5 pr-5':tocStructure==null}">
+  </div> -->
+  <!-- <div [ngClass]="{'pt-5 pr-5':tocStructure==null}">
     <ws-widget-user-content-rating class="mb-4 block" *ngIf="content?.identifier" [contentId]="content?.identifier"
       [isDisabled]="isPreviewMode" [forPreview]="forPreview">
     </ws-widget-user-content-rating>
-  </div>
+  </div> -->
 
   <!-- <div class="width-1-4">
     <div class="hidden sm:block margin-bottom-m" *ngIf="content?.creatorDetails?.length">
@@ -242,7 +242,7 @@
       </ng-container>
     </div>
   </div> -->
-</div>
+<!-- </div> -->
 
 <!-- <ng-template #creators let-authors="authors" let-title="title">
   <mat-card>

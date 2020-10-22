@@ -2,6 +2,7 @@
 @import 'ws-mixins';
 
 .footer-container {
+  background-color: #f3f3f0;
   display: flex;
   justify-content: space-between;
   @include breakpoint-xs {

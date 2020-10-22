@@ -17,6 +17,7 @@ import { BtnContentFeedbackV2Component } from './components/btn-content-feedback
 import { BtnContentFeedbackDialogV2Component } from './components/btn-content-feedback-dialog-v2/btn-content-feedback-dialog-v2.component'
 import { FeedbackSnackbarComponent } from './components/feedback-snackbar/feedback-snackbar.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { UserContentRatingModule } from './../_common/user-content-rating/user-content-rating.module'
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    UserContentRatingModule,
   ],
   exports: [
     BtnContentFeedbackV2Component,

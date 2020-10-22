@@ -61,6 +61,7 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
   isFromAuthoring = false
 
   changeEventSubscription: Subscription | null = null
+  callPublicApi = false
 
   constructor(
     private contentStripSvc: ContentStripMultipleService,
@@ -79,6 +80,9 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
     this.isFromAuthoring = this.searchArray.some((word: string) => {
       return url.indexOf(word) > -1
     })
+    if (url.indexOf('login') > 0) {
+      this.callPublicApi = true
+    }
     this.initData()
   }
 
@@ -167,34 +171,66 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
       } else {
         strip.request.search.locale = ['en']
       }
-      this.contentSvc.search(strip.request.search).subscribe(
-        results => {
-          const showViewMore = Boolean(
-            results.result.length > 5 && strip.stripConfig && strip.stripConfig.postCardForSearch,
-          )
-          const viewMoreUrl = showViewMore
-            ? {
-              path: '/app/search/learning',
-              queryParams: {
-                q: strip.request && strip.request.search && strip.request.search.query,
-                f: JSON.stringify(
-                  strip.request && strip.request.search && strip.request.search.filters,
-                ),
-              },
-            }
-            : null
-          this.processStrip(
-            strip,
-            this.transformContentsToWidgets(results.result, strip),
-            'done',
-            calculateParentStatus,
-            viewMoreUrl,
-          )
-        },
-        () => {
-          this.processStrip(strip, [], 'error', calculateParentStatus, null)
-        },
-      )
+      if (!this.callPublicApi) {
+        this.contentSvc.search(strip.request.search).subscribe(
+          results => {
+            const showViewMore = Boolean(
+              results.result.length > 5 && strip.stripConfig && strip.stripConfig.postCardForSearch,
+            )
+            const viewMoreUrl = showViewMore
+              ? {
+                path: '/app/search/learning',
+                queryParams: {
+                  q: strip.request && strip.request.search && strip.request.search.query,
+                  f: JSON.stringify(
+                    strip.request && strip.request.search && strip.request.search.filters,
+                  ),
+                },
+              }
+              : null
+            this.processStrip(
+              strip,
+              this.transformContentsToWidgets(results.result, strip),
+              'done',
+              calculateParentStatus,
+              viewMoreUrl,
+            )
+          },
+          () => {
+            this.processStrip(strip, [], 'error', calculateParentStatus, null)
+          },
+        )
+      } else {
+         const results = this.contentSvc.getLatestCourse()
+         if (results) {
+
+            const showViewMore = Boolean(
+              results.result.length > 5 && strip.stripConfig && strip.stripConfig.postCardForSearch,
+            )
+            const viewMoreUrl = showViewMore
+              ? {
+                path: '/app/search/learning',
+                queryParams: {
+                  q: strip.request && strip.request.search && strip.request.search.query,
+                  f: JSON.stringify(
+                    strip.request && strip.request.search && strip.request.search.filters,
+                  ),
+                },
+              }
+              : null
+            this.processStrip(
+              strip,
+              this.transformContentsToWidgets(results.result, strip),
+              'done',
+              calculateParentStatus,
+              viewMoreUrl,
+            )
+         }
+        // .subscribe(results => {
+        //   console.log('else result')
+        // })
+      }
+
     }
   }
   fetchFromSearchRegionRecommendation(
