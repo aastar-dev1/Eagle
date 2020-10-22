@@ -1,5 +1,5 @@
 
-<ws-app-public-nav-bar *ngIf="(authSvc.isLoggedIn$ | async) === false" ></ws-app-public-nav-bar>
+<ws-app-public-nav-bar></ws-app-public-nav-bar>
 <div class="mat-elevation-z4 mb-10">
   <ng-container *ngIf="!error && pageLayout" [wsResolverWidget]="pageLayout"></ng-container>
   <!-- <ng-container *ngIf="!error" [wsResolverWidget]="{
