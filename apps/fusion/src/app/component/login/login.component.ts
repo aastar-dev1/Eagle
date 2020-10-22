@@ -9,12 +9,10 @@ import {
 } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { NsWidgetResolver, WidgetBaseComponent } from '@ws-widget/resolver'
-import {
-  AuthKeycloakService} from '@ws-widget/utils'
 import { MobileAppsService } from '../../services/mobile-apps.service'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
 import { ILoginDescriptiveFooterConfig, IWSPublicLoginConfig } from './login.model'
-import { ConfigurationsService, NsPage } from '@ws-widget/utils'
+import { ConfigurationsService, NsPage, AuthKeycloakService } from '@ws-widget/utils'
 import { Subscription } from 'rxjs'
 
 @Component({
