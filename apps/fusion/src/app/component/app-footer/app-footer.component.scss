@@ -2,6 +2,7 @@
 @import 'ws-mixins';
 
 .footer-container {
+  background-color: #f3f3f0;
   display: flex;
   justify-content: space-between;
   @include breakpoint-xs {
@@ -48,11 +49,11 @@
 
 }
 
-@media only screen and (max-width: 760px) {
-  .footer-container {
-    display: none;
-  }
-}
+// @media only screen and (max-width: 760px) {
+//   .footer-container {
+//     display: none;
+//   }
+// }
 
 @media only screen and ( min-width: 2000px ) {
   footer.docs-footer.-mt-20 {

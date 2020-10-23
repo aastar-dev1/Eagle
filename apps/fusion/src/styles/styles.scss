@@ -564,12 +564,13 @@ h3.shepherd-title {
 }
 
 .action-icons {
-  border: solid 2px #f5d58d;
-  border-radius: 8px;
   padding: 8px;
   width: 27px;
   margin-top: 1px;
-  opacity: 0.7;
+  opacity: 0.65;
+  &:hover {
+    opacity: 1;
+  }
 }
 .player-nav-links {
   position: absolute;
@@ -596,6 +597,17 @@ a.width-auto:hover + span, .next-button:hover > span{
 }
 
 
+.mat-button-focus-overlay {
+  background-color: transparent!important;
+}
+.mat-menu-content:not(:empty) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.mat-menu-panel {
+  min-height: auto !important;
+}
+
 a.width-auto.mat-button {
   width: 50px;
   background-color: #f0efef !important;
@@ -613,7 +625,7 @@ a.width-auto.mat-button {
 }
 .prev-button .title, .next-button .title {
   display: inline-block;
-  background-color: #e7e6e6 !important;
+  background-color: #f0efef !important;
   padding: 23px 10px 19px;
   color: #000;
 }

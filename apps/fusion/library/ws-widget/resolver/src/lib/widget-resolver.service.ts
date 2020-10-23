@@ -26,7 +26,7 @@ export class WidgetResolverService {
   private roles: Set<string> | null = null
   private groups: Set<string> | null = null
   private restrictedFeatures: Set<string> | null = null
-  isInitialized = false
+  isInitialized = true
   constructor(
     private domSanitizer: DomSanitizer,
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -60,6 +60,7 @@ export class WidgetResolverService {
       : new Set<string>()
     const registrationConfig: Map<string, NsWidgetResolver.IRegistrationConfig> = new Map()
     const allWidgetsConfigurations: NsWidgetResolver.IRegistrationConfig[] = []
+ 
     if (this.globalConfig && Array.isArray(this.globalConfig)) {
       allWidgetsConfigurations.push(...this.globalConfig)
     }
@@ -74,6 +75,7 @@ export class WidgetResolverService {
     })
     this.restrictedWidgetKeys = restrictedWidgetKeysSet
     this.availableRegisteredWidgets = registrationConfig
+
     this.isInitialized = true
     // this.loggerSvc.log(
     //   `Widget Configurations`,
@@ -88,10 +90,31 @@ export class WidgetResolverService {
     containerRef: ViewContainerRef,
   ): ComponentRef<any> | null {
     const key = WidgetResolverService.getWidgetKey(receivedConfig)
+    const registrationConfig: Map<string, NsWidgetResolver.IRegistrationConfig> = new Map()
+    const allWidgetsConfigurations: NsWidgetResolver.IRegistrationConfig[] = []
+    // const availableRegisteredWidgets: Map<string,  NsWidgetResolver.IRegistrationConfig>
+    if (key === 'widget:layout::gridLayout' && this.availableRegisteredWidgets === null) {
+
+      if (this.globalConfig && Array.isArray(this.globalConfig)) {
+        allWidgetsConfigurations.push(...this.globalConfig)
+
+        allWidgetsConfigurations.forEach(u => {
+          const k = WidgetResolverService.getWidgetKey(u)
+          if (k === 'widget:layout::gridLayout' || k === 'widget:slider::sliderBanners'
+          || k === 'widget:contentStrip::contentStripMultiple' || k === 'widget:card::cardContent') {
+            registrationConfig.set(k, u)
+          }
+        })
+        this.availableRegisteredWidgets = registrationConfig
+      }
+    }
     if (this.restrictedWidgetKeys && this.restrictedWidgetKeys.has(key)) {
       // Restricted
       return this.widgetResolved(containerRef, receivedConfig, RestrictedComponent)
     }
+    // if (this.availableRegisteredWidgets === null && key === 'widget:layout::gridLayout') {
+    //   return this.widgetResolved(containerRef, receivedConfig, GridLayoutComponent)
+    // }
     if (this.availableRegisteredWidgets && this.availableRegisteredWidgets.has(key)) {
       if (
         hasPermissions(

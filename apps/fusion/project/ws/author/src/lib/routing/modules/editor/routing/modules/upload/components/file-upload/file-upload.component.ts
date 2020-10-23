@@ -238,7 +238,7 @@ export class FileUploadComponent implements OnInit, OnChanges {
   }
 
   iprChecked() {
-    // this.iprAccepted = !this.iprAccepted
+    this.iprAccepted = !this.iprAccepted
   }
 
   clearUploadedFile() {
@@ -327,7 +327,7 @@ export class FileUploadComponent implements OnInit, OnChanges {
             },
             duration: NOTIFICATION_TIME * 1000,
           })
-          this.data.emit('saveAndNext')
+          this.data.emit('save')
         },
         () => {
           this.loaderService.changeLoad.next(false)

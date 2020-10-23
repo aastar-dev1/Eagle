@@ -176,4 +176,10 @@ export class DiscussionPostComponent implements OnInit {
     this.postReplies.splice(replyIndex, 1)
   }
 
+  cancelReply() {
+    this.replyPlaceholderToggler = !this.replyPlaceholderToggler
+    if (this.discussionReplyEditor) {
+      this.discussionReplyEditor.resetEditor()
+    }
+  }
 }

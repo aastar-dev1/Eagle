@@ -33,7 +33,7 @@
       <ws-widget-btn-social-vote [postId]="post.id" [activity]="post.activity" [voteType]="'upVote'"
         [postCreatorId]="post?.postCreator?.postCreatorId"></ws-widget-btn-social-vote>
     </div>
-    <div class="margin-left-s margin-auto" *ngIf="!editMode && post.postContent.title.length"
+    <div class="ql-container margin-left-s margin-auto" *ngIf="!editMode && post.postContent.title.length"
       [innerHTML]="post.postContent.title"></div>
     <!-- <mat-chip-list>
       <mat-chip *ngFor="let tag of qnaConversation.mainPost.tags" i18n-matTooltip matTooltip="Associated Tag">
@@ -100,7 +100,7 @@
             Reply
           </button>
           <button name="discussion-post-cancel-reply-button" type="button" class="margin-left-xs" mat-stroked-button
-            (click)="replyPlaceholderToggler = !replyPlaceholderToggler" i18n>
+            (click)="cancelReply()" i18n>
             Cancel
           </button>
           <div *ngIf="isPostingReply" class="text-center">

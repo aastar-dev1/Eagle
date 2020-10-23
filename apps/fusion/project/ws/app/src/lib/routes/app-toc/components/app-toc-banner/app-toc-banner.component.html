@@ -2,16 +2,16 @@
     'banner-container': bannerUrl,
     'ws-mat-primary-lite-background-on-day': !bannerUrl
   }" >
-  <div class="flex flex-between flex-wrapped">
+  <div class="flex flex-between flex-wrap-reverse">
     <div class="header-left">
       <div class="header-synopsis" [ngClass]="{ 'header-synopsis-gradient': bannerUrl }" *ngIf="content">
-        <nav aria-label="breadcrumb">
+        <!-- <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a >Course Category</a></li>
             <li class="breadcrumb-item"><a >Sub Category</a></li>
             <li class="breadcrumb-item active" aria-current="page">Sub Category</li>
           </ol>
-        </nav>
+        </nav> -->
 
         <div class="header-title margin-bottom-m">
           <h1 class="fs-28 margin-remove-bottom padding-bottom-xs hidden sm:block" [title]="content?.name">
@@ -27,7 +27,7 @@
         <div [ngSwitch]="routePath" class="header-meta" [ngClass]="{ 'header-meta-banner': bannerUrl }">
           <!-- Overview Section -->
           <div class="banner-overview-container" [hidden]="!content?.subTitle && showSubtitleOnBanner"
-            *ngSwitchCase="'overview'">
+           >
             <h2 class="overview-description" *ngIf="showSubtitleOnBanner" i18n-title title="Subtitle">
               {{ content?.subTitle | pipeLimitTo: 250 }}
             </h2>

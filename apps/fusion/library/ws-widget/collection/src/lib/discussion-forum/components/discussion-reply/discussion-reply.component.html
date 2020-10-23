@@ -31,7 +31,7 @@
       <ws-widget-btn-social-vote [postId]="reply.id" [activity]="reply.activity" [voteType]="'upVote'"
         [postCreatorId]="reply?.postCreator?.postCreatorId"></ws-widget-btn-social-vote>
     </div>
-    <div *ngIf="!editMode" class="margin-left-s margin-auto" [innerHTML]="reply.postContent.body"></div>
+    <div *ngIf="!editMode" class="ql-container margin-left-s margin-auto" [innerHTML]="reply.postContent.body"></div>
   </div>
   <div *ngIf="editMode" class="margin-top-s padding-s mat-primary-border">
     <!-- [minLength]="'10'" -->
@@ -43,7 +43,7 @@
         Update
       </button>
       <button name="discussion-reply-cancel-update-button" type="button" class="margin-top-s margin-left-s"
-        mat-stroked-button color="primary" i18n (click)="editMode = false">
+        mat-stroked-button color="primary" i18n (click)="cancelReply()">
         Cancel
       </button>
     </div>

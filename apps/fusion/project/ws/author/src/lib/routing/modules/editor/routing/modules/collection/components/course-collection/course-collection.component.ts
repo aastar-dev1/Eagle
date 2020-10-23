@@ -870,6 +870,12 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       case 'InReview':
         return 'review'
       case 'Reviewed':
+       const isDraftPresent = this.contentService.resetStatus()
+       /**Change all content as draft, if one of the content is draft status */
+        if (isDraftPresent) {
+          this.contentService.changeStatusDraft()
+          return 'sendForReview'
+        }
         return 'publish'
       default:
         return 'sendForReview'

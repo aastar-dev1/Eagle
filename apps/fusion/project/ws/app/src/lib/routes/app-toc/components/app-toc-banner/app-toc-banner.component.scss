@@ -2,7 +2,7 @@
 @import 'ws-mixins';
 
 %container-padding {
-  padding: 22px  2 * $size-xl $size-xl 147px;
+  padding: 38px  2 * $size-xl $size-xl 147px;
 
   @include breakpoint-xs {
     padding: $size-xl $size-l;
@@ -201,4 +201,23 @@
   content: "chevron_right";
   display: inline-block;
   margin-right: .5rem;
+}
+.flex-wrap-reverse {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .header-right, .header-left{
+    width: 100%;
+  }
+  .header-right {
+    background-size: cover;
+    min-height: 150px;
+  }
+  .header-synopsis {
+    padding-left: 10px;
+  }
+  .flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
 }

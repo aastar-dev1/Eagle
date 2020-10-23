@@ -30,9 +30,9 @@
 }
 
 .xsmall {
-  position: absolute;
-  display: block;
-  right: 0;
+  position: relative;
+  right: 3px;
+  top: 5px;
 }
 
 .header-spacer {
@@ -44,4 +44,8 @@
 ::ng-deep .mt-3 img.action-icons {
   border: none !important;
   width: 20px;
+}
+
+.hidden {
+  display: none !important
 }

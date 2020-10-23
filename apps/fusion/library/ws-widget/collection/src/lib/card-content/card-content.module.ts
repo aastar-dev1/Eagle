@@ -20,6 +20,7 @@ import { ProfileImageModule } from '../_common/profile-image/profile-image.modul
 import { UserImageModule } from '../_common/user-image/user-image.module'
 import { CardContentComponent } from './card-content.component'
 import { BtnKbAnalyticsModule } from '../btn-kb-analytics/btn-kb-analytics.module'
+import { MdePopoverModule } from '@material-extended/mde'
 
 @NgModule({
   declarations: [CardContentComponent],
@@ -54,6 +55,7 @@ import { BtnKbAnalyticsModule } from '../btn-kb-analytics/btn-kb-analytics.modul
     ProfileImageModule,
     BtnContentFeedbackV2Module,
     BtnKbAnalyticsModule,
+    MdePopoverModule,
   ],
   entryComponents: [CardContentComponent],
   exports: [CardContentComponent],

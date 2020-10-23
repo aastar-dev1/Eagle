@@ -8,7 +8,12 @@
   .unit-meta-item {
     border-radius: 2px;
     box-sizing: border-box;
-    margin-bottom: $size-m;
+    margin-bottom: $size-xl;
+    margin-top: $size-m;
+    clear: both;
+    h2 {
+      font-size: 22px;
+    }
   }
 
   @include breakpoint-xs {
@@ -27,8 +32,8 @@
 }
 
 .info-section {
-  width: 28%;
-  min-width: 250px;
+  // width: 28%;
+  // min-width: 250px;
   margin-left: 24px;
 
   @include breakpoint-xs {

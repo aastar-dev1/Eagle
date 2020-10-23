@@ -84,6 +84,7 @@ $theme-background: mat-palette($mat-blue);
         $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
         // -or- Can set colour by hex value too
         $custom-background-color: #ffffff;
+        color: #424242 !important;
 
         $custom-typography: mat-typography-config(
             $font-family: 'Roboto'
@@ -100,6 +101,9 @@ $theme-background: mat-palette($mat-blue);
         @include angular-material-theme($theme);
         @include theme-based-configurations($theme);
         $background: $background-color;
+        .mat-app-background {
+            color: #4a4a4a;
+        }
     }
 
     &.night-mode {
