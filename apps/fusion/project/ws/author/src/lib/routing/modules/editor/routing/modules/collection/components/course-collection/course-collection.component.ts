@@ -282,7 +282,8 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
         parentNode,
         asSibling ? node.id : undefined,
         'below',
-        this.createTopicForm.value
+        this.createTopicForm.value,
+        param=='web'?'link':''
       )
       this.snackBar.openFromComponent(NotificationComponent, {
         data: {
@@ -686,12 +687,11 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
         }
 
         const content = this.contentService.getUpdatedMeta(event.identifier)
-        // console.log('content==>', content)
         if (['application/pdf', 'application/x-mpegURL'].includes(content.mimeType)) {
           this.viewMode = 'upload'
-        }  else if (content.mimeType === 'application/html' && content.isExternal) {
+        }  else if (['video/x-youtube','application/html'].includes(content.mimeType) && content.fileType=="link") {
           this.viewMode = 'curate'
-        } else if (content.mimeType === 'application/html' && !content.isExternal) {
+        } else if (content.mimeType === 'application/html') {
           this.viewMode = 'upload'
         } else if (content.mimeType === 'application/quiz') {
           this.viewMode = 'assessment'

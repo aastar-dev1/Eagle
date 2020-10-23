@@ -370,11 +370,14 @@ export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
     this.loaderService.changeLoad.next(true)
     this.preserveExpandedNodes()
     this.expandedNodes.add(parentNode.id)
+
     const isDone = await this.store.createChildOrSibling(
       type,
       parentNode,
       asSibling ? node.id : undefined,
       'below',
+      {},
+      type==='web' ? 'link':''
     )
     this.snackBar.openFromComponent(NotificationComponent, {
       data: {

@@ -178,7 +178,8 @@ export class CollectionStoreService {
     dropNode: IContentTreeNode,
     adjacentId?: number,
     dropLocation: 'above' | 'below' = 'below',
-    topicObj?: any
+    topicObj?: any,
+    fileType?:string
   ): Promise<boolean> {
     try {
       const meta = this.authInitService.creationEntity.get(type) as ICreateEntity
@@ -189,6 +190,7 @@ export class CollectionStoreService {
         mimeType: meta.mimeType,
         contentType: meta.contentType,
         resourceType: parentData.categoryType || '',
+        fileType : fileType || '',
 
         // thumbnail: parentData.thumbnail,
         // appIcon: parentData.appIcon,
