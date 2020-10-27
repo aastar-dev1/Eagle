@@ -44,11 +44,13 @@ export class PdfComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+   //TODO console.log('pdf wala')
     if (
       this.activatedRoute.snapshot.queryParamMap.get('preview') &&
       !this.accessControlSvc.authoringConfig.newDesign
     ) {
       this.isPreviewMode = true
+  //TODO    console.log('preview')
       this.viewerDataSubscription = this.viewerSvc
         .getContent(this.activatedRoute.snapshot.paramMap.get('resourceId') || '')
         .subscribe(data => {
@@ -66,9 +68,11 @@ export class PdfComponent implements OnInit, OnDestroy {
           this.isFetchingDataComplete = true
         })
     } else {
+   //TODO   console.log('non preview')
       this.dataSubscription = this.activatedRoute.data.subscribe(
         async data => {
           this.pdfData = data.content.data
+    //TODO      console.log('pdf data',this.pdfData);
           if (this.alreadyRaised && this.oldData) {
             this.raiseEvent(WsEvents.EnumTelemetrySubType.Unloaded, this.oldData)
           }
@@ -107,6 +111,7 @@ export class PdfComponent implements OnInit, OnDestroy {
         () => {},
       )
     }
+  //TODO  console.log('PDF Content',this.pdfData)
   }
 
   formDiscussionForumWidget(content: NsContent.IContent) {
@@ -168,7 +173,7 @@ export class PdfComponent implements OnInit, OnDestroy {
       .setS3Cookie(contentId)
       .toPromise()
       .catch(() => {
-        // throw new DataResponseError('COOKIE_SET_FAILURE')
+    //TODO   console.log('Cookie error for s3')
       })
     return
   }

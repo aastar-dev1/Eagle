@@ -68,58 +68,63 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
     // this.logo = false
     // }
 
-      const collectionId = this.activatedRoute.snapshot.queryParams.collectionId
-      const collectionType = this.activatedRoute.snapshot.queryParams.collectionType
-      if (collectionId && collectionType) {
-        // if (
-        //   collectionType.toLowerCase() ===
-        //   NsContent.EMiscPlayerSupportedCollectionTypes.PLAYLIST.toLowerCase()
-        // )
-        //  {
-          // this.collection = this.getPlaylistContent(collectionId, collectionType)
-
-           this.contentSvc
-          .fetchContent(collectionId, 'all',  []).subscribe(data => {
-            // console.log('data==>', data)
+    const collectionId = this.activatedRoute.snapshot.queryParams.collectionId
+    const collectionType = this.activatedRoute.snapshot.queryParams.collectionType
+    if (collectionId && collectionType) {
+      // if (
+      //   collectionType.toLowerCase() ===
+      //   NsContent.EMiscPlayerSupportedCollectionTypes.PLAYLIST.toLowerCase()
+      // )
+      //  {
+      // this.collection = this.getPlaylistContent(collectionId, collectionType)
+      try {
+        this.contentSvc
+          .fetchAuthoringContent(collectionId).subscribe(data => {
+          //TODO  console.log('data==>', data)
             this.collection = data
+            if (this.configSvc.instanceConfig) {
+              this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(
+                this.configSvc.instanceConfig.logos.app,
+              )
+            }
+            this.viewerDataServiceSubscription = this.viewerDataSvc.tocChangeSubject.subscribe(data => {
+              this.prevResourceUrl = data.prevResource
+              this.nextResourceUrl = data.nextResource
+              if (this.resourceId !== this.viewerDataSvc.resourceId) {
+                this.resourceId = this.viewerDataSvc.resourceId as string
+                this.resourceName = this.viewerDataSvc.resource ? this.viewerDataSvc.resource.name : ''
+              }
+            })
+            this.paramSubscription = this.activatedRoute.queryParamMap.subscribe(async params => {
+              this.collectionId = params.get('collectionId') as string
+              this.isPreview = params.get('preview') === 'true' ? true : false
+            })
+            this.viewerDataServiceResourceSubscription = this.viewerDataSvc.changedSubject.subscribe(
+              _data => {
+                this.resourceId = this.viewerDataSvc.resourceId as string
+                this.resourceName = this.viewerDataSvc.resource ? this.viewerDataSvc.resource.name : ''
+              },
+            )
+            this.viewerSvc.castResource.subscribe(user => this.screenContent = user)
           })
-        }
-
-        // this.viewerDataSubscription = this.viewerSvc
-        // .getContent(this.activatedRoute.snapshot.paramMap.get('resourceId') || '')
-        // .subscribe(data => {
-        //   this.pdfData = data
-        //   // if (this.pdfData) {
-        //   //   this.formDiscussionForumWidget(this.pdfData)
-        //   //   if (this.discussionForumWidget) {
-        //   //     this.discussionForumWidget.widgetData.isDisabled = true
-        //   //   }
-        //   // }
-        // }
-    if (this.configSvc.instanceConfig) {
-      this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(
-        this.configSvc.instanceConfig.logos.app,
-      )
-    }
-    this.viewerDataServiceSubscription = this.viewerDataSvc.tocChangeSubject.subscribe(data => {
-      this.prevResourceUrl = data.prevResource
-      this.nextResourceUrl = data.nextResource
-      if (this.resourceId !== this.viewerDataSvc.resourceId) {
-        this.resourceId = this.viewerDataSvc.resourceId as string
-        this.resourceName = this.viewerDataSvc.resource ? this.viewerDataSvc.resource.name : ''
       }
-    })
-    this.paramSubscription = this.activatedRoute.queryParamMap.subscribe(async params => {
-      this.collectionId = params.get('collectionId') as string
-      this.isPreview = params.get('preview') === 'true' ? true : false
-    })
-    this.viewerDataServiceResourceSubscription = this.viewerDataSvc.changedSubject.subscribe(
-      _data => {
-        this.resourceId = this.viewerDataSvc.resourceId as string
-        this.resourceName = this.viewerDataSvc.resource ? this.viewerDataSvc.resource.name : ''
-      },
-    )
-    this.viewerSvc.castResource .subscribe(user => this.screenContent = user)
+      catch (e) {
+      //TODO  console.log(e)
+      }
+    }
+
+    // this.viewerDataSubscription = this.viewerSvc
+    // .getContent(this.activatedRoute.snapshot.paramMap.get('resourceId') || '')
+    // .subscribe(data => {
+    //   this.pdfData = data
+    //   // if (this.pdfData) {
+    //   //   this.formDiscussionForumWidget(this.pdfData)
+    //   //   if (this.discussionForumWidget) {
+    //   //     this.discussionForumWidget.widgetData.isDisabled = true
+    //   //   }
+    //   // }
+    // }
+
   }
 
   ngOnDestroy() {
@@ -134,6 +139,9 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+    print(collection1:any){
+   //TODO   console.log(collection1)
+    }
   toggleSideBar() {
     this.toggle.emit()
   }

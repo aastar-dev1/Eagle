@@ -127,6 +127,7 @@ export class ViewerTocComponent implements OnInit, OnDestroy {
         this.processCurrentResourceChange()
       }
     })
+    console.log('hello',this.collection)
     this.viewerDataServiceSubscription = this.viewerDataSvc.changedSubject.subscribe(_data => {
       if (this.resourceId !== this.viewerDataSvc.resourceId) {
         this.resourceId = this.viewerDataSvc.resourceId
@@ -182,13 +183,16 @@ export class ViewerTocComponent implements OnInit, OnDestroy {
     _collectionType: string,
   ): Promise<IViewerTocCard | null> {
     try {
+     //TODO console.log('preview',this.forPreview)
       const content: NsContent.IContent = await (this.forPreview
         ? this.contentSvc.fetchAuthoringContent(collectionId)
         : this.contentSvc.fetchContent(collectionId, 'detail')
       ).toPromise()
+     //TODO console.log('content',content);
       this.collectionCard = this.createCollectionCard(content)
       const viewerTocCardContent = this.convertContentToIViewerTocCard(content)
       this.isFetching = false
+     //TODO  console.log('vtx',viewerTocCardContent)
       return viewerTocCardContent
     } catch (err) {
       switch (err.status) {
