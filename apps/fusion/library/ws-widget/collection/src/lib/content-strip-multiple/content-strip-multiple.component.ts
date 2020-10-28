@@ -82,8 +82,35 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
     })
     if (url.indexOf('login') > 0) {
       this.callPublicApi = true
+
+      // Fetch the data
+      for (const strip of this.widgetData.strips) {
+        if (this.checkForEmptyWidget(strip)) {
+          this.fetchStripFromRequestData(strip)
+        } else {
+          this.processStrip(strip, [], 'done', true, null)
+        }
+      }
+      // Subscription for changes
+      const keyAndEvent: { key: string; type: string; from: string }[] = this.widgetData.strips
+        .map(strip => ({
+          key: strip.key,
+          type: (strip.refreshEvent && strip.refreshEvent.eventType) || '',
+          from: (strip.refreshEvent && strip.refreshEvent.from.toString()) || '',
+        }))
+        .filter(({ key, type, from }) => key && type && from)
+      const eventTypeSet = new Set(keyAndEvent.map(e => e.type))
+      this.changeEventSubscription = this.eventSvc.events$
+        .pipe(filter(event => eventTypeSet.has(event.eventType)))
+        .subscribe(event => {
+          keyAndEvent
+            .filter(e => e.type === event.eventType && e.from === event.from)
+            .map(e => e.key)
+            .forEach(k => this.fetchStripFromKeyForLogin(k, false))
+        })
+    } else {
+      this.initData()
     }
-    this.initData()
   }
 
   ngOnDestroy() {
@@ -122,6 +149,27 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
           .map(e => e.key)
           .forEach(k => this.fetchStripFromKey(k, false))
       })
+  }
+
+  private fetchStripFromKeyForLogin(key: string, calculateParentStatus = true) {
+    const stripData = this.widgetData.strips.find(strip => strip.key === key)
+    if (stripData) {
+      this.fetchStripFromRequestDataforLogin(stripData, calculateParentStatus)
+      // this.fetchFromSearch(strip, calculateParentStatus)
+    }
+  }
+
+  private fetchStripFromRequestDataforLogin(
+    strip: NsContentStripMultiple.IContentStripUnit,
+    calculateParentStatus = true,
+  ) {
+    // setting initial values
+    this.processStrip(strip, [], 'fetching', false, null)
+    // this.fetchFromApi(strip, calculateParentStatus)
+    this.fetchFromSearch(strip, calculateParentStatus)
+    // this.fetchFromSearchRegionRecommendation(strip, calculateParentStatus)
+    // this.fetchFromSearchV6(strip, calculateParentStatus)
+    // this.fetchFromIds(strip, calculateParentStatus)
   }
 
   private fetchStripFromKey(key: string, calculateParentStatus = true) {
@@ -201,40 +249,24 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
           },
         )
       } else {
-          // this.contentSvc.getLatestCourse().subscribe(results => {
-          //   console.log('results==>', results)
-          // })
-        //  if (results) {
+        this.contentSvc.getLatestCourse().subscribe(results => {
+          // console.log('results==>', results)
 
-        //     const showViewMore = Boolean(
-        //       results.result.length > 5 && strip.stripConfig && strip.stripConfig.postCardForSearch,
-        //     )
-        //     const viewMoreUrl = showViewMore
-        //       ? {
-        //         path: '/app/search/learning',
-        //         queryParams: {
-        //           q: strip.request && strip.request.search && strip.request.search.query,
-        //           f: JSON.stringify(
-        //             strip.request && strip.request.search && strip.request.search.filters,
-        //           ),
-        //         },
-        //       }
-        //       : null
-        //     this.processStrip(
-        //       strip,
-        //       this.transformContentsToWidgets(results.result, strip),
-        //       'done',
-        //       calculateParentStatus,
-        //       viewMoreUrl,
-        //     )
-        //  }
-        // .subscribe(results => {
-        //   console.log('else result')
-        // })
+          if (results) {
+
+            this.processStrip(
+              strip,
+              this.transformContentsToWidgets(results.result, strip),
+              'done',
+              calculateParentStatus,
+              false,
+            )
+          }
+        })
       }
-
     }
   }
+
   fetchFromSearchRegionRecommendation(
     strip: NsContentStripMultiple.IContentStripUnit,
     calculateParentStatus = true,
@@ -469,6 +501,10 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
         (strip.request.searchV6 && Object.keys(strip.request.searchV6).length) ||
         (strip.request.ids && Object.keys(strip.request.ids).length))
     ) {
+      return true
+    }
+    if (strip.request &&
+      ((strip.request.search && Object.keys(strip.request.search).length))) {
       return true
     }
     return false

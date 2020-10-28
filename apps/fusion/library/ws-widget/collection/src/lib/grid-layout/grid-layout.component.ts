@@ -17,8 +17,13 @@ export class GridLayoutComponent extends WidgetBaseComponent
   @Input() widgetData!: IGridLayoutDataMain
   containerClass = ''
   processed: IGridLayoutProcessedData[][] = []
+  loginPage = false
 
   ngOnInit() {
+    const url = window.location.href
+    if (url.indexOf('login') > 0) {
+      this.loginPage = true
+    }
     if (this.widgetData.gutter != null) {
       this.containerClass = `-mx-${this.widgetData.gutter}`
     }

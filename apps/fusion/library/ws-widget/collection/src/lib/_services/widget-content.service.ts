@@ -13,7 +13,7 @@ const PROTECTED_SLAG_V8 = '/apis/protected/v8'
 const API_END_POINTS = {
   CONTENT: `${PROTECTED_SLAG_V8}/content`,
   AUTHORING_CONTENT: `/apis/authApi/hierarchy`,
-  LATEST_HOMEPAGE_COURSE: `/public/v8/homePage/latestCourses`,
+  LATEST_HOMEPAGE_COURSE: `https://d34vfqm2mqjn7i.cloudfront.net/apis/public/v8/homePage/latestCourses`,
   CONTENT_LIKES: `${PROTECTED_SLAG_V8}/content/likeCount`,
   SET_S3_COOKIE: `${PROTECTED_SLAG_V8}/content/setCookie`,
   SET_S3_IMAGE_COOKIE: `${PROTECTED_SLAG_V8}/content/setImageCookie`,

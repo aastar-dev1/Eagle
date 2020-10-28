@@ -36,6 +36,7 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
   collectionCard: any
   @Input() screenContent: NsContent.IContent | null = null
   obj: NsContent.IContent | null = null
+  isAuthor = false
   constructor(
     private activatedRoute: ActivatedRoute,
     private domSanitizer: DomSanitizer,
@@ -62,6 +63,9 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
     if (window.location.href.includes('/channel/')) {
       this.forChannel = true
     }
+    if (window.location.href.includes('/author/')) {
+      this.isAuthor = true
+    }
     this.isTypeOfCollection = this.activatedRoute.snapshot.queryParams.collectionType ? true : false
     this.collectionType = this.activatedRoute.snapshot.queryParams.collectionType
     // if (this.configSvc.rootOrg === EInstance.INSTANCE) {
@@ -80,13 +84,14 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
       try {
         this.contentSvc
           .fetchAuthoringContent(collectionId).subscribe(data => {
-          //TODO  console.log('data==>', data)
+          // TODO  console.log('data==>', data)
             this.collection = data
             if (this.configSvc.instanceConfig) {
               this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(
                 this.configSvc.instanceConfig.logos.app,
               )
             }
+            // tslint:disable-next-line:no-shadowed-variable
             this.viewerDataServiceSubscription = this.viewerDataSvc.tocChangeSubject.subscribe(data => {
               this.prevResourceUrl = data.prevResource
               this.nextResourceUrl = data.nextResource
@@ -107,9 +112,8 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
             )
             this.viewerSvc.castResource.subscribe(user => this.screenContent = user)
           })
-      }
-      catch (e) {
-      //TODO  console.log(e)
+      } catch (e) {
+      // TODO  console.log(e)
       }
     }
 
@@ -139,9 +143,9 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-    print(collection1:any){
-   //TODO   console.log(collection1)
-    }
+  //   print(collection1:any) {
+  //  //TODO   console.log(collection1)
+  //   }
   toggleSideBar() {
     this.toggle.emit()
   }

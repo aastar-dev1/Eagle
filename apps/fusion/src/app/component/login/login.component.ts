@@ -55,7 +55,6 @@ implements OnInit, OnDestroy, NsWidgetResolver.IWidgetData<NsPage.IPage | null> 
   previewContainerViewRef: ViewContainerRef | null = null
   @Input() widgetData: NsPage.IPage | null = null
 
-  
   navBackground: Partial<NsPage.INavBackground> | null = null
   links: NsWidgetResolver.IRenderConfigWithTypedData<NsPage.INavLink>[] = []
 
@@ -99,11 +98,11 @@ implements OnInit, OnDestroy, NsWidgetResolver.IWidgetData<NsPage.IPage | null> 
 
     this.activateRoute.data.subscribe(routeData => {
 
-    
+
       if (routeData.pageData && routeData.pageData.data) {
         this.error = null
         this.pageData = routeData.pageData.data
-        if (this.pageData ) {
+        if (this.pageData) {
           this.navBackground = this.configSvc.pageNavBar
           this.links = this.isXSmall ? this.getNavLinks() : this.getNavLinks().filter(data =>
             data.widgetData.actionBtnId !== 'channel_how_to')

@@ -60,7 +60,7 @@ export class WidgetResolverService {
       : new Set<string>()
     const registrationConfig: Map<string, NsWidgetResolver.IRegistrationConfig> = new Map()
     const allWidgetsConfigurations: NsWidgetResolver.IRegistrationConfig[] = []
- 
+
     if (this.globalConfig && Array.isArray(this.globalConfig)) {
       allWidgetsConfigurations.push(...this.globalConfig)
     }
@@ -90,24 +90,6 @@ export class WidgetResolverService {
     containerRef: ViewContainerRef,
   ): ComponentRef<any> | null {
     const key = WidgetResolverService.getWidgetKey(receivedConfig)
-    // const registrationConfig: Map<string, NsWidgetResolver.IRegistrationConfig> = new Map()
-    // const allWidgetsConfigurations: NsWidgetResolver.IRegistrationConfig[] = []
-    // const availableRegisteredWidgets: Map<string,  NsWidgetResolver.IRegistrationConfig>
-    // if (key === 'widget:layout::gridLayout' && this.availableRegisteredWidgets === null) {
-
-    //   if (this.globalConfig && Array.isArray(this.globalConfig)) {
-    //     allWidgetsConfigurations.push(...this.globalConfig)
-
-    //     // allWidgetsConfigurations.forEach(u => {
-    //     //   const k = WidgetResolverService.getWidgetKey(u)
-    //     //   if (k === 'widget:layout::gridLayout' || k === 'widget:slider::sliderBanners'
-    //     //   || k === 'widget:contentStrip::contentStripMultiple' || k === 'widget:card::cardContent') {
-    //     //     registrationConfig.set(k, u)
-    //     //   }
-    //     // })
-    //     this.availableRegisteredWidgets = registrationConfig
-    //   }
-    // }
     if (this.restrictedWidgetKeys && this.restrictedWidgetKeys.has(key)) {
       // Restricted
       return this.widgetResolved(containerRef, receivedConfig, RestrictedComponent)
@@ -133,6 +115,47 @@ export class WidgetResolverService {
       }
       // No Permission
       return this.widgetResolved(containerRef, receivedConfig, InvalidPermissionComponent)
+    }
+    // Not Resolved
+    return this.widgetResolved(containerRef, receivedConfig, UnresolvedComponent)
+  }
+
+  loginResolveWidget(
+    receivedConfig: NsWidgetResolver.IRenderConfigWithAnyData,
+    containerRef: ViewContainerRef,
+  ): ComponentRef<any> | null {
+    const key = WidgetResolverService.getWidgetKey(receivedConfig)
+    const registrationConfig: Map<string, NsWidgetResolver.IRegistrationConfig> = new Map()
+    const allWidgetsConfigurations: NsWidgetResolver.IRegistrationConfig[] = []
+    if (key === 'widget:layout::gridLayout' && this.availableRegisteredWidgets === null) {
+
+      if (this.globalConfig && Array.isArray(this.globalConfig)) {
+        allWidgetsConfigurations.push(...this.globalConfig)
+
+        allWidgetsConfigurations.forEach(u => {
+          const k = WidgetResolverService.getWidgetKey(u)
+          if (k === 'widget:layout::gridLayout' || k === 'widget:slider::sliderBanners'
+          || k === 'widget:contentStrip::contentStripMultiple' || k === 'widget:card::cardContent') {
+            registrationConfig.set(k, u)
+          }
+        })
+        this.availableRegisteredWidgets = registrationConfig
+      }
+    }
+    if (this.restrictedWidgetKeys && this.restrictedWidgetKeys.has(key)) {
+      // Restricted
+      return this.widgetResolved(containerRef, receivedConfig, RestrictedComponent)
+    }
+    if (this.availableRegisteredWidgets && this.availableRegisteredWidgets.has(key)) {
+        const config = this.availableRegisteredWidgets.get(key)
+        if (config && config.component) {
+          return this.widgetResolved(containerRef, receivedConfig, config.component)
+        }
+        // Not properly registered
+        return this.widgetResolved(containerRef, receivedConfig, InvalidRegistrationComponent)
+      // }
+      // No Permission
+      // return this.widgetResolved(containerRef, receivedConfig, InvalidPermissionComponent)
     }
     // Not Resolved
     return this.widgetResolved(containerRef, receivedConfig, UnresolvedComponent)

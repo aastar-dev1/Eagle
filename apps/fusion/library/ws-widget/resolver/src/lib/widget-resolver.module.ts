@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { WidgetResolverDirective } from './widget-resolver.directive'
+import { LoginResolverDirective } from './login-resolver.directive'
 import { RestrictedComponent } from './restricted/restricted.component'
 import { InvalidRegistrationComponent } from './invalid-registration/invalid-registration.component'
 import { InvalidPermissionComponent } from './invalid-permission/invalid-permission.component'
@@ -17,13 +18,14 @@ import { WidgetBaseComponent } from './widget-base.component'
   declarations: [
     WidgetBaseComponent,
     WidgetResolverDirective,
+    LoginResolverDirective,
     RestrictedComponent,
     InvalidRegistrationComponent,
     InvalidPermissionComponent,
     UnresolvedComponent,
   ],
   imports: [CommonModule, MatButtonModule, MatIconModule, MatCardModule],
-  exports: [WidgetResolverDirective, WidgetBaseComponent],
+  exports: [WidgetResolverDirective, WidgetBaseComponent, LoginResolverDirective],
   entryComponents: [
     RestrictedComponent,
     InvalidRegistrationComponent,
