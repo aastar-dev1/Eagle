@@ -249,17 +249,31 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
           },
         )
       } else {
-        this.contentSvc.getLatestCourse().subscribe(results => {
+       this.contentSvc.getLatestCourse().subscribe(results => {
           // console.log('results==>', results)
 
           if (results) {
 
+            const showViewMore = Boolean(
+              results.result.length > 5 && strip.stripConfig && strip.stripConfig.postCardForSearch,
+            )
+            const viewMoreUrl = showViewMore
+              ? {
+                path: '/app/search/learning',
+                queryParams: {
+                  q: strip.request && strip.request.search && strip.request.search.query,
+                  f: JSON.stringify(
+                    strip.request && strip.request.search && strip.request.search.filters,
+                  ),
+                },
+              }
+              : null
             this.processStrip(
               strip,
               this.transformContentsToWidgets(results.result, strip),
               'done',
               calculateParentStatus,
-              false,
+              viewMoreUrl,
             )
           }
         })
