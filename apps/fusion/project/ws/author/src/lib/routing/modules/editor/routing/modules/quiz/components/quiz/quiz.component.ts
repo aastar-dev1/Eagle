@@ -116,12 +116,12 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
       this.activateRoute.parent.parent.data.subscribe(v => {
         let courseChildren =  v.contents[0].content.children
         // Children
-        const firstLevelChilds= courseChildren.filter((item:any)=>{
-          return item.category=='Collection'
+        const firstLevelChilds = courseChildren.filter((item: any) => {
+          return item.category === 'Collection'
         })
-        //find assements
-     
-        courseChildren =  firstLevelChilds.map((item:any)=>{
+        // find assements
+
+        courseChildren =  firstLevelChilds.map((item: any) => {
           return courseChildren.concat(item.children)
         })
         courseChildren = courseChildren[0]

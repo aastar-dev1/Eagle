@@ -1,4 +1,4 @@
-import { AuthKeycloakService } from './../../../../library/ws-widget/utils/src/lib/services/auth-keycloak.service';
+import { AuthKeycloakService } from './../../../../library/ws-widget/utils/src/lib/services/auth-keycloak.service'
 
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser'

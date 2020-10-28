@@ -159,7 +159,6 @@ export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
       this.store.currentSelectedNode = node.id
       this.editorStore.changeActiveCont.next(node.identifier)
 
-
      }
   }
 
@@ -379,7 +378,7 @@ export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
       asSibling ? node.id : undefined,
       'below',
       {},
-      type==='web' ? 'link':''
+      type === 'web' ? 'link' : ''
     )
 
     this.snackBar.openFromComponent(NotificationComponent, {

@@ -98,7 +98,6 @@ implements OnInit, OnDestroy, NsWidgetResolver.IWidgetData<NsPage.IPage | null> 
 
     this.activateRoute.data.subscribe(routeData => {
 
-
       if (routeData.pageData && routeData.pageData.data) {
         this.error = null
         this.pageData = routeData.pageData.data

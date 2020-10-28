@@ -319,7 +319,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       this.triggerQuizSave = true
     } else
     if (this.viewMode === 'upload') {
-    //TODO  console.log('viewmode', this.viewMode)
+    // TODO  console.log('viewmode', this.viewMode)
       this.triggerUploadSave = true
     }
     if (

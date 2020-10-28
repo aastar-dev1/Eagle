@@ -71,8 +71,8 @@ export class AuthEditorOptionsComponent implements OnInit {
 
     topLevel.forEach(v => {
       if (
-        v.id!=='resource' &&
-        v.id!=='collection' &&
+        v.id !== 'resource' &&
+        v.id !== 'collection' &&
         contentTypeConfig.allowedCreationType &&
         contentTypeConfig.allowedCreationType.includes(v.id) &&
         this.authInitService.collectionConfig.maxDepth >=
