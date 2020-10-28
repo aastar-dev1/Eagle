@@ -4,6 +4,7 @@ import { NsWidgetResolver } from './widget-resolver.model'
 import { WidgetResolverService } from './widget-resolver.service'
 
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: '[wsLoginResolverWidget]',
 })
 export class LoginResolverDirective implements OnChanges {
