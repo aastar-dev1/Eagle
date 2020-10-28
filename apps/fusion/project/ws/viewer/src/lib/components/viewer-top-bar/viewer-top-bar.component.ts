@@ -80,7 +80,6 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
       try {
         this.contentSvc
           .fetchAuthoringContent(collectionId).subscribe(data => {
-          //TODO  console.log('data==>', data)
             this.collection = data
             if (this.configSvc.instanceConfig) {
               this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(
@@ -139,9 +138,9 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-    print(collection1:any){
-   //TODO   console.log(collection1)
-    }
+  //   print(collection1:any){
+  //  //TODO   console.log(collection1)
+  //   }
   toggleSideBar() {
     this.toggle.emit()
   }

@@ -114,7 +114,17 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
     this.showSettingButtons = this.accessControl.rootOrg === 'client1'
     if (this.activateRoute.parent && this.activateRoute.parent.parent) {
       this.activateRoute.parent.parent.data.subscribe(v => {
-        const courseChildren =  v.contents[0].content.children
+        let courseChildren =  v.contents[0].content.children
+        // Children
+        const firstLevelChilds= courseChildren.filter((item:any)=>{
+          return item.category=='Collection'
+        })
+        //find assements
+     
+        courseChildren =  firstLevelChilds.map((item:any)=>{
+          return courseChildren.concat(item.children)
+        })
+        courseChildren = courseChildren[0]
         // Children
         if (courseChildren) {
           courseChildren.forEach((element: NSContent.IContentMeta) => {

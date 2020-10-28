@@ -151,14 +151,16 @@ export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
     if ($('#cdk-drop-list-0 > mat-tree-node').hasClass('selected')) {
       $('#cdk-drop-list-0 > mat-tree-node:nth-child(2)').removeClass('selected')
    }
-    // if (node.id !== this.selectedNode) {
+
+    if (node.id !== this.selectedNode) {
       this.action.emit({ type: 'editContent', identifier: node.identifier, nodeClicked: true })
       this.selectedNode = node.id
       this.editorStore.currentContent = node.identifier
       this.store.currentSelectedNode = node.id
       this.editorStore.changeActiveCont.next(node.identifier)
 
-    // }
+
+     }
   }
 
   closeSidenav() {
@@ -379,6 +381,7 @@ export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
       {},
       type==='web' ? 'link':''
     )
+
     this.snackBar.openFromComponent(NotificationComponent, {
       data: {
         type: isDone ? Notify.SUCCESS : Notify.FAIL,
@@ -389,6 +392,7 @@ export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
   }
 
   takeAction(action: string, node: IContentTreeNode, type?: string) {
+
     switch (action) {
       case 'editMeta':
       case 'editContent':
