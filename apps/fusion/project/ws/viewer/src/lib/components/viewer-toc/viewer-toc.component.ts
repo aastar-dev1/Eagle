@@ -127,7 +127,6 @@ export class ViewerTocComponent implements OnInit, OnDestroy {
         this.processCurrentResourceChange()
       }
     })
-    console.log('hello',this.collection)
     this.viewerDataServiceSubscription = this.viewerDataSvc.changedSubject.subscribe(_data => {
       if (this.resourceId !== this.viewerDataSvc.resourceId) {
         this.resourceId = this.viewerDataSvc.resourceId

@@ -115,21 +115,21 @@ export class WebModuleEditorComponent implements OnInit, OnDestroy {
 
       const id = this.router.url.split('/')[3]
 
-      const self = this
+      // const self = this
       // get course details
       this.editorService.getDataForContent(id).subscribe(data => {
 
         const courseChildren = data[0].content.children
         if (courseChildren) { }
-        courseChildren.forEach(function (child: NSContent.IContentMeta) {
+        courseChildren.forEach((child: NSContent.IContentMeta) => {
 
           if (child.mimeType === 'application/web-module') {
 
-            self.editorService.getDataForContent(child.identifier).subscribe(data2 => {
-              self.allContents.push(data[0].content)
+            this.editorService.getDataForContent(child.identifier).subscribe(data2 => {
+              this.allContents.push(data[0].content)
 
               const url = data[0].content.artifactUrl.substring(0, data[0].content.artifactUrl.lastIndexOf('/'))
-              self.imagesUrlbase = `${url}/assets/`
+              this.imagesUrlbase = `${url}/assets/`
               const formattedObj = JSON.parse(JSON.stringify(data2))
 
               if (formattedObj.pageJson) {
@@ -139,7 +139,7 @@ export class WebModuleEditorComponent implements OnInit, OnDestroy {
                       // audioObj.URL = JSON.parse(JSON.stringify(
                       //   audioBaseURL + audioObj.URL
                       // ).replace(this.downloadRegex, this.regexDownloadReplace))
-                      audioObj.URL = self.imagesUrlbase + audioObj.URL
+                      audioObj.URL = this.imagesUrlbase + audioObj.URL
                       const splitUrl = audioObj.URL.split('/')
                       const hostURL = `${splitUrl[0]}//${splitUrl[2]}`
                       audioObj.URL = audioObj.URL.replace(hostURL, '')
@@ -155,13 +155,13 @@ export class WebModuleEditorComponent implements OnInit, OnDestroy {
                 let pageBody = p
                 if (p.match(getBodyReg)) {
                   pageBody = p.match(getBodyReg)[1]
-                    .replace('src="', ` src="${self.imagesUrlbase}`)
+                    .replace('src="', ` src="${this.imagesUrlbase}`)
                   // .replace(reg2, ` href="${this.imagesUrlbase}"`)
                 }
                 const fileInd = parseInt(formattedObj.pageJson[index].URL.replace('/assets/index', ''), 10)
                 return new Page({ body: pageBody, fileIndex: fileInd })
               })
-              self.userData[data[0].content.identifier] = formattedObj
+              this.userData[data[0].content.identifier] = formattedObj
             })
           }
         })
