@@ -249,8 +249,12 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
           },
         )
       } else {
-       this.contentSvc.getLatestCourse().subscribe(
-        results => {
+        let results = { result: [] }
+        this.contentSvc.getLatestCourse().subscribe(result => {
+          results = result
+        })
+
+        if (results) {
           const showViewMore = Boolean(
             results.result.length > 5 && strip.stripConfig && strip.stripConfig.postCardForSearch,
           )
@@ -272,11 +276,7 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
             calculateParentStatus,
             viewMoreUrl,
           )
-        },
-        () => {
-          this.processStrip(strip, [], 'error', calculateParentStatus, null)
-        },
-       )
+        }
       }
     }
   }
