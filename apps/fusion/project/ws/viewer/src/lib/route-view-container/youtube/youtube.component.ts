@@ -36,6 +36,7 @@ export class YoutubeComponent implements OnInit {
               private viewerDataSvc: ViewerDataService) { }
 
   ngOnInit() {
+
     if (this.configSvc.restrictedFeatures) {
       this.isRestricted =
         !this.configSvc.restrictedFeatures.has('disscussionForum')
