@@ -63,7 +63,7 @@ export class YoutubeComponent implements OnInit, OnDestroy {
         if (this.platform.ANDROID) {
           this.widgetResolverYoutubeData.widgetData.isVideojs = false
         } else {
-          this.widgetResolverYoutubeData.widgetData.isVideojs = true
+          this.widgetResolverYoutubeData.widgetData.isVideojs = false
         }
         if (this.youtubeData && this.youtubeData.artifactUrl.indexOf('content-store') >= 0) {
           await this.setS3Cookie(this.youtubeData.identifier)

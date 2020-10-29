@@ -120,11 +120,14 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
           return item.category === 'Collection'
         })
         // find assements
+        let firstLevelchildArray: any = []
 
-        courseChildren =  firstLevelChilds.map((item: any) => {
-          return courseChildren.concat(item.children)
+         firstLevelChilds.map((item: any) => {
+
+          firstLevelchildArray = firstLevelchildArray.concat(item.children)
         })
-        courseChildren = courseChildren[0]
+        courseChildren = courseChildren.concat(firstLevelchildArray)
+
         // Children
         if (courseChildren) {
           courseChildren.forEach((element: NSContent.IContentMeta) => {

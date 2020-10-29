@@ -16,7 +16,7 @@ export class PdfComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription | null = null
   private viewerDataSubscription: Subscription | null = null
   private telemetryIntervalSubscription: Subscription | null = null
-  isFetchingDataComplete = false
+  isFetchingDataComplete = true
   pdfData: NsContent.IContent | null = null
   oldData: NsContent.IContent | null = null
   alreadyRaised = false
@@ -50,7 +50,6 @@ export class PdfComponent implements OnInit, OnDestroy {
       !this.accessControlSvc.authoringConfig.newDesign
     ) {
       this.isPreviewMode = true
-  // TODO    console.log('preview')
       this.viewerDataSubscription = this.viewerSvc
         .getContent(this.activatedRoute.snapshot.paramMap.get('resourceId') || '')
         .subscribe(data => {
@@ -68,14 +67,12 @@ export class PdfComponent implements OnInit, OnDestroy {
           this.isFetchingDataComplete = true
         })
     } else {
-   // TODO   console.log('non preview')
       this.dataSubscription = this.activatedRoute.data.subscribe(
         async data => {
           this.pdfData = data.content.data
-    // TODO      console.log('pdf data',this.pdfData);
-          if (this.alreadyRaised && this.oldData) {
-            this.raiseEvent(WsEvents.EnumTelemetrySubType.Unloaded, this.oldData)
-          }
+          // if (this.alreadyRaised && this.oldData) {
+          //   this.raiseEvent(WsEvents.EnumTelemetrySubType.Unloaded, this.oldData)
+          // }
           if (this.pdfData) {
             this.formDiscussionForumWidget(this.pdfData)
           }
@@ -100,12 +97,13 @@ export class PdfComponent implements OnInit, OnDestroy {
               : this.pdfData.artifactUrl
             : ''
           this.widgetResolverPdfData.widgetData.identifier = this.pdfData && this.pdfData.identifier
+
           this.widgetResolverPdfData = JSON.parse(JSON.stringify(this.widgetResolverPdfData))
-          if (this.pdfData) {
-            this.oldData = this.pdfData
-            this.alreadyRaised = true
-            this.raiseEvent(WsEvents.EnumTelemetrySubType.Loaded, this.pdfData)
-          }
+          // if (this.pdfData) {
+          //   this.oldData = this.pdfData
+          //   this.alreadyRaised = true
+          //   this.raiseEvent(WsEvents.EnumTelemetrySubType.Loaded, this.pdfData)
+          // }
           this.isFetchingDataComplete = true
         },
         () => {},

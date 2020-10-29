@@ -57,7 +57,7 @@ export class UrlUploadComponent implements OnInit {
   createForm() {
     this.urlUploadForm = this.formBuilder.group({
       artifactUrl: [''],
-      isIframeSupported: [{ value: 'No', disabled: false }, Validators.required],
+      isIframeSupported: [{ value: 'Yes', disabled: false }, Validators.required],
       mimeType: [],
       isInIntranet: ['', Validators.required],
       isExternal: [],

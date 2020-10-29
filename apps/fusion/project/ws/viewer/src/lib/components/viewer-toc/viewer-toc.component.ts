@@ -182,7 +182,7 @@ export class ViewerTocComponent implements OnInit, OnDestroy {
     _collectionType: string,
   ): Promise<IViewerTocCard | null> {
     try {
-     // TODO console.log('preview',this.forPreview)
+     console.log('preview', this.forPreview)
       const content: NsContent.IContent = await (this.forPreview
         ? this.contentSvc.fetchAuthoringContent(collectionId)
         : this.contentSvc.fetchContent(collectionId, 'detail')
