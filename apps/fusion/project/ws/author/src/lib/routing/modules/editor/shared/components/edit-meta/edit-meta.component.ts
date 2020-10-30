@@ -91,7 +91,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA]
   selectedIndex = 0
   hours = 0
-  minutes = 0
+  minutes = 1
   seconds = 0
   @Input() parentContent: string | null = null
   routerSubscription!: Subscription
@@ -333,6 +333,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private set content(contentMeta: NSContent.IContentMeta) {
+
     this.contentMeta = contentMeta
     this.isEditEnabled = this.contentService.hasAccess(
       contentMeta,
@@ -431,7 +432,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         } else {
           if (v === 'expiryDate') {
             this.contentForm.controls[v].setValue(
-              new Date(new Date().setMonth(new Date().getMonth() + 6)),
+              new Date(new Date().setMonth(new Date().getMonth() + 60)),
             )
           } else {
             this.contentForm.controls[v].setValue(
@@ -480,7 +481,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   changeMimeType() {
-    const artifactUrl = this.contentForm.controls.artifactUrl.value
+    const artifactUrl = this.contentForm.controls.artifactUrl ? this.contentForm.controls.artifactUrl.value : ''
     if (this.contentForm.controls.contentType.value === 'Course') {
       this.contentForm.controls.mimeType.setValue('application/vnd.ekstep.content-collection')
     } else {
@@ -537,7 +538,10 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       if (originalMeta && this.isEditEnabled) {
         const expiryDate = this.contentForm.value.expiryDate
         const currentMeta: NSContent.IContentMeta = JSON.parse(JSON.stringify(this.contentForm.value))
-
+        if (originalMeta.mimeType !== 'application/pdf') {
+          currentMeta.artifactUrl = originalMeta.artifactUrl
+          currentMeta.mimeType = originalMeta.mimeType
+        }
         // currentMeta.resourceType=currentMeta.categoryType;
         if (currentMeta.status === 'Draft') {
           const parentData = this.contentService.parentUpdatedMeta()
@@ -604,6 +608,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
           delete meta.artifactUrl
         }
         this.contentService.setUpdatedMeta(meta, this.contentMeta.identifier)
+
       }
     } catch (ex) {
       this.snackBar.open('Please Save Parent first and refresh page.')
