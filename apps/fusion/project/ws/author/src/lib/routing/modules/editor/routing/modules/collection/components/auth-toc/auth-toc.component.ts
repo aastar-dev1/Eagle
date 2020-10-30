@@ -15,6 +15,7 @@ import { IContentTreeNode } from './../../interface/icontent-tree'
 import { CollectionStoreService } from './../../services/store.service'
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
 import { map } from 'rxjs/operators'
+
 declare var $: any
 @Component({
   // tslint:disable-next-line:component-selector
@@ -27,6 +28,7 @@ export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
   @Output() action = new EventEmitter<{ type: string; identifier: string; nodeClicked?: boolean }>()
   @Output() closeEvent = new EventEmitter<boolean>()
   @Output() node = new EventEmitter<any>()
+  @Output() data = new EventEmitter<string>()
   treeControl!: FlatTreeControl<IContentTreeNode>
   treeFlattener!: MatTreeFlattener<IContentNode, IContentTreeNode>
   dataSource!: MatTreeFlatDataSource<IContentNode, IContentTreeNode>
@@ -388,6 +390,7 @@ export class AuthTocComponent  implements OnInit, AfterViewInit, OnDestroy {
       duration: NOTIFICATION_TIME * 1000,
     })
     this.loaderService.changeLoad.next(false)
+    this.data.emit('refresh')
   }
 
   takeAction(action: string, node: IContentTreeNode, type?: string) {

@@ -142,6 +142,7 @@ export class FileUploadComponent implements OnInit, OnChanges {
         this.storeData()
       }
     })
+
     // this.fileUploadForm.controls.artifactUrl.valueChanges.subscribe(() => {
     //   this.iprAccepted = false
     // })

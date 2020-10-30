@@ -429,7 +429,7 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
         }
       })
     })
-    this.resourceType = this.metaContentService.getUpdatedMeta(this.currentId).identifier
+    this.resourceType = this.metaContentService.getUpdatedMeta(this.currentId).categoryType
     // console.log(dataWithAns, dataWithOutAns)
     const uploadData = this.resourceType === ASSESSMENT ? dataWithOutAns : dataWithAns
     return forkJoin([
