@@ -18,7 +18,7 @@
                 " [ngClass]="
                   !widgetData.isChannelStrip ? 'px-4 sm:px-8 md:px-10ss py-0 my-0 mt-12' : i > 0 ? 'mt-12' : ''
                 " [id]="key">
-          <div [ngClass]="{ pad: stripsResultDataMap[key]?.stripBackground }"
+          <div *ngIf="!callPublicApi" [ngClass]="{ pad: stripsResultDataMap[key]?.stripBackground }"
             [ngStyle]="{ 'background-color': stripsResultDataMap[key]?.stripBackground }">
             <div class="flex items-center justify-between" [ngClass]="
                       !widgetData.isChannelStrip
@@ -68,13 +68,10 @@
               [wsResolverWidget]="stripsResultDataMap[key]?.errorWidget"></ng-container>
             <ws-utils-horizontal-scroller *ngIf="stripsResultDataMap[key]?.widgets?.length && showAccordion(key)"
               [loadStatus]="'done'">
-              <ng-container *ngIf="!callPublicApi">
+
+              <ng-container>                
                 <ng-container *ngFor="let widget of stripsResultDataMap[key]?.widgets" [wsResolverWidget]="widget">
                 </ng-container>
-              </ng-container>
-              <ng-container *ngIf="callPublicApi">
-              <ng-container *ngFor="let widget of stripsResultDataMap[key]?.widgets" [wsLoginResolverWidget]="widget">
-              </ng-container>
               </ng-container>
               <!-- <div *ngIf="stripsResultDataMap[key]?.viewMoreUrl" class="ml-4 mr-6 mb-2 view-more ws-mat-primary-text">
                 <a [routerLink]="stripsResultDataMap[key]?.viewMoreUrl?.path"
@@ -89,6 +86,23 @@
       </a>
 
     </ng-container>
+
+    <div class="px-4 sm:px-8 md:px-10ss py-0 my-0 mt-12" *ngIf="stripsResultDataMap[key].showStrip && callPublicApi">
+      <ws-utils-horizontal-scroller *ngIf="stripsResultDataMap[key]?.widgets?.length "
+        [loadStatus]="'done'">
+        
+          <ng-container *ngFor="let widget of stripsResultDataMap[key]?.widgets" [wsLoginResolverWidget]="widget">
+          </ng-container>
+        
+        <!-- <div *ngIf="stripsResultDataMap[key]?.viewMoreUrl" class="ml-4 mr-6 mb-2 view-more ws-mat-primary-text">
+        <a [routerLink]="stripsResultDataMap[key]?.viewMoreUrl?.path"
+          [queryParams]="stripsResultDataMap[key]?.viewMoreUrl?.queryParams">
+          <mat-icon class="icon">arrow_forward</mat-icon>
+          <h3 i18n>View All</h3>
+        </a>
+      </div> -->
+      </ws-utils-horizontal-scroller>
+    </div>
   </ng-container>
 </ng-template>
 

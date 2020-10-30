@@ -10,6 +10,7 @@ import {
   hasUnitPermission,
   NsWidgetResolver,
   WidgetResolverService,
+  LoginResolverService,
 } from '@ws-widget/resolver'
 import {
   AuthKeycloakService,
@@ -52,6 +53,7 @@ export class InitService {
     private userPreference: UserPreferenceService,
     private http: HttpClient,
     private widgetContentSvc: WidgetContentService,
+    private loginResolverService: LoginResolverService,
 
     @Inject(APP_BASE_HREF) private baseHref: string,
     // private router: Router,
@@ -88,6 +90,7 @@ export class InitService {
       this.settingsSvc.initializePrefChanges(environment.production)
       this.updateNavConfig()
       this.logger.info('Not Authenticated')
+      this.loginResolverService.initialize()
       return false
     }
     // Invalid User

@@ -108,7 +108,8 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
             .map(e => e.key)
             .forEach(k => this.fetchStripFromKeyForLogin(k, false))
         })
-    } else {
+        this.stripsKeyOrder = this.widgetData.strips.map(strip => strip.key) || []
+         } else {
       this.initData()
     }
   }
@@ -169,7 +170,7 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
     this.fetchFromSearch(strip, calculateParentStatus)
     // this.fetchFromSearchRegionRecommendation(strip, calculateParentStatus)
     // this.fetchFromSearchV6(strip, calculateParentStatus)
-    // this.fetchFromIds(strip, calculateParentStatus)
+    this.fetchFromIds(strip, calculateParentStatus)
   }
 
   private fetchStripFromKey(key: string, calculateParentStatus = true) {
@@ -252,31 +253,30 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
         let results = { result: [] }
         this.contentSvc.getLatestCourse().subscribe(result => {
           results = result
+          if (results.result.length > 0) {
+            const showViewMore = Boolean(
+              results.result.length > 5 && strip.stripConfig && strip.stripConfig.postCardForSearch,
+            )
+            const viewMoreUrl = showViewMore
+              ? {
+                path: '/app/search/learning',
+                queryParams: {
+                  q: strip.request && strip.request.search && strip.request.search.query,
+                  f: JSON.stringify(
+                    strip.request && strip.request.search && strip.request.search.filters,
+                  ),
+                },
+              }
+              : null
+            this.processStrip(
+              strip,
+              this.transformContentsToWidgets(results.result, strip),
+              'done',
+              calculateParentStatus,
+              viewMoreUrl,
+            )
+          }
         })
-
-        if (results) {
-          const showViewMore = Boolean(
-            results.result.length > 5 && strip.stripConfig && strip.stripConfig.postCardForSearch,
-          )
-          const viewMoreUrl = showViewMore
-            ? {
-              path: '/app/search/learning',
-              queryParams: {
-                q: strip.request && strip.request.search && strip.request.search.query,
-                f: JSON.stringify(
-                  strip.request && strip.request.search && strip.request.search.filters,
-                ),
-              },
-            }
-            : null
-          this.processStrip(
-            strip,
-            this.transformContentsToWidgets(results.result, strip),
-            'done',
-            calculateParentStatus,
-            viewMoreUrl,
-          )
-        }
       }
     }
   }
