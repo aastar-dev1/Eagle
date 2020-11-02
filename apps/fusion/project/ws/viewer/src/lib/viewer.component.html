@@ -1,6 +1,6 @@
 <section *ngIf="isNotEmbed">
   <viewer-viewer-top-bar *ngIf="fullScreenContainer" [forPreview]="forPreview" [frameReference]="fullScreenContainer"
-    (toggle)="toggleSideBar()" [screenContent]="content">
+    (toggle)="toggleSideBar()" (fsState)="fullScreenState($event)" [screenContent]="content">
   </viewer-viewer-top-bar>
   <viewer-viewer-top-bar *ngIf="!fullScreenContainer" [forPreview]="forPreview" [frameReference]="fullScreenContainer"
     (toggle)="toggleSideBar()" [screenContent]="content">

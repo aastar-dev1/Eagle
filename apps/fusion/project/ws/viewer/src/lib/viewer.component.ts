@@ -147,6 +147,11 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
       })
   }
 
+  fullScreenState(isFullScreen: any) {
+    // this.fsClass = isFullScreen
+    this.dataSvc.changeFullScreen(isFullScreen)
+  }
+
   getTocConfig() {
     const url = `${this.configSvc.sitePath}/feature/toc.json`
     this.widgetContentSvc.fetchConfig(url).subscribe(data => {

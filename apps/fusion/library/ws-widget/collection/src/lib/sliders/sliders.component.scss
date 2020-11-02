@@ -90,11 +90,11 @@ $banner-min-height: 200px;
 
     .dot {
       cursor: pointer;
-      height: $size-m;
-      width: $size-m;
+      height: $size-s;
+      width: $size-s;
       margin: 0 6px;
       background-color: rgba(120, 120, 120, 0.75);
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+      // box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
       border-radius: 50%;
       display: inline-block;
       transition: background-color 0.5s ease !important;
@@ -108,8 +108,8 @@ $banner-min-height: 200px;
 
     .dot.active {
       background-color: #d3d3d3;
-      height: $size-m + ($size-xs / 4);
-      width: $size-m + ($size-xs / 4);
+      height: $size-s + ($size-xs / 4);
+      width: $size-s + ($size-xs / 4);
 
       @include breakpoint-xs {
         height: $size-xs + ($size-xs / 4);

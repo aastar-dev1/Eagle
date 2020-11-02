@@ -29,6 +29,7 @@ export class BtnFullscreenComponent extends WidgetBaseComponent
     this.isInFs = Boolean(getFullScreenElement())
     this.fsChangeSubs = fromEvent(document, 'fullscreenchange').subscribe(() => {
       this.isInFs = Boolean(getFullScreenElement())
+      this.fsState.emit(this.isInFs)
     })
     this.isFullScreenSupported = hasFullScreenSupport(this.widgetData.fsContainer)
   }

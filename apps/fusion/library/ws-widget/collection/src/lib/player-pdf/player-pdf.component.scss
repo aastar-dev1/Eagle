@@ -35,7 +35,7 @@
 }
 
 .custom-scroll-small {
-  overflow-y: hidden;
+  // overflow-y: hidden;
 }
 
 // .pdf-scroll {
@@ -50,4 +50,7 @@
 ::ng-deep .pdf-fullscreen img.action-icons {
   border: none !important;
   width: 20px;
+}
+::ng-deep .fullscreen #youtubeTag {
+  height: 100vh !important;
 }

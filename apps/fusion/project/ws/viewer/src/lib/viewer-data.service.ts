@@ -37,6 +37,11 @@ export class ViewerDataService {
   changedSubject = new ReplaySubject(1)
   tocChangeSubject = new ReplaySubject<IViewerTocChangeEvent>(1)
   navSupportForResource = new ReplaySubject<IViewerResourceOptions>(1)
+  fullScreenResource = new Subject<boolean>()
+  // private setName = new BehaviorSubject<any>("");
+  //To get the name from other component
+  getFullScreenStatus = this.fullScreenResource.asObservable()
+
   constructor() { }
 
   reset(resourceId: string | null = null, status: TStatus = 'none') {
@@ -73,5 +78,7 @@ export class ViewerDataService {
       },
     )
   }
-
+  changeFullScreen(isFullScreen: boolean | undefined) {
+    this.fullScreenResource.next(isFullScreen)
+  }
 }
