@@ -39,7 +39,7 @@ export class ViewerDataService {
   navSupportForResource = new ReplaySubject<IViewerResourceOptions>(1)
   fullScreenResource = new Subject<boolean>()
   // private setName = new BehaviorSubject<any>("");
-  //To get the name from other component
+  // To get the name from other component
   getFullScreenStatus = this.fullScreenResource.asObservable()
 
   constructor() { }

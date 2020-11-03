@@ -139,6 +139,11 @@ export class CardContentComponent extends WidgetBaseComponent
     this.authSvc.login(key, document.baseURI)
   }
 
+  loginRedirect(key: 'E' | 'N' | 'S', contentId: any) {
+    const url = `/app/toc/${contentId}/overview`
+    this.authSvc.login(key, url)
+  }
+
   ngAfterViewInit() {
     // this.assignThumbnail()
   }
