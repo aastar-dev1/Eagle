@@ -155,6 +155,7 @@ export class FileUploadComponent implements OnInit {
       !fileName.toLowerCase().endsWith('.pdf') &&
       !fileName.toLowerCase().endsWith('.zip') &&
       !fileName.toLowerCase().endsWith('.mp4') &&
+      !fileName.toLowerCase().endsWith('.m4v') &&
       !fileName.toLowerCase().endsWith('.mp3')
     ) {
       this.snackBar.openFromComponent(NotificationComponent, {
@@ -208,7 +209,7 @@ export class FileUploadComponent implements OnInit {
     this.file = file
     this.mimeType = fileName.toLowerCase().endsWith('.pdf')
       ? 'application/pdf'
-      : fileName.toLowerCase().endsWith('.mp4')
+      : (fileName.toLowerCase().endsWith('.mp4') ||fileName.toLowerCase().endsWith('.m4v'))
         ? 'application/x-mpegURL'
         : fileName.toLowerCase().endsWith('.zip')
           ? 'application/html'
