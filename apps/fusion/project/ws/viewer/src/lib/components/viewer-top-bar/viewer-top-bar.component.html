@@ -65,8 +65,6 @@
     }"></ws-widget-btn-content-feedback-v2>
 
     <ws-widget-btn-fullscreen [widgetType]="'actionButton'" [widgetSubType]="'actionButtonFullscreen'" 
-    *ngIf="this.obj && (this.obj.mimeType !== 'video/x-youtube'
-    || this.obj.mimeType !== 'application/pdf')"
     [widgetData]="{ fsContainer: frameReference }" (fsState)="fullScreenState($event)"></ws-widget-btn-fullscreen>
 
 </div>

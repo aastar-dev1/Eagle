@@ -54,7 +54,7 @@ export class HtmlComponent implements OnInit, OnChanges {
     let iframeSupport: boolean | string | null =
       this.htmlContent && this.htmlContent.isIframeSupported
     if (this.htmlContent && this.htmlContent.artifactUrl) {
-      if (this.htmlContent.artifactUrl.startsWith('http://')) {
+      if (this.htmlContent.artifactUrl.startsWith('http://') && this.htmlContent.isExternal) {
         this.htmlContent.isIframeSupported = 'No'
       }
       if (typeof iframeSupport !== 'boolean') {
