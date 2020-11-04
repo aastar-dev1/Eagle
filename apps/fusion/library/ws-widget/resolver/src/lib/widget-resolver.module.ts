@@ -9,6 +9,7 @@ import { UnresolvedComponent } from './unresolved/unresolved.component'
 import { MatButtonModule, MatIconModule, MatCardModule } from '@angular/material'
 import { NsWidgetResolver } from './widget-resolver.model'
 import { WidgetResolverService } from './widget-resolver.service'
+import { LoginResolverService } from './login-resolver.service'
 import {
   WIDGET_RESOLVER_GLOBAL_CONFIG,
   WIDGET_RESOLVER_SCOPED_CONFIG,
@@ -39,7 +40,7 @@ export class WidgetResolverModule {
     return {
       ngModule: WidgetResolverModule,
       providers: [
-        WidgetResolverService,
+        WidgetResolverService, LoginResolverService,
         {
           provide: WIDGET_RESOLVER_GLOBAL_CONFIG,
           useValue: config,
@@ -55,7 +56,7 @@ export class WidgetResolverModule {
     return {
       ngModule: WidgetResolverModule,
       providers: [
-        WidgetResolverService,
+        WidgetResolverService, LoginResolverService,
         {
           provide: WIDGET_RESOLVER_SCOPED_CONFIG,
           useValue: config,

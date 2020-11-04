@@ -51,3 +51,10 @@
   border: none !important;
   width: 20px;
 }
+::ng-deep .fullscreen #youtubeTag {
+  height: 100vh !important;
+}
+
+#fullScreenContainer {
+  min-height: 75vh;
+}

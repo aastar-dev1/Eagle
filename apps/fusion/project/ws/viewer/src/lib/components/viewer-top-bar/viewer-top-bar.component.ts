@@ -35,8 +35,11 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
   collection: any
   collectionCard: any
   @Input() screenContent: NsContent.IContent | null = null
+  // @Input() enableFullScreen: any
+  public isInFullScreen = false
   obj: NsContent.IContent | null = null
   isAuthor = false
+  @Output() fsState: EventEmitter<boolean> = new EventEmitter()
   constructor(
     private activatedRoute: ActivatedRoute,
     private domSanitizer: DomSanitizer,
@@ -50,6 +53,7 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
     this.valueSvc.isXSmall$.subscribe(isXSmall => {
       this.logo = !isXSmall
     })
+    // console.log('enableFullScreen==>', this.enableFullScreen)
   }
 
   ngOnChanges() {
@@ -128,6 +132,11 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
     //   // }
     // }
 
+  }
+
+  fullScreenState(state: boolean) {
+    this.isInFullScreen = state
+    this.fsState.emit(state)
   }
 
   ngOnDestroy() {

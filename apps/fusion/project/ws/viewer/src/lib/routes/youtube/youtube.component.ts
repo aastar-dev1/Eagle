@@ -10,6 +10,7 @@ import { NsWidgetResolver } from '@ws-widget/resolver'
 import { ValueService } from '@ws-widget/utils'
 import { ActivatedRoute } from '@angular/router'
 import { Platform } from '@angular/cdk/platform'
+import { ViewerDataService } from './../../viewer-data.service'
 
 @Component({
   selector: 'viewer-youtube',
@@ -31,14 +32,17 @@ export class YoutubeComponent implements OnInit, OnDestroy {
     NsDiscussionForum.IDiscussionForumInput
   > | null = null
   isScreenSizeLtMedium = false
+  fs: boolean | undefined
   constructor(
     private activatedRoute: ActivatedRoute,
     private valueSvc: ValueService,
     private contentSvc: WidgetContentService,
     private platform: Platform,
+    private dataSvc: ViewerDataService,
   ) { }
 
   ngOnInit() {
+    this.dataSvc.getFullScreenStatus.subscribe(fs => (this.fs = fs))
     this.screenSizeSubscription = this.valueSvc.isXSmall$.subscribe(data => {
       this.isScreenSizeSmall = data
     })

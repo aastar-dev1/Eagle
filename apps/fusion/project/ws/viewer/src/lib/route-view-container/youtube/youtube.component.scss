@@ -47,6 +47,7 @@
 .video-player {
   width: 100%;
   position: relative;
+  min-height: 75vh;
   @include breakpoint-xs {
     position: fixed;
     top: 55px;
@@ -76,6 +77,8 @@
       }
     }
 }
+
+
 
 #fullScreenContainer:hover  div.player-nav-links{
   opacity: 1;
@@ -164,3 +167,6 @@ a.width-auto:hover + span, .next-button:hover > span{
   width: 100vw;
 }
 
+::ng-deep #fullScreenContainer #youtubeTag {
+  min-height: 75vh;
+}
