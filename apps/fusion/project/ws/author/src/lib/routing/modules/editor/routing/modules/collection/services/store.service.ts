@@ -190,6 +190,7 @@ export class CollectionStoreService {
         mimeType: meta.mimeType,
         contentType: meta.contentType,
         resourceType: parentData.categoryType || '',
+        categoryType : parentData.categoryType || '',
         fileType : fileType || '',
 
         // thumbnail: parentData.thumbnail,

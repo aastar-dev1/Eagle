@@ -538,9 +538,17 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       if (originalMeta && this.isEditEnabled) {
         const expiryDate = this.contentForm.value.expiryDate
         const currentMeta: NSContent.IContentMeta = JSON.parse(JSON.stringify(this.contentForm.value))
-        if (originalMeta.mimeType !== 'application/pdf') {
+        const exemptArray  = ['application/pdf', 'application/quiz', 'application/x-mpegURL', 'audio/mpeg']
+        if (!exemptArray.includes(originalMeta.mimeType)) {
           currentMeta.artifactUrl = originalMeta.artifactUrl
           currentMeta.mimeType = originalMeta.mimeType
+        }
+        if (!currentMeta.duration && originalMeta.duration) {
+            currentMeta.duration = originalMeta.duration
+        }
+        if (!currentMeta.appIcon && originalMeta.appIcon) {
+          currentMeta.appIcon = originalMeta.appIcon
+          currentMeta.thumbnail = originalMeta.thumbnail
         }
         // currentMeta.resourceType=currentMeta.categoryType;
         if (currentMeta.status === 'Draft') {
@@ -549,9 +557,9 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
          if (parentData  && currentMeta.identifier !== parentData.identifier) {
          //   currentMeta.thumbnail = parentData.thumbnail !== '' ? parentData.thumbnail : currentMeta.thumbnail
            // currentMeta.appIcon = parentData.appIcon !== '' ? parentData.appIcon : currentMeta.appIcon
-           if (!currentMeta.posterImage) {
-            currentMeta.posterImage = parentData.posterImage !== '' ? parentData.posterImage : currentMeta.posterImage
-           }
+          //  if (!currentMeta.posterImage) {
+          //   currentMeta.posterImage = parentData.posterImage !== '' ? parentData.posterImage : currentMeta.posterImage
+          //  }
             if (!currentMeta.subTitle) {
             currentMeta.subTitle = parentData.subTitle !== '' ?  parentData.subTitle : currentMeta.subTitle
             }
@@ -564,11 +572,20 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
             if (!currentMeta.resourceType) {
             currentMeta.resourceType = parentData.resourceType !== '' ?  parentData.resourceType : currentMeta.resourceType
             }
+
             if (!currentMeta.sourceName) {
             currentMeta.sourceName = parentData.sourceName !== '' ?  parentData.sourceName : currentMeta.sourceName
             }
          }
         }
+        // if(currentMeta.categoryType && !currentMeta.resourceType){
+        //   currentMeta.resourceType = currentMeta.categoryType
+        // }
+
+        // if(currentMeta.resourceType && !currentMeta.categoryType){
+        //   currentMeta.categoryType = currentMeta.resourceType
+        // }
+
         const meta = <any>{}
         if (this.canExpiry) {
           currentMeta.expiryDate = `${
@@ -1138,6 +1155,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     // resourceType
     this.contentForm.controls.resourceType.valueChanges.subscribe(() => {
       this.contentForm.controls.categoryType.setValue(this.contentForm.controls.resourceType.value)
+     // this.contentForm.controls.resourceType.setValue(this.contentForm.controls.resourceType.value)
     })
 
     this.contentForm.controls.resourceCategory.valueChanges.subscribe(() => {
