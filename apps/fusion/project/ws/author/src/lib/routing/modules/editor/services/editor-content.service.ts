@@ -96,7 +96,7 @@ export class EditorContentService {
       ...(this.upDatedContent[id] ? this.upDatedContent[id] : {}),
       ...JSON.parse(JSON.stringify(meta)),
     }
-   this.setOriginalMeta(meta)
+  // this.setOriginalMeta(meta)
     if (emit) {
       this.onContentChange.next(id)
     }

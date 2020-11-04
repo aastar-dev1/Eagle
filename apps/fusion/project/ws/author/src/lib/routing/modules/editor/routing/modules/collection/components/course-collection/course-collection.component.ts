@@ -283,8 +283,10 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
         asSibling ? node.id : undefined,
         'below',
         this.createTopicForm.value,
-        param === 'web' ? 'link' : ''
+        param === 'web' ? 'link' : '',
+
       )
+
       this.snackBar.openFromComponent(NotificationComponent, {
         data: {
           type: isDone ? Notify.SUCCESS : Notify.FAIL,
@@ -305,7 +307,8 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
       this.loaderService.changeLoad.next(false)
 
       this.subAction({ type: 'editContent', identifier: this.editorService.newCreatedLexid, nodeClicked: false })
-   //   this.createTopicForm.reset()
+      this.createTopicForm.reset()
+      this.save()
     }
   }
 
@@ -314,6 +317,7 @@ export class CourseCollectionComponent implements OnInit, OnDestroy {
   }
 
   save(nextAction?: string) {
+
     const updatedContent = this.contentService.upDatedContent || {}
     if (this.viewMode === 'assessment') {
       this.triggerQuizSave = true

@@ -185,7 +185,7 @@ export class CollectionStoreService {
       const meta = this.authInitService.creationEntity.get(type) as ICreateEntity
       const parentData = this.contentService.parentUpdatedMeta()
       const requestBody = {
-        name: topicObj ? topicObj.topicName : 'Untitled Content',
+        name: topicObj ? topicObj.topicName : 'New Content',
         description: topicObj ? topicObj.topicDescription : '',
         mimeType: meta.mimeType,
         contentType: meta.contentType,
@@ -195,11 +195,11 @@ export class CollectionStoreService {
 
         // thumbnail: parentData.thumbnail,
         // appIcon: parentData.appIcon,
-        // posterImage: parentData.posterImage,
-        // sourceName: parentData.sourceName,
-        // subTitle: parentData.subTitle,
-        // body: parentData.body,
-        // categoryType: parentData.categoryType,
+        posterImage: parentData.posterImage,
+        sourceName: parentData.sourceName,
+        subTitle: parentData.subTitle,
+        body: parentData.body,
+     //   sourceName : parentData.sourceName,
 
         locale:
           // tslint:disable-next-line: ter-computed-property-spacing
@@ -209,17 +209,18 @@ export class CollectionStoreService {
           ].locale || 'en',
         ...(meta.additionalMeta || {}),
       }
-      const content = await this.editorService.createAndReadContent(requestBody).toPromise()
-      if (content) {
-       // content.thumbnail = parentData.thumbnail
-       // content.appIcon = parentData.appIcon
-        content.posterImage = parentData.posterImage
-        content.sourceName = parentData.sourceName
-        content.subTitle = parentData.subTitle
-        content.body = parentData.body
-        content.categoryType = parentData.categoryType
-      }
+      // requestBody.posterImage = parentData.posterImage
+      // requestBody.sourceName = parentData.sourceName
+      // requestBody.subTitle = parentData.subTitle
+      // requestBody.body = parentData.body
+      // requestBody.categoryType = parentData.categoryType
 
+      const content = await this.editorService.createAndReadContent(requestBody).toPromise()
+      // if (content) {
+      //  // content.thumbnail = parentData.thumbnail
+      //  // content.appIcon = parentData.appIcon
+
+      // }
       this.contentService.setOriginalMeta(content)
       const contentDataMap = new Map<string, NSContent.IContentMeta>()
       const treeStructure = this.resolver.buildTreeAndMap(
